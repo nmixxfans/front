@@ -26,8 +26,26 @@
     font-family: 'NanumBarunGothic', sans-serif;
 }
 
+@font-face {
+    font-family: 'S-CoreDream-9Black';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-9Black.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ClimateCrisisKR-1979';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/ClimateCrisisKR-1979.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     box-sizing: border-box;
     --main-color: #f40000;
+    font-family: 'NanumBarunGothic';
+}
+
+body{
 }

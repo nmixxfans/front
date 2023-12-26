@@ -1,6 +1,7 @@
 .section{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .firstBox{
@@ -11,9 +12,57 @@
 
 .title{
     font-size: 20px;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
     padding-bottom: 5px;
-    font-family: 'NanumBarunGothic';
+    user-select: none;
+    cursor: pointer;
+}
+
+.secondBox{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.thirdBox{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.onAir{
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    animation: sparkle 2s infinite;
+}
+
+.onAirContent{
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    animation: sparkle 2s infinite ease-in-out;
+}
+
+@keyframes sparkle {
+    0%{
+        opacity: 0.2;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.2;
+    }
 }
 
 .youtubePlayerMV{
