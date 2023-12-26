@@ -1,0 +1,35 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.firstBox{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 20px;
+    font-weight: 700;
+    padding-bottom: 5px;
+    font-family: 'NanumBarunGothic';
+}
+
+.youtubePlayerMV{
+    width: 1000px;
+    height: 565px;
+    border-radius: 10px;
+}
+
+.contentBox{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.youtubePlayer{
+    width: 490px;
+    height: 275px;
+    border-radius: 10px;
+}
