@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import home from './css/home.module.css';
 import { faTv, faMusic } from "@fortawesome/free-solid-svg-icons";
