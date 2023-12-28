@@ -9,8 +9,8 @@ export default function Header(){
                     <Link href={'/'} className={header.siteLogo}>WE-NMIXX</Link>
                 </div>
                 <div className={header.linkBox}>
-                    <Link href={'/content/self'}>콘텐츠</Link>
-                    <Link href={'/fantube'}>팬튜브</Link>
+                    <Link href={'/content'}>콘텐츠</Link>
+                    <Link href={'/fantube'}>팬채널</Link>
                     <Link href={'/board'}>자유게시판</Link>
                     <Link href={'/notice'}>공지사항</Link>
                     <Link href={'/apply'}>매니저신청</Link>

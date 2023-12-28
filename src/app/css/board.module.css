@@ -1,0 +1,27 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+}
+
+.headBox{
+
+}
+
+.listBox{
+
+}
+
+.btnBox{
+
+}
+
+.searchBox{
+
+}
