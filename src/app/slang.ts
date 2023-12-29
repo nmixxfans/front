@@ -1,0 +1,1 @@
+const slang = ["망믹스", "씨발", "병신", "븅", "븅신", "fuck", "fxxk", "fuck you", "fucknmixx", "퍽유", "퍽믹스", "망왚"]

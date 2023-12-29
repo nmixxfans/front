@@ -31,23 +31,71 @@
     width: 320px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s;
-}
-
-.secondBoxItem:hover{
-    transform: translateY(-10px);
+    
 }
 
 .secondBoxContent{
     width: 100%;
     height: 250px;
+    background-color: #fff;
     border: 1px solid #cfcfcf;
     border-radius: 10px;
     padding: 10px;
+    transition: all 0.3s;
+}
+
+.secondBoxContent:hover{
+    transform: translateY(-10px);
 }
 
 .boxScroll{
     overflow-y: scroll;
+}
+
+.boxScroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.boxScroll::-webkit-scrollbar-thumb{
+    background: #9d9d9d;
+    border-radius: 10px;
+}
+
+.boxScroll::-webkit-scrollbar-track {
+    background: rgba(129, 129, 129, 0.1);
+    border-radius: 10px;
+}
+
+.boardItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin-top: 5px;
+    border-bottom: 1px solid rgb(207, 217, 222);
+}
+
+.boardTitle{
+    font-size: 14px;
+}
+
+.boardItem:hover{
+    background-color: #f2f2f2;
+    
+}
+
+.boardTitleLink{
+    text-decoration: none;
+    color: #000;
+}
+
+.boardTitleLink:hover {
+    text-decoration: underline;
+}
+
+.boardDate{
+    color: #b5b5b5;
+    font-size: 12px;
 }
 
 .thirdBox{
@@ -59,28 +107,31 @@
 .onAir{
     border: 2px solid red;
     border-radius: 50%;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 5px;
-    animation: sparkle 2s infinite;
+    animation: sparkle 3s infinite;
 }
 
 .onAirContent{
     border-radius: 50%;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     background-color: red;
-    animation: sparkle 2s infinite ease-in-out;
+    animation: sparkle 3s infinite ease-in-out;
 }
 
 @keyframes sparkle {
     0%{
         opacity: 0.2;
     }
-    50%{
+    35%{
+        opacity: 1;
+    }
+    65%{
         opacity: 1;
     }
     100%{
@@ -109,4 +160,9 @@
 
 .youtubePlayer:hover{
     transform: translateY(-10px);
+}
+
+.fourthBox{
+    width: 1000px;
+    margin-top: 20px;
 }

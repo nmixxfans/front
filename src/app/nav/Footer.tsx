@@ -1,5 +1,9 @@
+import footer from "../css/footer.module.css"
+
 export default function Footer(){
-    return <>
-        푸터
-    </>
+    return <footer className={footer.footer}>
+        <div className={footer.container}>
+
+        </div>
+    </footer>
 }
