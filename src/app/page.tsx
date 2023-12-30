@@ -3,8 +3,11 @@
 import Link from 'next/link';
 import home from './css/home.module.css';
 import { useEffect, useState } from 'react';
+import Script from 'next/script'
 
 export default function Home() {
+
+    
 
 
     const exampleData = [
@@ -86,6 +89,8 @@ export default function Home() {
 
     return (
         <section className={home.section}>
+            {/* 트위터 스타일, 기능 Script 태그 */}
+            <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></Script>
             <div className={home.firstBox}>
                 <div>
                     <div className={home.title} title='최신 뮤직비디오'></div>
