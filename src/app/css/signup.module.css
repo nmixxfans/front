@@ -1,7 +1,50 @@
 .section{
-
+    display: flex;
+    justify-content: center;
 }
 
 .container{
-    
+    width: 1000px;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signupBox{
+    width: 400px;
+    height: 500px;
+    border: 1px solid #cfcfcf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.input{
+    width: 100%;
+    height: 35px;
+    margin-bottom: 15px;
+    border: 1px solid #cfcfcf;
+    padding: 10px;
+    outline: none;
+}
+
+.input:focus{
+    border: 1px solid #000;
+}
+
+.inputBox{
+    width: 100%;
+}
+
+.ValidBox{
+    width: 100%;
+    min-height: 15px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #c8c8c8;
 }
