@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import signup from '../css/signup.module.css'
+import slang from '../slang';
 
 export default function Signup() {
 
@@ -30,8 +31,10 @@ export default function Signup() {
     const [emailVerify, setEmailVerify] = useState<string>("");
     // 이메일 인증 체크
     const [emailVerifyCheck, setEmailVerifyCheck] = useState<boolean>(false);
-    
-    
+    // 인증번호 전송 여부
+    const [emailVerifySend, setEmailVerifySend] = useState<boolean>(false);
+
+ 
     const [nick, setNick] = useState<string>("");
     // 닉네임 중복체크
     const [nickCheck, setNickCheck] = useState<boolean>(false);
@@ -103,6 +106,7 @@ export default function Signup() {
     useEffect(()=>{
         const exp = /^[a-z0-9]{4,15}$/;
         setIdAvailabilityCheck(exp.test(id));
+        setIdCheck(false);
     }, [id])
 
     // 비밀번호 유효성 검사
@@ -112,14 +116,44 @@ export default function Signup() {
         setPasswordAvailabilityCheck(exp.test(password));
     }, [password])
 
+    // 비밀번호 재입력
+    useEffect(()=>{
+        if(password===passwordRe){
+            setPasswordCheck(true);
+        }else{
+            setPasswordCheck(false);
+        }
+    }, [passwordRe])
+
     // 이메일 유효성 검사
     useEffect(()=>{
         const exp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
         setEmailAvailabilityCheck(exp.test(email));
-    })
+        setEmailCheck(false);
+        setEmailVerifySend(false);
+    }, [email])
 
-    const handleNickVailabilityCheck = ()=>{
+    useEffect(()=>{
+        setNickAvailabilityCheck(slangCheck());
+    }, [nick])
 
+    const slangCheck = ()=>{
+        let result:boolean = true;
+
+        if(slang.indexOf(nick)>-1){
+            result = false;
+        }else{
+            result = true;
+        }
+        return result
+    }
+
+    const handleVerifyNumber = ()=>{
+        if(emailCheck){
+            setEmailVerifySend(true);
+        }else{
+            alert("이메일 중복체크가 필요합니다.")
+        }
     }
 
     return (
@@ -127,7 +161,8 @@ export default function Signup() {
             <div className={signup.container}>
                 <div className={signup.signupBox}>
                     <div className={signup.inputBox}>
-                        <input placeholder='아이디' value={id} onChange={(e)=>setId(e.target.value)} ref={inputIdRef} className={signup.input}/>
+                        <label className={signup.label} htmlFor='id'>아이디</label>
+                        <input value={id} onChange={(e)=>setId(e.target.value)} ref={inputIdRef} className={signup.input} id='id'/>
                         { id.length === 0 ?
                             <div className={signup.ValidBox}>
                                 <div></div>
@@ -139,12 +174,13 @@ export default function Signup() {
                                 </div>
                             :
                                 <div className={signup.ValidBox}>
-                                    <div>아이디는 소문자, 숫자를 이용해 만들 수 있습니다.</div>
+                                    <div>아이디는 4자리 이상 영어 소문자, 숫자를 조합해 만들 수 있습니다.</div>
                                 </div>
                         }
                     </div>
                     <div className={signup.inputBox}>
-                        <input type='password' placeholder='비밀번호' value={password} onChange={(e)=>setPassword(e.target.value)} ref={inputPWRef} className={signup.input}/>
+                        <label className={signup.label} htmlFor='pw'>비밀번호</label>
+                        <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)} ref={inputPWRef} className={signup.input} id='pw'/>
                         { password.length === 0 ?
                             <div className={signup.ValidBox}>
                                 <div></div>
@@ -156,14 +192,36 @@ export default function Signup() {
                                 </div>
                             :
                                 <div className={signup.ValidBox}>
-                                    <div>비밀번호는 영어, 숫자, 특수문자를 이용해 만들 수 있습니다.</div>
+                                    <div>비밀번호는 8자리 이상 영어, 숫자, 특수문자를 조합해 만들 수 있습니다.</div>
                                 </div>
                         }
                     </div>
-                    <input type='password' placeholder='비밀번호 재입력' value={passwordRe} onChange={(e)=>setPasswordRe(e.target.value)} ref={inputPWRRef} className={signup.input} />
+                    <div className={signup.inputBox}>
+                        <label className={signup.label} htmlFor='pwr'>비밀번호 재입력</label>
+                        <input type='password' value={passwordRe} onChange={(e)=>setPasswordRe(e.target.value)} ref={inputPWRRef} className={signup.input} id='pwr'/>
+                        { passwordRe.length === 0 ?
+                            <div className={signup.ValidBox}>
+                                <div></div>
+                            </div>
+                            :
+                            passwordCheck ?
+                                <div className={signup.ValidBox}>
+                                    <div>비밀번호가 일치합니다.</div>
+                                </div>
+                            :
+                                <div className={signup.ValidBox}>
+                                    <div>비밀번호가 일치하지 않습니다.</div>
+                                </div>
+                        }
+                    </div>
+                    
                     
                     <div className={signup.inputBox}>
-                        <input placeholder='이메일' value={email} onChange={(e)=>setEmail(e.target.value)} ref={inputEmailRef} className={signup.input} />
+                        <label className={signup.label} htmlFor='email'>이메일</label>
+                        <div className={signup.emailBox}>
+                            <input value={email} onChange={(e)=>setEmail(e.target.value)} ref={inputEmailRef} className={signup.inputEmail} id='email' />
+                            <div className={signup.verifySendBtn} onClick={handleVerifyNumber}>인증번호 전송</div>
+                        </div>
                         { email.length === 0 ?
                             <div className={signup.ValidBox}>
                                 <div></div>
@@ -177,15 +235,42 @@ export default function Signup() {
                                     <div>이메일 형식을 입력해주세요.</div>
                                 </div>
                         }
+
+                        {
+                            emailVerifySend ?
+                            <div className={signup.ValidBox}>
+                                <input placeholder='인증번호' value={emailVerify} ref={inputVerifyRef} onChange={(e)=>setEmailVerify(e.target.value)} className={signup.input}/>
+                            </div>
+                            :
+                            <></>
+                        }
                     </div>
-                    <div>
-                        <input placeholder='인증번호' value={emailVerify} ref={inputVerifyRef} onChange={(e)=>setEmailVerify(e.target.value)} className={signup.input}/>
+                    
+                    
+                    <div className={signup.inputBox}>
+                        <label className={signup.label} htmlFor='nick'>닉네임</label>
+                        <input value={nick} onChange={(e)=>setNick(e.target.value)} ref={inputNickRef} className={signup.input} id='nick'/>
+                        { nick.length === 0 ?
+                            <div className={signup.ValidBox}>
+                                <div></div>
+                            </div>
+                            : nickAvailabilityCheck ?
+                                <div className={signup.ValidBox}>
+                                    <div>사용할 수 있는 닉네임입니다.</div>
+                                </div>
+                            :
+                                <div className={signup.ValidBox}>
+                                    <div>사용할 수 없는 닉네임입니다.</div>
+                                </div>
+                        }
                     </div>
-                    <input placeholder='닉네임' value={nick} onChange={(e)=>setNick(e.target.value)} ref={inputNickRef} className={signup.input}/>
+
+                    <div className={signup.signupBtn} onClick={handleSignup}>
+                        회원가입
+                    </div>
+                    
                 </div>
-                <div onClick={handleSignup}>
-                    회원가입
-                </div>
+                
             </div>
         </section>
     )

@@ -24,12 +24,12 @@ export default function Header(){
 
                 {sign.length === 0 ?
                 <div className={header.userBtnBox}>
-                    <Link href={'/signin'} className={header.signBtn}><FontAwesomeIcon title='로그인' icon={faArrowRightToBracket} /></Link>
+                    <Link href={'/signin'} className={header.signBtn} title='로그인'>로그인</Link>
                 </div>
                 :
                 <div className={header.userBtnBox}>
-                    <FontAwesomeIcon title='로그아웃' icon={faArrowRightFromBracket}  className={header.signBtn}/>
                     <Link href={'/mypage'} className={header.signBtn}><FontAwesomeIcon title='마이페이지' icon={faUser} /></Link>
+                    <div className={header.signBtn} title='로그아웃'>로그아웃</div>
                 </div>
                 }
 
