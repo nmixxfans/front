@@ -11,18 +11,33 @@
 }
 
 /* headbox */
-.headBox{
+.title {
+    padding-right: 10px;
+}
+.headBox {
     display: flex;
     justify-content: space-between;
     width: 1000px;
     border-bottom: 2px solid black;
     padding-bottom: 7px;
 }
-
-.listBox{
-    cursor: pointer;
+.headWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
-
+.listBox{
+    padding: 3px 7px;
+    border: 1px solid #000;
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    user-select: none;
+}
+input:checked + .listBox{
+    color: #fff;
+    background-color: #000;
+}
 .link{
     text-decoration: none;
     color: black;
@@ -40,6 +55,47 @@
     padding: 10px;
     border-bottom: 1px solid black;
 }
+.headerData1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+.headerData2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+.headerData3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+.headerData4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.headerData5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.headerData6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}.headerData7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
 
 .data1 {
     display: flex;
@@ -47,7 +103,6 @@
     align-items: center;
     width: 10%;
 }
-
 .data2 {
     display: flex;
     justify-content: center;
@@ -56,7 +111,7 @@
 } 
 .data3 {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 30%;
 }
