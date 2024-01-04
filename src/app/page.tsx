@@ -7,9 +7,6 @@ import Script from 'next/script'
 
 export default function Home() {
 
-    
-
-
     const exampleData = [
         {
             title: "엔믹스 컴백 하루 전",
