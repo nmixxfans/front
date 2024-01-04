@@ -10,16 +10,79 @@
     width: 1000px;
 }
 
+/* headbox */
 .headBox{
-
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    border-bottom: 2px solid black;
+    padding-bottom: 7px;
 }
 
 .listBox{
-
+    cursor: pointer;
 }
 
-.btnBox{
+.link{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    background-color: rgb(187, 181, 181);
+    padding: 3px 18px;
+}
 
+/* mainbox */
+.mainBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.data1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.data2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+} 
+.data3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+}
+.data4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.data5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+.data6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+.data7 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
 }
 
 .searchBox{
