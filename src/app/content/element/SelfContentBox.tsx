@@ -34,7 +34,7 @@ export default function SelfContentBox(){
                 MIXXTAPE
             </div>
             <div>
-                절레전래동화가족
+                절레전래동하가족
             </div>
             <div>
                 MIXXTORY
