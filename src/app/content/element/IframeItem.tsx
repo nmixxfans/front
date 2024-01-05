@@ -3,18 +3,39 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 import content from '../../css/content.module.css';
 
+function useHorizontalScroll() {
+    const elRef = useRef<HTMLElement>(null);
+    useEffect(() => {
+        
+        const el = elRef.current;
+        if (el) {
+            const onWheel = (e:WheelEvent) => {
+                if (e.deltaY == 0) return;
+                e.preventDefault();
+                el.scrollTo({
+                    left: el.scrollLeft + (e.deltaY * 12),
+                    behavior:'smooth'
+                });
+            };
+            el.addEventListener("wheel", onWheel);
+            return () => el.removeEventListener("wheel", onWheel);
+        }
+    }, []);
+    return elRef;
+}
+
+
 type PropsType = {
     list: string[],
 }
 
 export default function IframeItem(props: PropsType) {
 
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useHorizontalScroll();
     const div = ref.current;
     const refId = useRef<number | null>(null);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [previousX, setPreviousX] = useState<number>(0);
-    const [isOver, setIsOver] = useState<boolean>(false);
 
     const tickEvent = useRef<{ start: Date; tickCnt: number }>({ start: new Date(), tickCnt: 0 });
 
@@ -36,7 +57,7 @@ export default function IframeItem(props: PropsType) {
 
         refId.current = requestAnimationFrame(() => {
             const delta = previousX - e.clientX;
-            div.scrollLeft += delta;
+            div.scrollLeft += delta * 3;
             setPreviousX(e.clientX);
 
             refId.current = null;
@@ -44,8 +65,8 @@ export default function IframeItem(props: PropsType) {
         });
     };
 
-    const mouseMoveStyle : CSSProperties = {
-        pointerEvents:"none",
+    const mouseMoveStyle: CSSProperties = {
+        pointerEvents: "none",
     }
 
     return (
@@ -54,7 +75,7 @@ export default function IframeItem(props: PropsType) {
                 {
                     props.list.map((value, index) => {
                         return (
-                            <iframe key={index} className={content.yt} style={isDragging? mouseMoveStyle : {pointerEvents:"auto"} } src={`https://www.youtube.com/embed/${value}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <iframe key={index} className={content.yt} style={isDragging ? mouseMoveStyle : { pointerEvents: "auto" }} src={`https://www.youtube.com/embed/${value}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                         )
                     })
                 }

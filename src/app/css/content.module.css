@@ -39,7 +39,9 @@ input:checked + .categoryBtn{
 
 .itemTitle{
     border-top: 1px solid #000;
-    padding-top: 25px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
 .noneBorderTop{
@@ -63,9 +65,29 @@ input:checked + .categoryBtn{
     margin-bottom: 25px;
 }
 
+.itemList::-webkit-scrollbar {
+    height: 10px;
+    cursor: default;
+}
+
+.itemList::-webkit-scrollbar-thumb{
+    background: #9d9d9d;
+    border-radius: 10px;
+}
+
+.itemList::-webkit-scrollbar-track {
+    background: rgba(129, 129, 129, 0.1);
+    border-radius: 10px;
+}
+
 .yt{
-    width: 344px;
+    width: 355px;
     height: 100%;
     border-radius: 8px;
     user-select: none;
+    transition: all 0.3s;
+}
+
+.yt:hover{
+    transform: translateY(-10px);
 }
