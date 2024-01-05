@@ -17,8 +17,8 @@ export default function Content() {
         <section className={content.section}>
             <div className={content.container}>
                 <div className={content.categoryBox}>
-                    <input type="radio" id="self" name="category" hidden />
-                    <label htmlFor="self" className={content.categoryBtn} onClick={()=>setCategory(true)} defaultChecked>
+                    <input type="radio" id="self" name="category" hidden defaultChecked />
+                    <label htmlFor="self" className={content.categoryBtn} onClick={()=>setCategory(true)} >
                         자체콘텐츠
                     </label>
                     <input type="radio" id="out" name="category" hidden />
@@ -27,10 +27,7 @@ export default function Content() {
                     </label>
                 </div>
                 {
-                    category ?
-                    <SelfContentBox />
-                    :
-                    <OutContentBox />
+                    category ? <SelfContentBox /> : <OutContentBox />
                 }
             </div>
         </section>
