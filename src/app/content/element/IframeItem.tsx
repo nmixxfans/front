@@ -3,8 +3,9 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
 import content from '../../css/content.module.css';
 
+// 가로 스크롤 마우스 휠에 따라 움직이기
 function useHorizontalScroll() {
-    const elRef = useRef<HTMLElement>(null);
+    const elRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         
         const el = elRef.current;
@@ -23,7 +24,6 @@ function useHorizontalScroll() {
     }, []);
     return elRef;
 }
-
 
 type PropsType = {
     list: string[],
@@ -57,7 +57,7 @@ export default function IframeItem(props: PropsType) {
 
         refId.current = requestAnimationFrame(() => {
             const delta = previousX - e.clientX;
-            div.scrollLeft += delta * 3;
+            div.scrollLeft += delta * 2.5;
             setPreviousX(e.clientX);
 
             refId.current = null;
@@ -69,13 +69,25 @@ export default function IframeItem(props: PropsType) {
         pointerEvents: "none",
     }
 
+    const handleClick = ()=>{
+        setIsDragging(false);
+    }
+
     return (
         <>
-            <div className={content.itemList} ref={ref} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
+            <div className={content.itemList} ref={ref} onMouseOut={handleMouseUp} onMouseDown={handleMouseDown} onMouseMove={handleMouseMove} onMouseUp={handleMouseUp}>
                 {
                     props.list.map((value, index) => {
                         return (
-                            <iframe key={index} className={content.yt} style={isDragging ? mouseMoveStyle : { pointerEvents: "auto" }} src={`https://www.youtube.com/embed/${value}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <div className={content.ytWrapper} key={index} style={isDragging ? mouseMoveStyle : { pointerEvents: "auto" }} >
+                                <img src={typeof value === "string" ? `https://i.ytimg.com/vi/${value}/sddefault.jpg` : value.src} className={content.yt} />
+                                <div className={content.ytPlayBox} onClick={handleClick} >
+                                    <a className={content.ytLink} target='_blank' href={typeof value === "string" ? `https://www.youtube.com/watch?v=${value}` : `https://tv.naver.com/v/${value.href}`}>
+                                        <img src='/play.png' className={content.playBtn} />
+                                    </a>
+                                </div>
+                            </div>
+                            // <iframe key={index} className={content.yt} style={isDragging ? mouseMoveStyle : { pointerEvents: "auto" }} src={value.indexOf("http") === -1 ? `https://www.youtube.com/embed/${value}` : `https://tv.naver.com/embed/${value.slice(-8)}`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                         )
                     })
                 }
