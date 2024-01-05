@@ -38,7 +38,7 @@ input:checked + .categoryBtn{
 }
 
 .itemTitle{
-    padding-top: 40px;
+    padding-top: 25px;
     padding-bottom: 5px;
     font-size: 18px;
     font-family: 'S-CoreDream-9Black';
@@ -49,7 +49,7 @@ input:checked + .categoryBtn{
 }
 
 .itemList{
-    height: 260px;
+    height: 255px;
     display: flex;
     gap: 25px;
     -webkit-user-select: none;
@@ -59,10 +59,9 @@ input:checked + .categoryBtn{
     overflow-x: scroll;
     flex-wrap: wrap;
     flex-direction: column;
-    padding: 25px 0px;
-    border-top: 3px solid #f2f2f2;
-    cursor: move;
+    padding: 25px 20px;
     margin-bottom: 25px;
+    background-color: #f3f3f3;
 }
 
 .itemList::-webkit-scrollbar {
@@ -108,6 +107,7 @@ input:checked + .categoryBtn{
     height: 100%;
     background-color: #00000075;
     border-radius: 8px;
+    cursor: default;
 }
 
 .ytWrapper:hover .ytPlayBox{
