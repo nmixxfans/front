@@ -1,0 +1,50 @@
+.section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-image: url('/amnd_v1_jw.jpg');
+    background-repeat: no-repeat;
+    background-position:center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container{
+    width: 1000px;
+    min-height: 500px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.titleBox{
+
+}
+
+.title{
+
+}
+
+.selectBox{
+
+}
+
+.categoryBox{
+
+}
+
+.categoryBtn{
+
+}
+
+.selectContentBox{
+    
+}
+
+.updateDateBox{
+
+}
+
+.contentBox{
+
+}
