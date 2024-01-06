@@ -6,9 +6,8 @@ import KorFantube from "./element/KorFantube";
 import ForFantube from "./element/ForFantube";
 
 export default function Fantube() {
-
+    
     const [category, setCategory] = useState<boolean>(true);
-
 
     return (
         <section className={fantube.section}>
@@ -34,11 +33,11 @@ export default function Fantube() {
                 <div className={fantube.updateDate}>
                     Latest Update - 2024-01-07
                 </div>
-                <div className={fantube.contentBox}>
-                    {
-                        category ? <KorFantube /> : <ForFantube />
-                    }
-                </div>
+
+                {
+                    category ? <KorFantube /> : <ForFantube />
+                }
+
             </div>
         </section>
     )

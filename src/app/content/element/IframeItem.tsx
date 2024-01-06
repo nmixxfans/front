@@ -98,7 +98,7 @@ export default function IframeItem(props: PropsType) {
                                 <div className={content.ytPlayBox} >
                                     <a className={content.ytLink} target='_blank' href={value.ch === "y" ? `https://www.youtube.com/watch?v=${value.href}` : `https://tv.naver.com/v/${value.href}`}>
                                         <img src='/play.png' className={content.playBtn} />
-                                        <div className={content.ytTitle}>{value.title.length > 39 ? value.title.slice(0, 40) + "..." : value.title}</div>
+                                        <div className={content.ytTitle}>{value.title.length > 49 ? value.title.slice(0, 50) + "..." : value.title}</div>
                                     </a>
                                 </div>
                             </div>
