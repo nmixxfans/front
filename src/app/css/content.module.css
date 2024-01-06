@@ -61,7 +61,8 @@ input:checked + .categoryBtn{
     flex-direction: column;
     padding: 25px 20px;
     margin-bottom: 25px;
-    background-color: #f3f3f3;
+    background-color: #f6f6f6;
+    border-radius: 8px;
 }
 
 .itemList::-webkit-scrollbar {
@@ -70,7 +71,7 @@ input:checked + .categoryBtn{
 }
 
 .itemList::-webkit-scrollbar-thumb{
-    background: #9d9d9d;
+    background: #dbdbdb;
     border-radius: 10px;
 }
 
@@ -95,7 +96,7 @@ input:checked + .categoryBtn{
 }
 
 .ytWrapper:hover{
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .ytPlayBox{
@@ -123,5 +124,18 @@ input:checked + .categoryBtn{
 }
 
 .playBtn{
-    width: 75px;
+    width: 50px;
+}
+
+.ytTitle{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.ytTitle:hover{
+    text-decoration: underline;
 }
