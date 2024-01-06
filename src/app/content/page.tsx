@@ -19,7 +19,7 @@ export default function Content() {
                 <div className={content.categoryBox}>
                     <input type="radio" id="self" name="category" hidden defaultChecked />
                     <label htmlFor="self" className={content.categoryBtn} onClick={()=>setCategory(true)} >
-                        자체콘텐츠
+                        공식채널
                     </label>
                     <input type="radio" id="out" name="category" hidden />
                     <label htmlFor="out" className={content.categoryBtn} onClick={()=>setCategory(false)}>

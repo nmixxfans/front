@@ -1,6 +1,6 @@
 'use client'
 
-import { CSSProperties, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import content from '../../css/content.module.css';
 
 // 가로 스크롤 마우스 휠에 따라 움직이기
@@ -26,7 +26,14 @@ function useHorizontalScroll() {
 }
 
 type PropsType = {
-    list: string[],
+    list: videoInformation[],
+}
+
+interface videoInformation {
+    href:string,
+    src:string,
+    title:string,
+    ch:string,
 }
 
 export default function IframeItem(props: PropsType) {
@@ -84,14 +91,14 @@ export default function IframeItem(props: PropsType) {
         <>
             <div className={content.itemList} ref={ref}>
                 {
-                    props.list.map((value, index) => {
+                    props.list.map((value : videoInformation , index : number) => {
                         return (
                             <div className={content.ytWrapper} key={index} >
                                 <img src={value.ch === "y" ? `https://i.ytimg.com/vi/${value.href}/sddefault.jpg` : value.src} className={content.yt} />
                                 <div className={content.ytPlayBox} >
                                     <a className={content.ytLink} target='_blank' href={value.ch === "y" ? `https://www.youtube.com/watch?v=${value.href}` : `https://tv.naver.com/v/${value.href}`}>
                                         <img src='/play.png' className={content.playBtn} />
-                                        <div className={content.ytTitle}>{value.title.length > 31 ? value.title.slice(0, 31) + "..." : value.title}</div>
+                                        <div className={content.ytTitle}>{value.title.length > 39 ? value.title.slice(0, 40) + "..." : value.title}</div>
                                     </a>
                                 </div>
                             </div>

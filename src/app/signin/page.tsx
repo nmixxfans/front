@@ -51,15 +51,8 @@ export default function Signin() {
                         로그인
                     </div>
                     <div className={signin.otherBtnBox}>
-                        <div>
-                            <Link href={'/signup'} className={signin.otherBtn}>회원가입</Link>
-                        </div>
-                        <div className={signin.otherBtn}>
-                            |
-                        </div>
-                        <div>
-                            <Link href={'/'} className={signin.otherBtn}>ID/PW 찾기</Link>
-                        </div>
+                        <Link href={'/signup'} className={signin.otherBtn}>회원가입</Link>
+                        <Link href={'/'} className={signin.otherBtn}>ID/PW 찾기</Link>
                     </div>
                 </div>
             </div>

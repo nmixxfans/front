@@ -24,9 +24,6 @@ export default function SelfContentBox(){
                 MIXXTREAM
             </div>
             <div>
-                MIXXTAPE
-            </div>
-            <div>
                 MIXXTORY
             </div>
             <div>
