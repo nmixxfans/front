@@ -42,7 +42,7 @@ input:checked + .categoryBtn{
 .itemTitle{
     margin-top: 25px;
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'S-CoreDream-9Black';
     width: fit-content;
     background-color: #000;
@@ -55,7 +55,7 @@ input:checked + .categoryBtn{
 }
 
 .itemList{
-    height: 255px;
+    height: 245px;
     display: flex;
     gap: 25px;
     -webkit-user-select: none;
@@ -65,9 +65,9 @@ input:checked + .categoryBtn{
     overflow-x: scroll;
     flex-wrap: wrap;
     flex-direction: column;
-    padding: 25px 20px;
-    margin-bottom: 25px;
-    background-color: #f6f6f6;
+    padding: 20px 0px;
+    margin-bottom: 30px;
+    border-top: 1px solid #cccccc;
 }
 
 .itemList::-webkit-scrollbar {
