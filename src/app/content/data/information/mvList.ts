@@ -6,7 +6,8 @@ interface videoInformation {
 }
 
 // MV
-const mvList : videoInformation[] = [{
+const mvList : videoInformation[] = [
+    {
         href:"MMtRxcy8PX0",
         src:"",
         title:'NMIXX "Soñar (Breaker)" M/V',

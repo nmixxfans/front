@@ -13,6 +13,7 @@
 
 .categoryBox{
     margin-bottom: 25px;
+    display: flex;
 }
 
 .categoryBtn{
