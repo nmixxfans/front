@@ -1,9 +1,4 @@
-interface videoInformation {
-    href:string,
-    src:string,
-    title:string,
-    ch:string,
-}
+import videoInformation from "../videoInformationType";
 
 // MV
 const mvList : videoInformation[] = [

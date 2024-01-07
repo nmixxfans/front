@@ -31,7 +31,7 @@ export default function Fantube() {
                     </div>
                 </div>
                 <div className={fantube.updateDate}>
-                    Latest Update - 2024-01-07
+                    최종 업데이트 : 2024-01-07
                 </div>
 
                 {

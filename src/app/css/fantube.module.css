@@ -19,8 +19,11 @@
 }
 
 .title{
-    font-size: 20px;
+    font-size: 18px;
     font-family: 'S-CoreDream-9Black';
+    background-color: #000;
+    color: #fff;
+    padding: 0px 4px;
 }   
 
 .selectBox{

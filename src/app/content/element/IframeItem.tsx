@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import content from '../../css/content.module.css';
 
 // 가로 스크롤 마우스 휠에 따라 움직이기
@@ -14,12 +14,15 @@ function useHorizontalScroll() {
                 if (e.deltaY == 0) return;
                 e.preventDefault();
                 el.scrollTo({
-                    left: el.scrollLeft + (e.deltaY * 12),
+                    // left: el.scrollLeft + (e.deltaY * 11),
+                    left: el.scrollLeft + (Math.sign(e.deltaY) * 380 * 3),
                     behavior:'smooth'
                 });
             };
+
             el.addEventListener("wheel", onWheel);
             return () => el.removeEventListener("wheel", onWheel);
+            
         }
     }, []);
     return elRef;

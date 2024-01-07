@@ -4,17 +4,13 @@ import tapeList from "./information/tapeList";
 import showList from "./information/showList";
 import wonderlandList from "./information/wonderlandList";
 import storyList from "./information/storyList";
+import videoInformation from "./videoInformationType";
+import vlogList from "./information/vlogList";
 
 interface information {
     name:string,
     title:string,
     array:any[],
-}
-
-interface videoInformation {
-    href:string,
-    src:string,
-    title:string,
 }
 
 // // PICK NMIXX
@@ -50,8 +46,13 @@ const controll : information[] = [
         array: tapeList,
     },
     {
-        name:"MIXXTORY",
+        name:"MIXXTREAM",
         title:"엔믹스 브이로그",
+        array: vlogList,
+    },
+    {
+        name:"MIXXTORY",
+        title:"엔믹스 개인 브이로그",
         array: storyList,
     },
     // {
