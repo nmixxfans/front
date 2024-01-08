@@ -4,6 +4,7 @@ import Link from 'next/link';
 import home from './css/home.module.css';
 import { useEffect, useState } from 'react';
 import Script from 'next/script'
+import Loading from './loading';
 
 export default function Home() {
 
@@ -86,6 +87,8 @@ export default function Home() {
 
     return (
         <section className={home.section}>
+            {/* 임시 로딩바 테스트용 */}
+            <Loading></Loading>
             {/* 트위터 스타일, 기능 Script 태그 */}
             <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></Script>
             <div className={home.firstBox}>
