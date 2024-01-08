@@ -30,9 +30,9 @@ export default function Fantube() {
                         </div>
                     </div>
                 </div>
-                <div className={fantube.updateDate}>
+                {/* <div className={fantube.updateDate}>
                     최종 업데이트 : 2024-01-07
-                </div>
+                </div> */}
 
                 {
                     category ? <KorFantube /> : <ForFantube />
