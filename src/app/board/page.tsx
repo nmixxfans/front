@@ -91,7 +91,7 @@ export default function Board() {
                         <div key={data.number} className={board.mainBox}>
                             <div className={board.data1}>{data.number}</div>
                             <div className={board.data2}>{data.select}</div>
-                            <div className={board.data3}>{data.title}</div>
+                            <div className={board.data3}>{(data.title).substring(0, 16)}</div>
                             <div className={board.data4}>{data.writer}</div>
                             <div className={board.data5}>{data.date}</div>
                             <div className={board.data6}>{data.view}</div>
@@ -99,11 +99,16 @@ export default function Board() {
                         </div>
                     )
                 })}
-
-
-
+                <div className={board.btnBox}>
+                    <Link href={'/board/write'} className={board.link}>글쓰기</Link>
+                </div>
                 <div className={board.searchBox}>
-                    검색
+                    <select className={board.searchSelect}>
+                        <option>제목</option>
+                        <option>내용</option>
+                        <option>제목+내용</option>
+                    </select>
+                    <input className={board.searchInput} placeholder="검색"/>
                 </div>
             </div>
         </section>
