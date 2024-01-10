@@ -1,6 +1,6 @@
 "use client"
 
-import { DragEvent, useState } from "react";
+import { ChangeEvent, DragEvent, useState } from "react";
 import send from "../css/send.module.css";
 import {
     faFile
@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export default function Send(){
 
     const [isActive, setActive] = useState<boolean>(false);
+    const [fileInfor, setFileInfor] = useState<string>("");
+
     const handleDragStart = () => setActive(true);
     const handleDragEnd = () => setActive(false);
 
@@ -26,12 +28,21 @@ export default function Send(){
         const file = e.dataTransfer.files[0];
         console.log(file);
         setActive(false);
+        setFileInfor(file.name)
+        
         // readImage(file);
         
     
         // 드롭된 파일 핸들링
         // ...
-      };
+    };
+
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>)=>{
+        if(e.target.files){
+            const file = e.target.files[0];
+            setFileInfor(file.name);
+        }
+    }
 
     return(
         <section className={send.section}>
@@ -64,11 +75,26 @@ export default function Send(){
                             <textarea className={send.text}></textarea>
                             <div className={send.fileBox}>
                                 <label className={isActive ? [send.fileLabel, send.fileActive].join(' ') : send.fileLabel} htmlFor="file" onDragEnter={handleDragStart} onDragLeave={handleDragEnd} onDrop={(e)=>handleDrop(e)} onDragOver={(e)=>handleDragOver(e)}>
-                                    <input type="file" id="file" hidden/>
+                                    <input type="file" id="file" hidden onChange={handleInputChange}/>
                                     <FontAwesomeIcon className={send.fileIcon} icon={faFile} />
                                     <div className={send.fileText}>클릭 혹은 파일을 이곳에 드롭하세요</div>
                                     <div className={send.fileTextDetail}>(최대 10MB)</div>
                                 </label>
+                            </div>
+                            <div className={send.fileSendBox}>
+                                <div className={send.fileInformationBox}>
+                                    {fileInfor.length === 0 ?
+                                        <></> :
+                                        <>
+                                            <div className={send.fileName}>{fileInfor}</div>
+                                            <div className={send.fileDelete}>x</div>
+                                        </>
+                                    }
+                                    
+                                </div>
+                                <div className={send.saveBtn}>
+                                    전송
+                                </div>
                             </div>
                         </div>
                     </div>
