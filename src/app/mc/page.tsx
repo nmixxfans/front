@@ -1,7 +1,11 @@
+import nmixxcon from "../css/nmixxcon.module.css";
+
 export default function MixxCon() {
     return (
-        <>
-            엔믹스콘
-        </>
+        <section className={nmixxcon.section}>
+            <div className={nmixxcon.container}>
+
+            </div>
+        </section>
     )
 }
