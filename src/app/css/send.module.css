@@ -95,18 +95,37 @@ input:checked + .categoryBtn{
 }
 
 .fileBox{
-
+    margin-top: 20px;
 }
 
 .fileLabel{
-    border: 1px dashed #dadada;
+    border: 1px solid #dadada;
     width: 100%;
-    min-height: 50px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 25px;
+    cursor: pointer;
+    background-color: #fff;
+    gap: 15px;
 }
 
-.activeFileLabel{
-    width: 100%;
-    min-height: 50px;
-    background-color: #efeef3;
+.fileActive {
+    background-color: #f0f8ff;
     border-color: #111;
+}
+
+.fileIcon{
+    font-size: 40px;
+}
+
+.fileText{
+    font-size: 14px;
+}
+
+.fileTextDetail{
+    font-size: 12px;
 }

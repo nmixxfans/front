@@ -1,7 +1,11 @@
 "use client"
 
-import { useState } from "react";
+import { DragEvent, useState } from "react";
 import send from "../css/send.module.css";
+import {
+    faFile
+ } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Send(){
 
@@ -10,6 +14,24 @@ export default function Send(){
     const handleDragEnd = () => setActive(false);
 
     const [category, setCategory] = useState<string>("");
+
+    const handleDragOver = (e:DragEvent<HTMLLabelElement>) => {
+        setActive(true)
+        e.preventDefault();  // 필수 1
+      };
+
+    const handleDrop = (e:DragEvent<HTMLLabelElement>) => {
+        e.preventDefault();
+    
+        const file = e.dataTransfer.files[0];
+        console.log(file);
+        setActive(false);
+        // readImage(file);
+        
+    
+        // 드롭된 파일 핸들링
+        // ...
+      };
 
     return(
         <section className={send.section}>
@@ -41,9 +63,11 @@ export default function Send(){
                         <div className={send.content}>
                             <textarea className={send.text}></textarea>
                             <div className={send.fileBox}>
-                                <input type="file" id="file" hidden/>
-                                <label className={isActive ?  send.activeFileLabel : send.fileLabel } htmlFor="file" onDragEnter={handleDragStart} onDragLeave={handleDragEnd}>
-                                    <div>클릭 혹은 파일을 이곳에 드롭하세요.</div>
+                                <label className={isActive ? [send.fileLabel, send.fileActive].join(' ') : send.fileLabel} htmlFor="file" onDragEnter={handleDragStart} onDragLeave={handleDragEnd} onDrop={(e)=>handleDrop(e)} onDragOver={(e)=>handleDragOver(e)}>
+                                    <input type="file" id="file" hidden/>
+                                    <FontAwesomeIcon className={send.fileIcon} icon={faFile} />
+                                    <div className={send.fileText}>클릭 혹은 파일을 이곳에 드롭하세요</div>
+                                    <div className={send.fileTextDetail}>(최대 10MB)</div>
                                 </label>
                             </div>
                         </div>
