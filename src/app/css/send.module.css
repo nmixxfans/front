@@ -32,21 +32,13 @@
     width: 100%;
     min-height: 200px;
     margin-bottom: 20px;
-    border: 1px solid #dadada;
+    border: 1px solid #000;
     border-radius: 15px;
     padding: 25px 35px;
 }
 
-.noticeBox:hover{
-    border: 1px solid #000;
-}
-
 .notice{
     display: list-item;
-    color: #dadada;
-}
-
-.noticeBox:hover .notice{
     color: #000;
 }
 
