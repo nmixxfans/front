@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, DragEvent, useState } from "react";
+import { ChangeEvent, DragEvent, useRef, useState } from "react";
 import send from "../css/send.module.css";
 import {
     faFile
@@ -11,11 +11,11 @@ export default function Send(){
 
     const [isActive, setActive] = useState<boolean>(false);
     const [fileInfor, setFileInfor] = useState<string>("");
+    const [category, setCategory] = useState<string>("");
+    const fileInput = useRef<HTMLInputElement | null>(null);
 
     const handleDragStart = () => setActive(true);
     const handleDragEnd = () => setActive(false);
-
-    const [category, setCategory] = useState<string>("");
 
     const handleDragOver = (e:DragEvent<HTMLLabelElement>) => {
         setActive(true)
@@ -42,6 +42,19 @@ export default function Send(){
             const file = e.target.files[0];
             setFileInfor(file.name);
         }
+    }
+
+    const handleSendClick = ()=>{
+        console.log("전송")
+    }
+
+    // 엑스버튼 누르면 첨부파일 초기화
+    const handleInputFileDelete = ()=>{
+        if(!fileInput.current){
+            return;
+        }
+        fileInput.current.value = "";
+        setFileInfor("")
     }
 
     return(
@@ -75,7 +88,7 @@ export default function Send(){
                             <textarea className={send.text}></textarea>
                             <div className={send.fileBox}>
                                 <label className={isActive ? [send.fileLabel, send.fileActive].join(' ') : send.fileLabel} htmlFor="file" onDragEnter={handleDragStart} onDragLeave={handleDragEnd} onDrop={(e)=>handleDrop(e)} onDragOver={(e)=>handleDragOver(e)}>
-                                    <input type="file" id="file" hidden onChange={handleInputChange}/>
+                                    <input type="file" id="file" hidden onChange={handleInputChange} ref={fileInput}/>
                                     <FontAwesomeIcon className={send.fileIcon} icon={faFile} />
                                     <div className={send.fileText}>클릭 혹은 파일을 이곳에 드롭하세요</div>
                                     <div className={send.fileTextDetail}>(최대 10MB)</div>
@@ -87,12 +100,12 @@ export default function Send(){
                                         <></> :
                                         <>
                                             <div className={send.fileName}>{fileInfor}</div>
-                                            <div className={send.fileDelete}>x</div>
+                                            <div className={send.fileDelete} onClick={handleInputFileDelete}>x</div>
                                         </>
                                     }
                                     
                                 </div>
-                                <div className={send.saveBtn}>
+                                <div className={send.saveBtn} onClick={handleSendClick}>
                                     전송
                                 </div>
                             </div>
