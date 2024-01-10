@@ -1,0 +1,9 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 1000px;
+    min-height:500px;
+}
