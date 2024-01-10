@@ -30,7 +30,6 @@ export default function Header(){
                     <div className={header.signBtn} title='로그아웃'>로그아웃</div>
                 </div>
                 }
-
             </div>
             <div className={header.linkBox}>
                 <Link href={'/content'}>콘텐츠</Link>
