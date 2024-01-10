@@ -94,6 +94,21 @@ input:checked + .categoryBtn{
     border: 1px solid #000;
 }
 
+.text::-webkit-scrollbar {
+    width: 10px;
+    cursor: default;
+}
+
+.text::-webkit-scrollbar-thumb{
+    background: #dbdbdb;
+    border-radius: 10px;
+}
+
+/* .text::-webkit-scrollbar-track {
+    background: rgba(129, 129, 129, 0.1);
+    border-radius: 10px;
+} */
+
 .fileBox{
     margin-top: 20px;
 }
@@ -111,6 +126,11 @@ input:checked + .categoryBtn{
     cursor: pointer;
     background-color: #fff;
     gap: 15px;
+}
+
+.fileLabel:hover{
+    background-color: #f0f8ff;
+    border-color: #111;
 }
 
 .fileActive {
@@ -150,15 +170,13 @@ input:checked + .categoryBtn{
 
 .fileDelete{
     padding-left: 5px;
-    display: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
 }
 
 .fileInformationBox:hover .fileName{
     text-decoration: underline;
-}
-
-.fileInformationBox:hover .fileDelete{
-    display: flex;
 }
 
 
