@@ -18,7 +18,7 @@ export default function Send(){
 
                         </div>
                         <div className={send.content}>
-                            <textarea>
+                            <textarea className={send.text}>
 
                             </textarea>
                         </div>
