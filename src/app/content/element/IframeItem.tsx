@@ -97,10 +97,10 @@ export default function IframeItem(props: PropsType) {
                     props.list.map((value : videoInformation , index : number) => {
                         return (
                             <div className={content.ytWrapper} key={index} >
-                                <img src={value.ch === "y" ? `https://i.ytimg.com/vi/${value.href}/sddefault.jpg` : value.src} className={content.yt} />
+                                <img src={value.ch === "y" ? `https://i.ytimg.com/vi/${value.href}/sddefault.jpg` : value.src} className={content.yt}  loading='lazy'/>
                                 <div className={content.ytPlayBox} >
                                     <a className={content.ytLink} target='_blank' href={value.ch === "y" ? `https://www.youtube.com/watch?v=${value.href}` : `https://tv.naver.com/v/${value.href}`}>
-                                        <img src='/play.png' className={content.playBtn} />
+                                        <img src='/play.png' className={content.playBtn}/>
                                         <div className={content.ytTitle}>{value.title.length > 49 ? value.title.slice(0, 50) + "..." : value.title}</div>
                                     </a>
                                 </div>

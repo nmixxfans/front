@@ -9,7 +9,9 @@ export default function Send(){
                 </div>
                 <div className={send.contentBox}>
                     <div className={send.noticeBox}>
-
+                        <div className={send.notice}>
+                            
+                        </div>
                     </div>
                     <div className={send.sendBox}>
                         <div className={send.categoryBox}>
@@ -17,7 +19,7 @@ export default function Send(){
                         </div>
                         <div className={send.content}>
                             <textarea>
-                                
+
                             </textarea>
                         </div>
                     </div>
