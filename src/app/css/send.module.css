@@ -10,7 +10,9 @@
 }
 
 .titleBox{
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
 }
 
 .title{
@@ -27,7 +29,25 @@
 }
 
 .noticeBox{
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 20px;
+    border: 1px solid #dadada;
+    border-radius: 15px;
+    padding: 25px 35px;
+}
 
+.noticeBox:hover{
+    border: 1px solid #000;
+}
+
+.notice{
+    display: list-item;
+    color: #dadada;
+}
+
+.noticeBox:hover .notice{
+    color: #000;
 }
 
 .sendBox{
@@ -35,7 +55,25 @@
 }
 
 .categoryBox{
+    display: flex;
+    margin-bottom: 10px;
+}
 
+.categoryBtn{
+    padding: 4px 12px;
+    font-size: 15px;
+    border: 2px solid #000;
+    margin-right: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+input:checked + .categoryBtn{
+    color: #fff;
+    background-color: #000;
 }
 
 .content{
@@ -46,8 +84,29 @@
     width: 100%;
     resize: none;
     outline: none;
-    border: 1px solid #000;
+    border: 1px solid #dadada;
     padding: 15px;
     height: 450px;
     font-size: 18px;
+}
+
+.text:focus{
+    border: 1px solid #000;
+}
+
+.fileBox{
+
+}
+
+.fileLabel{
+    border: 1px dashed #dadada;
+    width: 100%;
+    min-height: 50px;
+}
+
+.activeFileLabel{
+    width: 100%;
+    min-height: 50px;
+    background-color: #efeef3;
+    border-color: #111;
 }
