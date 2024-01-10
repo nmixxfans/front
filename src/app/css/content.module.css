@@ -1,0 +1,148 @@
+.section{
+    display: flex;
+    justify-content: center;
+}
+
+.container{
+    width: 1000px;
+    min-height: 500px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.categoryBox{
+    margin-bottom: 25px;
+    display: flex;
+}
+
+.categoryBtn{
+    padding: 6px 9px;
+    border: 2px solid #000;
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+input:checked + .categoryBtn{
+    color: #fff;
+    background-color: #000;
+}
+
+.contentBox{
+
+}
+
+.contentItemBox{
+
+}
+
+.itemTitle{
+    margin-top: 25px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-family: 'S-CoreDream-9Black';
+    width: fit-content;
+    background-color: #000;
+    color: #fff;
+    padding: 0px 4px;
+}
+
+.noneBorderTop{
+    border-top: none;
+}
+
+.itemList{
+    height: 245px;
+    display: flex;
+    gap: 25px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    overflow-x: scroll;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 20px 0px;
+    margin-bottom: 30px;
+    border-top: 1px solid #cccccc;
+}
+
+.itemList::-webkit-scrollbar {
+    height: 10px;
+    cursor: default;
+}
+
+.itemList::-webkit-scrollbar-thumb{
+    background: #dbdbdb;
+    border-radius: 10px;
+}
+
+.itemList::-webkit-scrollbar-track {
+    background: rgba(129, 129, 129, 0.1);
+    border-radius: 10px;
+}
+
+.ytWrapper{
+    width: 355px;
+    height: 100%;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.yt{
+    width: 355px;
+    height: 100%;
+    border-radius: 8px;
+    user-select: none;
+    object-fit: cover;
+}
+
+.ytWrapper:hover{
+    transform: translateY(-5px);
+}
+
+.ytPlayBox{
+    display: none;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00000075;
+    border-radius: 8px;
+    cursor: default;
+}
+
+.ytWrapper:hover .ytPlayBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ytLink{
+    width: fit-content;
+    height: fit-content;
+    display: block;
+}
+
+.playBtn{
+    width: 50px;
+}
+
+.ytTitle{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    width: 325px;
+}
+
+.ytTitle:hover{
+    text-decoration: underline;
+}

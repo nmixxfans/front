@@ -1,0 +1,107 @@
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid black;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.headerIconContainer{
+    width: 1000px;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.siteLogoBox{
+    display: flex;
+    justify-content: center;
+}
+
+.siteLogo{
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+    font-weight: 900;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.logoImg{
+    width: 140px;
+}
+
+
+/* .logoSmall{
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+    font-family: 'S-CoreDream-9Black';
+} */
+
+.linkBox{
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #000;
+    padding-top: 5px;
+}
+
+.linkBox a{
+    text-decoration: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: #000;
+    padding: 5px 9px;
+    border-radius: 15px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.linkBox a:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-color: #000;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.linkBox a:hover{
+    color: #fff;
+}
+
+.linkBox a:hover:after {
+    width: 100%;
+    opacity: 1;
+}
+
+.userBtnBox{
+    position: absolute;
+    display: flex;
+    right: 0px;
+    top: 15px;
+}
+
+.signBtn{
+    color: rgb(0, 0, 0);
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: 8px;
+    text-decoration: none;
+    padding: 4px 6px;
+    border: 1px solid rgb(0, 0, 0);
+    /* border-radius: 15px; */
+}
