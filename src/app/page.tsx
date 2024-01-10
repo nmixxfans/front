@@ -96,7 +96,7 @@ export default function Home() {
             <div className={home.firstBox}>
                 <div>
                     <div className={home.title} title='최신 뮤직비디오'></div>
-                    <iframe className={home.youtubePlayerMV} src="https://www.youtube.com/embed/MMtRxcy8PX0" title="NMIXX “Soñar (Breaker)” M/V" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                    <iframe className={home.youtubePlayerMV} src="https://www.youtube.com/embed/j6tKIdt9K9M" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                 </div>
             </div>
             <div className={home.secondBox}>
