@@ -12,6 +12,7 @@ export default function Send(){
     const [isActive, setActive] = useState<boolean>(false);
     const [fileInfor, setFileInfor] = useState<string>("");
     const [category, setCategory] = useState<string>("");
+    const [content, setContent] = useState<string>("");
     const fileInput = useRef<HTMLInputElement | null>(null);
 
     const handleDragStart = () => setActive(true);
@@ -45,6 +46,18 @@ export default function Send(){
     }
 
     const handleSendClick = ()=>{
+        if(category===""){
+            alert("분류를 선택해주세요.")
+            return;
+        }
+
+        if(content.length < 10){
+            alert("내용을 10자 이상 입력해주세요.")
+            return;
+        }
+
+        console.log(category);
+        console.log(content);
         console.log("전송")
     }
 
@@ -85,7 +98,7 @@ export default function Send(){
                             <label className={send.categoryBtn} htmlFor="other" onClick={()=>setCategory("other")}>기타</label>
                         </div>
                         <div className={send.content}>
-                            <textarea className={send.text}></textarea>
+                            <textarea className={send.text} value={content} onChange={(e)=>setContent(e.target.value)}></textarea>
                             <div className={send.fileBox}>
                                 <label className={isActive ? [send.fileLabel, send.fileActive].join(' ') : send.fileLabel} htmlFor="file" onDragEnter={handleDragStart} onDragLeave={handleDragEnd} onDrop={(e)=>handleDrop(e)} onDragOver={(e)=>handleDragOver(e)}>
                                     <input type="file" id="file" hidden onChange={handleInputChange} ref={fileInput}/>
@@ -105,9 +118,7 @@ export default function Send(){
                                     }
                                     
                                 </div>
-                                <div className={send.saveBtn} onClick={handleSendClick}>
-                                    전송
-                                </div>
+                                <div className={send.saveBtn} onClick={handleSendClick}>전송</div>
                             </div>
                         </div>
                     </div>
