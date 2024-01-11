@@ -157,6 +157,14 @@ export default function MixxCon() {
                         }
                         
                     </div>
+                    <div className={nmixxcon.searchBox}>
+                        <select className={nmixxcon.searchSelect}>
+                            <option>이름</option>
+                            <option>제작자</option>
+                        </select>
+                        <input className={nmixxcon.searchInput} />
+                        <div className={nmixxcon.searchBtn}>검색</div>
+                    </div>
                     <div className={nmixxcon.pageBox}>
                         {/* <div className={nmixxcon.page}></div> */}
                         <Pagination
@@ -167,16 +175,7 @@ export default function MixxCon() {
                             prevPageText={"이전"}
                             nextPageText={"다음"} 
                             onChange={handlePageChange}
-                            
                             />
-                    </div>
-                    <div className={nmixxcon.searchBox}>
-                        <select className={nmixxcon.searchSelect}>
-                            <option>이름</option>
-                            <option>제작자</option>
-                        </select>
-                        <input className={nmixxcon.searchInput} />
-                        <div className={nmixxcon.searchBtn}>검색</div>
                     </div>
                 </div>
             </div>
