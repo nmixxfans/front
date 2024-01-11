@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import nmixxcon from "../css/nmixxcon.module.css";
+import { useEffect, useState } from "react";
+import Loading from "../loading";
 
 export default function MixxCon() {
 
@@ -27,8 +29,20 @@ export default function MixxCon() {
         },
     ]
 
+    const [content, setContent] = useState<listData[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(()=>{
+        setLoading(true);
+        setContent(datas);
+        setLoading(false);
+    }, [])
+
     return (
+        
         <section className={nmixxcon.section}>
+            {loading ? <Loading></Loading> :
+
             <div className={nmixxcon.container}>
                 <div className={nmixxcon.titleBox}>
                     <div className={nmixxcon.title}>엔믹스콘</div>
@@ -36,7 +50,7 @@ export default function MixxCon() {
                 <div className={nmixxcon.contentBox}>
                     <div className={nmixxcon.listBox}>
                         {
-                            datas.map((value, index)=>{
+                            content.map((value, index)=>{
                                 return(
                                     <div className={nmixxcon.listItem} key={index}>
                                         <Link href={`/mc/${value.id}`}>
@@ -63,6 +77,8 @@ export default function MixxCon() {
                     </div>
                 </div>
             </div>
+            
+            }
         </section>
     )
 }

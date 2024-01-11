@@ -24,11 +24,11 @@
 }
 
 .contentBox{
-
+    
 }
 
 .listBox{
-
+    display: flex;
 }
 
 .listItem{
