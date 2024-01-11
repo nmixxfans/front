@@ -7,3 +7,55 @@
     width: 1000px;
     min-height:500px;
 }
+
+.titleBox{
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+}
+
+.title{
+    font-size: 18px;
+    font-family: 'S-CoreDream-9Black';
+    background-color: #000;
+    color: #fff;
+    padding: 0px 4px;
+    width: fit-content;
+}
+
+.contentBox{
+
+}
+
+.listBox{
+
+}
+
+.listItem{
+
+}
+
+.pageBox{
+
+}
+
+.page{
+
+}
+
+.searchBox{
+
+}
+
+.searchSelect{
+
+}
+
+.searchInput{
+
+}
+
+.searchBtn{
+
+}
+
