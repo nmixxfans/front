@@ -56,8 +56,7 @@ export default function Send(){
             return;
         }
 
-        console.log(category);
-        console.log(content);
+        
         console.log("전송")
     }
 

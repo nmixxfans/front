@@ -40,12 +40,12 @@
     background-color: #fff;
     border: 1px solid #cfcfcf;
     border-radius: 10px;
-    padding: 10px;
+    padding: 5px;
     transition: all 0.3s;
 }
 
 .secondBoxContent:hover{
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .boxScroll{
@@ -57,7 +57,7 @@
 }
 
 .boxScroll::-webkit-scrollbar-thumb{
-    background: #9d9d9d;
+    background: #dbdbdb;
     border-radius: 10px;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .youtubePlayer:hover{
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .fourthBox{
