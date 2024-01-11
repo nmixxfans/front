@@ -5,7 +5,7 @@ import home from './css/home.module.css';
 import { useEffect, useState } from 'react';
 import Script from 'next/script'
 import Loading from './loading';
-import LoadingCircle from './element/LoadingCircle';
+import LoadingCircle from './component/LoadingCircle';
 
 export default function Home() {
 
@@ -154,7 +154,7 @@ export default function Home() {
                 <div className={home.contentBox}>
                     <div>
                         <div className={home.title} title='최신 엔믹스'>NMIXX NEW</div>
-                        <iframe className={home.youtubePlayer} src="https://www.youtube.com/embed/LMIpQA0pAbo" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        <iframe className={home.youtubePlayer} src="https://www.youtube.com/embed/NOrHPZV1hhw" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     </div>
                     <div>
                         <div className={home.title} title='엔믹스 최신 라이브'>NMIXX ON AIR<div className={home.onAir}><div className={home.onAirContent}></div></div></div>
