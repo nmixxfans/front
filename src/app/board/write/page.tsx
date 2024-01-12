@@ -15,7 +15,7 @@ export default function BoardWrite() {
                 </div>
                 <div className={bw.editorBox}>
                     <div className={bw.editor} contentEditable="true">
-
+                        
                     </div>
                 </div>
             </div>
