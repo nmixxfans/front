@@ -33,7 +33,7 @@
     justify-content: flex-start;
     border-bottom: 1px solid #dadada;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .listItem{
@@ -82,7 +82,6 @@
 .pageBox{
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
 }
 
 .page{
@@ -92,19 +91,21 @@
 .searchBox{
     display: flex;
     gap: 5px;
+    height: 25px;
 }
 
 .searchSelect{
     outline: none;
-    border: 1px solid #000;
+    border: 1px solid #dadada;
+    border-radius: 3px;
 }
 
 .searchInput{
-    width: 200px;
-    height: 30px;
+    width: 150px;
     padding: 5px;
     outline: none;
-    border: 1px solid #000;
+    border: 1px solid #dadada;
+    border-radius: 3px;
 }
 
 .searchBtn{
@@ -117,5 +118,7 @@
     color: #fff;
     cursor: pointer;
     height: 100%;
+    font-size: 12px;
+    border-radius: 3px;
 }
 
