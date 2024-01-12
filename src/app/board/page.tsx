@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import board from '../css/board.module.css';
-import "./pagination.css";
+import "../css/pagination.css";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition, faCamera } from "@fortawesome/free-solid-svg-icons"; //포토
@@ -205,11 +205,11 @@ export default function Board() {
                     <div></div>
                     <Pagination
                         activePage={page}
-                        itemsCountPerPage={20}
+                        itemsCountPerPage={30}
                         totalItemsCount={1000}
-                        pageRangeDisplayed={5}
-                        prevPageText={"워메 앞으로"}
-                        nextPageText={"아따 뒤로"}
+                        pageRangeDisplayed={10}
+                        prevPageText={"앞으로"}
+                        nextPageText={"뒤로"}
                         onChange={handlePageChange}
                     />
                     <Link href={'/board/write'} className={board.link}>글쓰기</Link>

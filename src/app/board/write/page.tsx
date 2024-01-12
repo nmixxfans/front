@@ -1,6 +1,12 @@
+"use client"
+
+import { useState } from "react";
 import bw from "../../css/boardWrite.module.css";
 
 export default function BoardWrite() {
+
+    const [title, setTitle] = useState<string>("");
+
     return (
         <section className={bw.section}>
             <div className={bw.container}>
@@ -10,13 +16,22 @@ export default function BoardWrite() {
                         <label htmlFor="n">일반</label>
                     </div>
                     <div className={bw.titleBox}>
-
+                        <input className={bw.title} value={title} onChange={(e)=>setTitle(e.target.value)} placeholder="제목" />
                     </div>
                 </div>
                 <div className={bw.editorBox}>
-                    <div className={bw.editor} contentEditable="true">
+                    <div className={bw.editorBtnBox}>
 
                     </div>
+                    <div className={bw.editor} contentEditable="true">
+                        
+                    </div>
+                </div>
+                <div className={bw.noticeBox}>
+                    안내사항
+                </div>
+                <div className={bw.saveBox}>
+                    <div className={bw.saveBtn}>저장</div>
                 </div>
             </div>
         </section>

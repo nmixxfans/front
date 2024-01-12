@@ -2,10 +2,15 @@
 
 import Link from "next/link";
 import nmixxcon from "../css/nmixxcon.module.css";
-import "./pagination.css";
+import "../css/pagination.css";
 import { useEffect, useState } from "react";
 import Loading from "../loading";
 import Pagination from "react-js-pagination";
+
+import {
+    faMagnifyingGlass
+ } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MixxCon() {
 
@@ -163,7 +168,9 @@ export default function MixxCon() {
                             <option>제작자</option>
                         </select>
                         <input className={nmixxcon.searchInput} />
-                        <div className={nmixxcon.searchBtn}>검색</div>
+                        <div className={nmixxcon.searchBtn}>
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </div>
                     </div>
                     <div className={nmixxcon.pageBox}>
                         {/* <div className={nmixxcon.page}></div> */}
