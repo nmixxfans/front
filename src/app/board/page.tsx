@@ -2,87 +2,34 @@
 
 import Link from "next/link";
 import board from '../css/board.module.css';
+import "./pagination.css";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera } from "@fortawesome/free-solid-svg-icons"; //포토
+import { IconDefinition, faCamera } from "@fortawesome/free-solid-svg-icons"; //포토
 import { faVideo } from "@fortawesome/free-solid-svg-icons"; //영상
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"; //설문
 import { faFlag } from "@fortawesome/free-solid-svg-icons"; //공지
 import { faClipboard } from "@fortawesome/free-solid-svg-icons"; //일반
-import axios from "axios";
 import Pagination from "react-js-pagination";
+import axios from "axios";
+
 
 
 
 export default function Board() {
-    // const [datas, setDatas] = useState<[]>([]);
-    const [selectData, setSelectData] = useState<any>(""); //말머리 value
-    const [searchData, setSearchData] = useState<string>(""); //검색 input value
-    const [type, setType] = useState<string>(""); //검색 select value
 
+    interface datas {
+        number: number,
+        select: string,
+        title: string,
+        emoji: IconDefinition,
+        writer: string,
+        date: string,
+        view: number,
+        like: number
+    }
 
-    const [posts, setPosts] = useState<any[]>([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(
-                "https://jsonplaceholder.typicode.com/posts"
-            );
-            setPosts(res.data);
-        };
-        fetchData();
-    }, []);
-    console.log("aa", posts)
-
-    const indexOfLast = currentPage * postsPerPage;
-    const indexOfFirst = indexOfLast - postsPerPage;
-    const currentPosts = (posts:any) => {
-        let currentPosts = 0;
-        currentPosts = posts.slice(indexOfFirst, indexOfLast);
-        return currentPosts;
-    };
-
-    // pagination(< >) 버튼 누르면 curPage 변수를 바꾼다.
-    // curPage가 바뀌면 axios.get 다시 한다.
-    // 보기 편하도록 curPage를 화면에 그리시오.
-
-
-
-
-
-
-
-
-
-
-
-    function Pagination({ currentPosts }: { currentPosts: any }) {
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-            pageNumbers.push(i);
-        }
-        return (
-            <div>
-                <nav>
-                    <ul className={board.pagination}>
-                        {currentPosts.map((number) => (
-                            <li key={number} className={board.pageitem}>
-                                <span onClick={() => paginate(number)} className={board.pagelink}>
-                                    {number}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </div>
-        );
-    };
-
-
-
-    const datas = [
+    const datas: datas[] = [
         {
             number: 7,
             select: "공지",
@@ -154,18 +101,59 @@ export default function Board() {
             like: 280
         },
     ];
-    useEffect(() => {
+    const [contents, setContents] = useState<datas[]>([]); //임시data
+    const [selectData, setSelectData] = useState<string>(""); //말머리 value
+    const [searchData, setSearchData] = useState<string>(""); //검색 input value
+    const [type, setType] = useState<string>(""); //검색 select value
+    const [page, setPage] = useState<number>(1); //페이지
 
-    }, [selectData])//데이터요청
+
 
     useEffect(() => {
         document.title = "자유게시판";
+        setContents(datas);
+        const data = async () => {
+            const res = await axios({
+                url: "http://localhost:3000/board/api/board?word=${word}",
+                method: "GET",
+            })
+            setContents(res.data);
+        }
+        data()
     }, []);
 
-    const searchEnter = async () => {
-        searchData
-    }
+    const handlePageChange = (page: number) => {
+        setPage(page);
+        console.log(page);
+    };
 
+    useEffect(() => {
+        const selectDatas = async () => {
+            const res = await axios({
+                url: "http://localhost:3000/board/api/board?word=${word}",
+                method: "GET",
+                data: {
+                    selectData: selectData, //임시
+                }
+            })
+            setContents(res.data);
+        }
+        selectDatas();
+        
+    }, [selectData])//데이터요청
+
+
+    const searchEnter = async () => {
+        const res = await axios({
+            url: "http://localhost:3000/board/api/board?word=${word}",
+            method: "POST",
+            data: {
+                searchData: searchData, //임시
+                select: type //임시
+            }
+        })
+        setContents(res.data);
+    }
 
     return (
         <section className={board.section}>
@@ -199,42 +187,41 @@ export default function Board() {
                     <div className={board.headerData6}>조회수</div>
                     <div className={board.headerData7}>추천</div>
                 </div>
-                {posts.map((post) => {
+                {contents.map((content) => {
                     return (
-                        <li key={post.id}>{post.title}</li>
-                    )
-                })}
-                {/* {datas.map((data) => {
-                    return (
-                        <div key={data.number} className={board.mainBox}>
-                            <div className={board.data1}>{data.number}</div>
-                            <div className={board.data2}>{data.select}</div>
-                            <div className={board.emoji}>{<FontAwesomeIcon icon={data.emoji}></FontAwesomeIcon>}</div>
-                            <div className={board.data3}>{data.title.length > 16 ? data.title.substring(0, 16) + "..." : data.title}</div>
-                            <div className={board.data4}>{data.writer}</div>
-                            <div className={board.data5}>{data.date}</div>
-                            <div className={board.data6}>{data.view}</div>
-                            <div className={board.data7}>{data.like}</div>
+                        <div key={content.number} className={board.mainBox}>
+                            <div className={board.data1}>{content.number}</div>
+                            <div className={board.data2}>{content.select}</div>
+                            <div className={board.emoji}>{<FontAwesomeIcon icon={content.emoji}></FontAwesomeIcon>}</div>
+                            <div className={board.data3}>{content.title.length > 16 ? content.title.substring(0, 16) + "..." : content.title}</div>
+                            <div className={board.data4}>{content.writer}</div>
+                            <div className={board.data5}>{content.date}</div>
+                            <div className={board.data6}>{content.view}</div>
+                            <div className={board.data7}>{content.like}</div>
                         </div>
                     )
-                })} */}
+                })}
                 <div className={board.pageBox}>
                     <div></div>
                     <Pagination
-                    
-                    >
-
-                    </Pagination>
+                        activePage={page}
+                        itemsCountPerPage={20}
+                        totalItemsCount={1000}
+                        pageRangeDisplayed={5}
+                        prevPageText={"워메 앞으로"}
+                        nextPageText={"아따 뒤로"}
+                        onChange={handlePageChange}
+                    />
                     <Link href={'/board/write'} className={board.link}>글쓰기</Link>
                 </div>
                 <div className={board.searchBox}>
-                    <select className={board.searchSelect}  >
+                    <select className={board.searchSelect} onChange={(e) => setType(e.target.value)} >
                         <option value={"content"}>내용</option>
                         <option value={"titleAndContent"}>제목+내용</option>
                         <option value={"writer"}>작성자</option>
                     </select>
                     <input type="text" className={board.searchInput} placeholder="검색" onChange={(e) => setSearchData(e.target.value)}
-                        onKeyDown={(e) => { if (e.key === "Enter") { } }} />
+                        onKeyDown={(e) => { if (e.key === "Enter") { searchEnter() } }} />
                 </div>
             </div>
         </section>
