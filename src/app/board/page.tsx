@@ -3,7 +3,7 @@
 import Link from "next/link";
 import board from '../css/board.module.css';
 import "../css/pagination.css";
-import { useEffect, useState } from "react";
+import { KeyboardEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition, faCamera } from "@fortawesome/free-solid-svg-icons"; //포토
 import { faVideo } from "@fortawesome/free-solid-svg-icons"; //영상
