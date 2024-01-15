@@ -1,0 +1,99 @@
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 1000px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 1000px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.mainContent {
+    height: 500px;
+}
+
+.mainContent {
+    width: 1000px;
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.likeBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+}
+
+.likeWrapper {
+    color: rgb(200, 129, 129);
+    cursor: pointer;
+}
+
+.likeWrapper2 {
+    color: white;
+    cursor: pointer;
+}
+
+.like {
+    width: 35px;
+    height: 35px;
+}
+
+.reviewBox {
+    width: 1000px;
+    margin-top: 20px;
+    height: 50px;
+}
+
+.writeReview {
+    width: 90%;
+    height: 50px;
+}
+
+.reviewBtn {
+    width: 10%;
+    height: 50px;
+}
+
+.reviewViewBox {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    border: 1px solid black;
+    border-bottom: none;
+    width: 1000px;
+}
+
+.reviewData {
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+
+.reviewId {
+    margin-bottom: 5px;
+}
+
+.reviewContent {
+    background-color: bisque;
+    padding: 5px;
+}
