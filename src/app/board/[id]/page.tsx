@@ -5,9 +5,10 @@ import bv from "../../css/boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 
-export default function BoardView() {
+export default function BoardView(props:Params) {
 
     const [data, setData] = useState<[]>([])
     const [review, setReview] = useState<string>("") //댓글input값
@@ -17,7 +18,7 @@ export default function BoardView() {
     useEffect(() => {
         const data = async () => {
             const res = await axios({
-                url:"/api/board/:board_id",
+                url:`/api/board/:${props.params.id}`,
                 method: "GET"
             })
             setData(res.data);
