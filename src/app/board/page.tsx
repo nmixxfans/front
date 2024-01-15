@@ -193,7 +193,7 @@ export default function Board() {
                             <div className={board.data1}>{content.number}</div>
                             <div className={board.data2}>{content.select}</div>
                             <div className={board.emoji}>{<FontAwesomeIcon icon={content.emoji}></FontAwesomeIcon>}</div>
-                            <div className={board.data3}>{content.title.length > 16 ? content.title.substring(0, 16) + "..." : content.title}</div>
+                            <Link href={`/board/${content.number}`} className={board.content}>{content.title.length > 16 ? content.title.substring(0, 16) + "..." : content.title}</Link>
                             <div className={board.data4}>{content.writer}</div>
                             <div className={board.data5}>{content.date}</div>
                             <div className={board.data6}>{content.view}</div>
