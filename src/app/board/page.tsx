@@ -208,8 +208,8 @@ export default function Board() {
                         itemsCountPerPage={30}
                         totalItemsCount={1000}
                         pageRangeDisplayed={10}
-                        prevPageText={"앞으로"}
-                        nextPageText={"뒤로"}
+                        prevPageText={"이전"}
+                        nextPageText={"다음"}
                         onChange={handlePageChange}
                     />
                     <Link href={'/board/write'} className={board.link}>글쓰기</Link>
