@@ -13,6 +13,7 @@ export default function BoardView(props:Params) {
     const [data, setData] = useState<[]>([])
     const [review, setReview] = useState<string>("") //댓글input값
     const [like, setLike] = useState<string>(""); //좋아요
+    const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
 
 
     useEffect(() => {
@@ -56,6 +57,7 @@ export default function BoardView(props:Params) {
             }
         })
         if(res.data.result) {
+            setLikeNumber(res.data.likeNumber);
             alert("좋아요를 누르셨습니다.")
         }
     }
@@ -76,6 +78,7 @@ export default function BoardView(props:Params) {
                 <div className={bv.likeBox}>
                     <div className={like ==="m" ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
                         <FontAwesomeIcon icon={faThumbsUp} className={bv.like}></FontAwesomeIcon>
+                        <div className={bv.likeNumber}>{likeNumber}</div>
                     </div>
                 </div>
                 <div className={bv.reviewBox}>

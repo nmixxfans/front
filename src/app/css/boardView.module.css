@@ -45,11 +45,19 @@
 }
 
 .likeWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: rgb(200, 129, 129);
     cursor: pointer;
 }
 
 .likeWrapper2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
     cursor: pointer;
 }
@@ -57,6 +65,12 @@
 .like {
     width: 35px;
     height: 35px;
+    margin-top: 20px;
+}
+
+.likeNumber {
+    margin-top: 10px;
+    font-size: 20px;
 }
 
 .reviewBox {
