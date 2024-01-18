@@ -2,14 +2,81 @@
 
 import pr from "../../css/profile.module.css";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "../../css/pagination.css";
+import Link from "next/link";
 
 
 export default function Profile() {
 
+    interface datas {
+        id: number,
+        select: string,
+        title: string,
+        date: string,
+    }
+
+    const datas: datas[] = [
+        {
+            id: 1,
+            select: "공지",
+            title: "[필독] 공지사항",
+            date: "24.01.09",
+        },
+        {
+            id: 2,
+            select: "포토",
+            title: "엔믹스 무대사진 모음",
+            date: "24.01.05",
+        },
+        {
+            id: 3,
+            select: "영상",
+            title: "엔믹스 신곡 무비",
+            date: "23.12.28",
+        },
+    ];
+
+    interface comment {
+        id: number,
+        userid: string,
+        date: string,
+        comment: string
+    }
+
+    const comment: comment[] = [
+        {
+            id: 1,
+            userid: "ronaldo",
+            date: "24.01.18",
+            comment: "설윤 짱!"
+        },
+        {
+            id: 2,
+            userid: "ronaldo",
+            date: "24.01.17",
+            comment: "해원 짱!"
+        }
+    ]
+    const [comments, setComments] = useState<comment[]>([]);// 임시댓글data 
+    const [myContents, setMyContents] = useState<datas[]>([]); //임시data
     const [page, setPage] = useState<number>(1); //페이지
+
+    useEffect(() => {
+        setMyContents(datas);
+        setComments(comment);
+        const data = async () => {
+            const res = await axios({
+                url: "http://localhost:3000/board/api/board?word=${word}",
+                method: "GET",
+            })
+            setMyContents(res.data);
+            setComments(res.data);
+        }
+        data()
+    }, []);
+
 
     const handlePageChange = (page: number) => {
         setPage(page);
@@ -24,16 +91,50 @@ export default function Profile() {
                 <div>닉네임</div>
                 <div>가입일</div>
             </div>
-            <div className={pr.title}>내 댓글</div>
+            <div className={pr.title}>작성한 글</div>
             <div className={pr.myWriting}>
+                {myContents.map((myContent) => {
+                    return (
+                        <Link href={`/board/${myContent.id}`} key={myContent.id} className={pr.myContentBox}>
+                            <div className={pr.myContentTitle}>{myContent.title}</div>
+                            <div className={pr.myContentDate}>{myContent.date}</div>
+                            <div className={pr.myContentSelect}>{myContent.select}</div>
+                        </Link>
+                    )
+                })}
+            </div>
+            <div className={pr.myWritingSelect}>
                 <Pagination
-                            activePage={page}
-                            itemsCountPerPage={30}
-                            totalItemsCount={1000}
-                            pageRangeDisplayed={5}
-                            prevPageText={"이전"}
-                            nextPageText={"다음"}
-                            onChange={handlePageChange}
+                    activePage={page}
+                    itemsCountPerPage={30}
+                    totalItemsCount={1000}
+                    pageRangeDisplayed={5}
+                    prevPageText={"이전"}
+                    nextPageText={"다음"}
+                    onChange={handlePageChange}
+                />
+            </div>
+            <div className={pr.title}>작성한 댓글</div>
+            <div className={pr.myWriting}>
+                {comments.map((comment) => {
+                    return (
+                        <Link href={`/board/${comment.id}`} key={comment.id} className={pr.myCommentBox}>
+                            <div className={pr.myContentSelect}>{comment.comment}</div>
+                            <div className={pr.myContentTitle}>{comment.date}</div>
+                            <div className={pr.myContentDate}>{comment.userid}</div>
+                        </Link>
+                    )
+                })}
+            </div>
+            <div className={pr.myWritingSelect}>
+                <Pagination
+                    activePage={page}
+                    itemsCountPerPage={30}
+                    totalItemsCount={1000}
+                    pageRangeDisplayed={5}
+                    prevPageText={"이전"}
+                    nextPageText={"다음"}
+                    onChange={handlePageChange}
                 />
             </div>
         </section>
