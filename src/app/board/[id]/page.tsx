@@ -76,7 +76,7 @@ export default function BoardView(props:Params) {
                 </div>
                 <div className={bv.mainContent}>내용</div>
                 <div className={bv.likeBox}>
-                    <div className={like ==="m" ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
+                    <div className={like === "m" ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
                         <FontAwesomeIcon icon={faThumbsUp} className={bv.like}></FontAwesomeIcon>
                         <div className={bv.likeNumber}>{likeNumber}</div>
                     </div>

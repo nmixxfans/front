@@ -23,8 +23,48 @@
 
 .myWriting {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
     border-top: 1px solid black;
+    width: 1000px;
+}
+
+.myContentBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 40px;
     border-bottom: 1px solid black;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+}
+
+.myContentTitle {
+    width: 34%;
+    display: flex;
+    justify-content: center;
+}
+
+.myContentDate, .myContentSelect {
+    display: flex;
+    justify-content: center;
+    width: 33%;
+}
+
+.myWritingSelect {
+    margin-bottom: 40px;
+}
+
+.myCommentBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 40px;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
 }
