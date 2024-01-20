@@ -8,7 +8,7 @@ import axios from "axios";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 
-export default function BoardView(props:Params) {
+export default function BoardView(props: Params) {
 
     const [data, setData] = useState<[]>([])
     const [review, setReview] = useState<string>("") //댓글input값
@@ -19,7 +19,7 @@ export default function BoardView(props:Params) {
     useEffect(() => {
         const data = async () => {
             const res = await axios({
-                url:`/api/board/:${props.params.id}`,
+                url: `/api/board/:${props.params.id}`,
                 method: "GET"
             })
             setData(res.data);
@@ -36,7 +36,7 @@ export default function BoardView(props:Params) {
             }
         })
         setReview("");
-        if(res.data.result) {
+        if (res.data.result) {
             alert("댓글이 등록되었습니다.");
         } else {
             alert("댓글 등록이 안된듯? ㅋ");
@@ -45,18 +45,18 @@ export default function BoardView(props:Params) {
     }
 
     const likes = async () => { //좋아요기능
-        if(like === "m") {
+        if (like === "m") {
             alert("이미 좋아요를 누르셨습니다.");
         }
         setLike("m")
         const res = await axios({
-            method:"POST",
+            method: "POST",
             data: {
                 // id:data.id,
-                like:like
+                like: like
             }
         })
-        if(res.data.result) {
+        if (res.data.result) {
             setLikeNumber(res.data.likeNumber);
             alert("좋아요를 누르셨습니다.")
         }
@@ -66,13 +66,24 @@ export default function BoardView(props:Params) {
         <section className={bv.section}>
             <div className={bv.mainBox}>
                 <div className={bv.header}>
-                    <div>말머리</div>
-                    <div>제목</div>
-                    <div>작성자</div>
-                    <div>작성일</div>
-                    <div>조회수</div>
-                    <div>추천수</div>
-                    <div>댓글수</div>
+                    <div className={bv.headerTitle}>
+                        <div>[일반]</div>
+                        <div>엔믹스 앨범 수록곡이 몇 곡인가요?</div>
+                    </div>
+                    <div className={bv.headerInforWrapper}>
+                        <div className={bv.headerInfor1}>
+                            <div>마틴</div>
+                            <div>|</div>
+                            <div>2024.01.20</div>
+                        </div>
+                        <div className={bv.headerInfor2}>
+                            <div>조회 30</div>
+                            <div>|</div>
+                            <div>추천 25</div>
+                            <div>|</div>
+                            <div>댓글 5</div>
+                        </div>
+                    </div>
                 </div>
                 <div className={bv.mainContent}>내용</div>
                 <div className={bv.likeBox}>
@@ -89,7 +100,7 @@ export default function BoardView(props:Params) {
             </div>
 
             <div className={bv.reviewViewBox}>
-                 {/* map으로 쏴줄거임 */}
+                {/* map으로 쏴줄거임 */}
                 <div className={bv.reviewData}>
                     <div className={bv.reviewId}>아이디</div>
                     <div className={bv.reviewContent}>댓글내용</div>

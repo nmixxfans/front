@@ -62,6 +62,7 @@ export default function Profile() {
     const [comments, setComments] = useState<comment[]>([]);// 임시댓글data 
     const [myContents, setMyContents] = useState<datas[]>([]); //임시data
     const [page, setPage] = useState<number>(1); //페이지
+    const [page2, setPage2] = useState<number>(1); //페이지
 
     useEffect(() => {
         setMyContents(datas);
@@ -82,6 +83,10 @@ export default function Profile() {
         setPage(page);
         console.log(page);
     };
+    const handlePageChange2 = (page: number) => {
+        setPage2(page);
+        console.log(page);
+    };
 
     return (
         <section className={pr.section}>
@@ -92,6 +97,12 @@ export default function Profile() {
                 <div>가입일</div>
             </div>
             <div className={pr.title}>작성한 글</div>
+            <div className={pr.detailTitle}>
+                <div>제목</div>
+                <div>날짜</div>
+                <div>주제</div>
+            </div>
+            
             <div className={pr.myWriting}>
                 {myContents.map((myContent) => {
                     return (
@@ -119,22 +130,25 @@ export default function Profile() {
                 {comments.map((comment) => {
                     return (
                         <Link href={`/board/${comment.id}`} key={comment.id} className={pr.myCommentBox}>
-                            <div className={pr.myContentSelect}>{comment.comment}</div>
-                            <div className={pr.myContentTitle}>{comment.date}</div>
-                            <div className={pr.myContentDate}>{comment.userid}</div>
+                            <div className={pr.myCommentSelect}>{comment.comment}</div>
+                            <div className={pr.myCommentInfor}>
+                                <div className={pr.myCommentTitle}>{comment.date}</div>
+                                <div>|</div>
+                                <div className={pr.myCommentDate}>{comment.userid}</div>
+                            </div>
                         </Link>
                     )
                 })}
             </div>
             <div className={pr.myWritingSelect}>
                 <Pagination
-                    activePage={page}
+                    activePage={page2}
                     itemsCountPerPage={30}
                     totalItemsCount={1000}
                     pageRangeDisplayed={5}
                     prevPageText={"이전"}
                     nextPageText={"다음"}
-                    onChange={handlePageChange}
+                    onChange={handlePageChange2}
                 />
             </div>
         </section>

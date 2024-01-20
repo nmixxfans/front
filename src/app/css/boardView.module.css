@@ -15,15 +15,35 @@
 
 .header {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     gap: 20px;
     width: 1000px;
     padding: 20px;
     border: 1px solid black;
 }
 
+.headerTitle {
+    display: flex;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.headerInforWrapper {
+    display: flex;
+    gap: 620px;
+}
+
+.headerInfor1, .headerInfor2 {
+    display: flex;
+    gap: 10px;
+}
+
+.headerTitle {
+    display: flex;
+}
+
 .mainContent {
-    height: 500px;
+    min-height: 500px;
 }
 
 .mainContent {
