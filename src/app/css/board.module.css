@@ -12,7 +12,18 @@
 
 /* headbox */
 .title {
-    padding-right: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #000;
+    margin-right: 10px;
+    padding: 0px 4px;
+    font-family: 'S-CoreDream-9Black';
+}
+
+.horseHeadBox{
+    display: flex;
+    height: 100%;
+    align-items: flex-end;
 }
 
 .headBox {
@@ -20,7 +31,7 @@
     justify-content: space-between;
     width: 1000px;
     border-bottom: 2px solid black;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 .headWrapper {
@@ -30,26 +41,26 @@
 }
 
 .listBox {
-    padding: 3px 7px;
-    border: 1px solid #000;
-    margin-right: 10px;
+    padding: 0px 4px;
+    font-size: 14px;
+    /* border: 1px solid #000; */
+    margin-right: 8px;
     border-radius: 20px;
     cursor: pointer;
     user-select: none;
+    height: fit-content;
 }
 
-input:checked+.listBox {
-    color: #fff;
-    background-color: #000;
+input:checked + .listBox {
+    font-weight: 900;
 }
 
 .link {
     text-decoration: none;
-    color: black;
-    cursor: pointer;
-    background-color: rgb(187, 181, 181);
-    padding: 3px 18px;
-    height: fit-content;
+    color: #000;
+    padding: 3px 6px;
+    border: 1px solid #000;
+    font-size: 14px;
 }
 
 /* mainbox */
@@ -62,127 +73,137 @@ input:checked+.listBox {
     border-bottom: 1px solid black;
 }
 
-.headerData1 {
+.mainBox:nth-last-child(4){
+    border-bottom: 2px solid black;
+}
+
+.headerData1,
+.headerData2,
+.headerData3,
+.headerData4,
+.headerData5,
+.headerData6,
+.headerData7,
+.headerEmoji{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
+    font-size: 14px;
+}
+
+.headerData1 {
+    width: 7%;
 }
 
 .headerData2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    width: 7%;
+}
+
+.headerEmoji{
+    width: 7%;
 }
 
 .headerData3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30%;
+    width: 55%;
 }
 
 .headerData4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
+    width: 11%;
 }
 
 .headerData5 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
+    width: 8%;
 }
 
 .headerData6 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    width: 7%;
 }
 
 .headerData7 {
+    width: 7%;
+}
+
+.data1,
+.data2,
+.data4,
+.data5,
+.data6,
+.data7,
+.emoji,
+.contentBox{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10%;
+    font-size: 13px;
+    color: #000;
 }
 
 .data1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    font-size: 12px;
+    width: 7%;
 }
 
 .data2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    width: 7%;
+    color: #8a8a8a;
+    font-size: 12px;
 }
 
-.content {
-    display: flex;
+.contentBox {
     justify-content: flex-start;
-    align-items: center;
-    width: 25%;
+    width: 55%;
+    
+}
+
+.content{
     text-decoration: none;
-    cursor: pointer;
-    color: black;
+    color: #000;
+}
+
+.content:hover{
+    text-decoration: underline;
 }
 
 .emoji {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 5%;
+    width: 7%;
 }
 
 .data4 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
+    width: 11%;
 }
 
 .data5 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15%;
+    width: 8%;
+    font-size: 12px;
 }
 
 .data6 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    width: 7%;
+    font-size: 12px;
 }
 
 .data7 {
+    width: 7%;
+    font-size: 12px;
+}
+
+.writeBtnBox{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10%;
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 20px;
 }
 
 /* page처리 */
 .pageBox {
     display: flex;
-    justify-content: space-between;
-    width: 1000px;
-    padding-top: 15px;
+    justify-content: center;
 }
 
-.pagination {
+/* .pagination {
     display: flex;
     justify-content: center;
-    width: 1000px;
-}
+} */
 
 /* 검색 */
 .searchBox {

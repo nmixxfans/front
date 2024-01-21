@@ -3,6 +3,12 @@ import videoInformation from "../videoInformationType";
 // MV
 const mvList : videoInformation[] = [
     {
+        href:"7UecFm_bSTU",
+        src:"",
+        title:'NMIXX “DASH” M/V',
+        ch:"y"
+    },
+    {
         href:"MMtRxcy8PX0",
         src:"",
         title:'NMIXX "Soñar (Breaker)" M/V',
