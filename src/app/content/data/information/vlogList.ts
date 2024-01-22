@@ -3,6 +3,18 @@ import videoInformation from "../videoInformationType";
 // MIXXTAPE
 const vlogList : videoInformation[] = [
     {
+        href:"NOrHPZV1hhw",
+        src:"",
+        title:`NMIXX 2nd EP “Fe3O4: BREAK” Highlight Medley | A Cappella ver.`,
+        ch:"y"
+    },
+    {
+        href:"LMIpQA0pAbo",
+        src:"",
+        title:`지우가 스무 살이라고…?🐶 #MIXXTREAM | 2023 연말 시상식 비하인드`,
+        ch:"y"
+    },
+    {
         href:"NO8x13L09KQ",
         src:"",
         title:`NMIXX 2023 미공개 하드털이 #MIXXTREAM | 설윤 음중 막대과자 베이킹, 1주년 카페 탐방 비하인드`,

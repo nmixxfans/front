@@ -3,6 +3,12 @@ import videoInformation from "../videoInformationType";
 // MIXXTAPE
 const showList : videoInformation[] = [
     {
+        href:"g7-Y_n-Obj4",
+        src:"",
+        title:`NMIXX 2nd EP Comeback Showcase [Fe3O4: BREAK]`,
+        ch:"y"
+    },
+    {
         href:"2Iu6W6r2OC0",
         src:"",
         title:`NMIXX 3rd Single Comeback Showcase [Docking Station : A Midsummer Nmixx‘s Dream]`,
