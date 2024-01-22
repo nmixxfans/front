@@ -12,6 +12,10 @@ import { faFlag } from "@fortawesome/free-solid-svg-icons"; //공지
 import { faClipboard } from "@fortawesome/free-solid-svg-icons"; //일반
 import Pagination from "react-js-pagination";
 import axios from "axios";
+import {
+  faMagnifyingGlass
+} from "@fortawesome/free-solid-svg-icons";
+
 
 
 
@@ -511,8 +515,14 @@ export default function Board() {
             <option value={"titleAndContent"}>제목+내용</option>
             <option value={"writer"}>작성자</option>
           </select>
-          <input type="text" className={board.searchInput} placeholder="검색" onChange={(e) => setSearchData(e.target.value)}
-            onKeyDown={(e) => { if (e.key === "Enter") { searchEnter() } }} />
+          <input type="text"
+            className={board.searchInput}
+            onChange={(e) => setSearchData(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") { searchEnter() } }}
+          />
+          <div className={board.searchBtn}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </div>
         </div>
       </div>
     </section>

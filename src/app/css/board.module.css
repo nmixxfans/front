@@ -206,10 +206,37 @@ input:checked + .listBox {
 } */
 
 /* 검색 */
-.searchBox {
-    padding: 20px;
+.searchBox{
+    display: flex;
+    gap: 5px;
+    height: 25px;
+    margin-top: 50px;
 }
 
-.searchSelect {
-    margin-right: 20px
+.searchSelect{
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.searchInput{
+    width: 150px;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.searchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    height: 100%;
+    font-size: 12px;
+    border-radius: 3px;
 }
