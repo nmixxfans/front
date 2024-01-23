@@ -1,13 +1,38 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import fantube from "../css/fantube.module.css"
 import KorFantube from "./element/KorFantube";
 import ForFantube from "./element/ForFantube";
+import { useSearchParams } from "next/navigation";
+import { fantubeState } from "../Atom";
+import { useRecoilState } from "recoil";
 
 export default function Fantube() {
+
+    const params = useSearchParams();
+    const [fantubeData, setFantubeData] = useRecoilState(fantubeState);
     
     const [category, setCategory] = useState<boolean>(true);
+    const [sort, setSort] = useState<"sub" | "name" | "view">("sub");
+    const [country, setCountry] = useState<"ko"| "wo">("ko");
+    const [page, setPage] = useState<number>(1);
+
+    useEffect(()=>{
+        if(params.get('sort')){
+            setSort(params.get('sort'));
+        }
+
+        if(params.get('country')){
+            setCountry(params.get('country'));
+        }
+
+        if(params.get('page')){
+            setPage(Number(params.get('page')));
+        }
+        
+        setFantubeData([]);
+    }, [])
 
     return (
         <section className={fantube.section}>
