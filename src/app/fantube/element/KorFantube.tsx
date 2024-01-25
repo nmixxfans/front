@@ -4,8 +4,6 @@ import { fantubeState } from "@/app/Atom";
 
 export default function KorFantube(){
 
-   
-
     const [fantubeData] = useRecoilState(fantubeState);
 
     return (
