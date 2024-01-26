@@ -15,430 +15,125 @@ import axios from "axios";
 import {
   faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
-
-
-
-
+import { korTime } from "../functions/utc-to-kor";
 
 export default function Board() {
 
-  interface datas {
-    number: number,
-    select: string,
+  interface userDataType{
+    id:number,
+    profile:string;
+  }
+  interface boardDataType {
+    id: number,
+    category: string,
     title: string,
-    emoji: IconDefinition,
-    writer: string,
-    date: string,
+    user_nick: string,
+    content: string,
     view: number,
-    like: number
+    like: number,
+    create_date:Date,
+    user_id:userDataType
   }
 
-  const datas: datas[] = [
-    {
-      number: 7,
-      select: "공지",
-      title: "[필독] 공지사항",
-      emoji: faFlag,
-      writer: "주먹펴고일어서",
-      date: "24.01.09",
-      view: 51371,
-      like: 2958
-    },
-    {
-      number: 6,
-      select: "포토",
-      title: "엔믹스 무대사진 모음",
-      emoji: faCamera,
-      writer: "스티븐 스필버그",
-      date: "24.01.05",
-      view: 1371,
-      like: 2958
-    },
-    {
-      number: 5,
-      select: "영상",
-      title: "엔믹스 신곡 무비",
-      emoji: faVideo,
-      writer: "베르너",
-      date: "23.12.28",
-      view: 778,
-      like: 927
-    },
-    {
-      number: 4,
-      select: "공지",
-      title: "[공지] 엔믹스 최고야 이야이야이야요",
-      emoji: faFlag,
-      writer: "박지성",
-      date: "23.12.22",
-      view: 532,
-      like: 57
-    },
-    {
-      number: 3,
-      select: "일반",
-      title: "엔믹스 최고야 라라라라라ㅏ라라라",
-      emoji: faClipboard,
-      writer: "손흥민",
-      date: "23.12.19",
-      view: 777,
-      like: 357
-    },
-    {
-      number: 2,
-      select: "일반",
-      title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-      emoji: faClipboard,
-      writer: "마틴",
-      date: "23.12.16",
-      view: 999,
-      like: 558
-    },
-    {
-      number: 1,
-      select: "설문",
-      title: "엔믹스가 왜 성공하지 못하는지",
-      emoji: faPenToSquare,
-      writer: "이원노",
-      date: "23.12.11",
-      view: 421,
-      like: 280
-    },
-    {
-      number: 7,
-      select: "공지",
-      title: "[필독] 공지사항",
-      emoji: faFlag,
-      writer: "주먹펴고일어서",
-      date: "24.01.09",
-      view: 51371,
-      like: 2958
-    },
-    {
-      number: 6,
-      select: "포토",
-      title: "엔믹스 무대사진 모음",
-      emoji: faCamera,
-      writer: "스티븐 스필버그",
-      date: "24.01.05",
-      view: 1371,
-      like: 2958
-    },
-    {
-      number: 5,
-      select: "영상",
-      title: "엔믹스 신곡 무비",
-      emoji: faVideo,
-      writer: "베르너",
-      date: "23.12.28",
-      view: 778,
-      like: 927
-    },
-    {
-      number: 4,
-      select: "공지",
-      title: "[공지] 엔믹스 최고야 이야이야이야요",
-      emoji: faFlag,
-      writer: "박지성",
-      date: "23.12.22",
-      view: 532,
-      like: 57
-    },
-    {
-      number: 3,
-      select: "일반",
-      title: "엔믹스 최고야 라라라라라ㅏ라라라",
-      emoji: faClipboard,
-      writer: "손흥민",
-      date: "23.12.19",
-      view: 777,
-      like: 357
-    },
-    {
-      number: 2,
-      select: "일반",
-      title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-      emoji: faClipboard,
-      writer: "마틴",
-      date: "23.12.16",
-      view: 999,
-      like: 558
-    },
-    {
-      number: 1,
-      select: "설문",
-      title: "엔믹스가 왜 성공하지 못하는지",
-      emoji: faPenToSquare,
-      writer: "이원노",
-      date: "23.12.11",
-      view: 421,
-      like: 280
-    },
-    {
-      number: 7,
-      select: "공지",
-      title: "[필독] 공지사항",
-      emoji: faFlag,
-      writer: "주먹펴고일어서",
-      date: "24.01.09",
-      view: 51371,
-      like: 2958
-    },
-    {
-      number: 6,
-      select: "포토",
-      title: "엔믹스 무대사진 모음",
-      emoji: faCamera,
-      writer: "스티븐 스필버그",
-      date: "24.01.05",
-      view: 1371,
-      like: 2958
-    },
-    {
-      number: 5,
-      select: "영상",
-      title: "엔믹스 신곡 무비",
-      emoji: faVideo,
-      writer: "베르너",
-      date: "23.12.28",
-      view: 778,
-      like: 927
-    },
-    {
-      number: 4,
-      select: "공지",
-      title: "[공지] 엔믹스 최고야 이야이야이야요",
-      emoji: faFlag,
-      writer: "박지성",
-      date: "23.12.22",
-      view: 532,
-      like: 57
-    },
-    {
-      number: 3,
-      select: "일반",
-      title: "엔믹스 최고야 라라라라라ㅏ라라라",
-      emoji: faClipboard,
-      writer: "손흥민",
-      date: "23.12.19",
-      view: 777,
-      like: 357
-    },
-    {
-      number: 2,
-      select: "일반",
-      title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-      emoji: faClipboard,
-      writer: "마틴",
-      date: "23.12.16",
-      view: 999,
-      like: 558
-    },
-    {
-      number: 1,
-      select: "설문",
-      title: "엔믹스가 왜 성공하지 못하는지",
-      emoji: faPenToSquare,
-      writer: "이원노",
-      date: "23.12.11",
-      view: 421,
-      like: 280
-    },
-    {
-      number: 7,
-      select: "공지",
-      title: "[필독] 공지사항",
-      emoji: faFlag,
-      writer: "주먹펴고일어서",
-      date: "24.01.09",
-      view: 51371,
-      like: 2958
-    },
-    {
-      number: 6,
-      select: "포토",
-      title: "엔믹스 무대사진 모음",
-      emoji: faCamera,
-      writer: "스티븐 스필버그",
-      date: "24.01.05",
-      view: 1371,
-      like: 2958
-    },
-    {
-      number: 5,
-      select: "영상",
-      title: "엔믹스 신곡 무비",
-      emoji: faVideo,
-      writer: "베르너",
-      date: "23.12.28",
-      view: 778,
-      like: 927
-    },
-    {
-      number: 4,
-      select: "공지",
-      title: "[공지] 엔믹스 최고야 이야이야이야요",
-      emoji: faFlag,
-      writer: "박지성",
-      date: "23.12.22",
-      view: 532,
-      like: 57
-    },
-    {
-      number: 3,
-      select: "일반",
-      title: "엔믹스 최고야 라라라라라ㅏ라라라",
-      emoji: faClipboard,
-      writer: "손흥민",
-      date: "23.12.19",
-      view: 777,
-      like: 357
-    },
-    {
-      number: 2,
-      select: "일반",
-      title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-      emoji: faClipboard,
-      writer: "마틴",
-      date: "23.12.16",
-      view: 999,
-      like: 558
-    },
-    {
-      number: 1,
-      select: "설문",
-      title: "엔믹스가 왜 성공하지 못하는지",
-      emoji: faPenToSquare,
-      writer: "이원노",
-      date: "23.12.11",
-      view: 421,
-      like: 280
-    },
-    {
-      number: 7,
-      select: "공지",
-      title: "[필독] 공지사항",
-      emoji: faFlag,
-      writer: "주먹펴고일어서",
-      date: "24.01.09",
-      view: 51371,
-      like: 2958
-    },
-    {
-      number: 6,
-      select: "포토",
-      title: "엔믹스 무대사진 모음",
-      emoji: faCamera,
-      writer: "스티븐 스필버그",
-      date: "24.01.05",
-      view: 1371,
-      like: 2958
-    },
-    {
-      number: 5,
-      select: "영상",
-      title: "엔믹스 신곡 무비",
-      emoji: faVideo,
-      writer: "베르너",
-      date: "23.12.28",
-      view: 778,
-      like: 927
-    },
-    {
-      number: 4,
-      select: "공지",
-      title: "[공지] 엔믹스 최고야 이야이야이야요",
-      emoji: faFlag,
-      writer: "박지성",
-      date: "23.12.22",
-      view: 532,
-      like: 57
-    },
-    {
-      number: 3,
-      select: "일반",
-      title: "엔믹스 최고야 라라라라라ㅏ라라라",
-      emoji: faClipboard,
-      writer: "손흥민",
-      date: "23.12.19",
-      view: 777,
-      like: 357
-    },
-    {
-      number: 2,
-      select: "일반",
-      title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-      emoji: faClipboard,
-      writer: "마틴",
-      date: "23.12.16",
-      view: 999,
-      like: 558
-    },
-    {
-      number: 1,
-      select: "설문",
-      title: "엔믹스가 왜 성공하지 못하는지",
-      emoji: faPenToSquare,
-      writer: "이원노",
-      date: "23.12.11",
-      view: 421,
-      like: 280
-    },
-    
-  ];
-  const [contents, setContents] = useState<datas[]>([]); //임시data
-  const [selectData, setSelectData] = useState<string>(""); //말머리 value
+  const [boards, setBoards] = useState<boardDataType[]>([]);
+  const [fixs, setFixs] = useState<boardDataType[]>([]);
+
+  // type 변수 이름 변경 필요
   const [searchData, setSearchData] = useState<string>(""); //검색 input value
   const [type, setType] = useState<string>(""); //검색 select value
-  const [page, setPage] = useState<number>(1); //페이지
+  
+  const [page, setPage] = useState<number>(0); //페이지
+  const [category, setCategory] = useState<string>("");
+  const [totalCount, setTotalCount] = useState<number>(0);
 
 
+  const getData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/list?page=${page}&category=${category}`);
+    const data = await res.json();
+    if(data.result){
+      setTotalCount(data.count);
+      setBoards((prev)=>[...prev, ...data.board]);
+      setFixs((prev)=>[...prev, ...data.fixBoard]);
+    }
+  }
 
   useEffect(() => {
     document.title = "자유게시판";
-    setContents(datas);
-    const data = async () => {
-      const res = await axios({
-        url: "http://localhost:3000/board/api/board?word=${word}",
-        method: "GET",
-      })
-      setContents(res.data);
-    }
-    data()
   }, []);
 
-  const handlePageChange = (page: number) => {
-    setPage(page);
-    console.log(page);
+  useEffect(()=>{
+    if(page===0){
+      setPage(1);
+      return;
+    }
+    setBoards([]);
+    getData();
+  }, [page])
+
+  const handlePageChange = (pageNumber: number) => {
+    setPage(pageNumber);
   };
 
-  useEffect(() => {
-    const selectDatas = async () => {
-      const res = await axios({
-        url: "http://localhost:3000/board/api/board?word=${word}",
-        method: "GET",
-        data: {
-          selectData: selectData, //임시
-        }
-      })
-      setContents(res.data);
-    }
-    selectDatas();
-
-  }, [selectData])//데이터요청
-
-
-  const searchEnter = async () => {
-    const res = await axios({
-      url: "http://localhost:3000/board/api/board?word=${word}",
-      method: "POST",
-      data: {
-        searchData: searchData, //임시
-        select: type //임시
-      }
-    })
-    setContents(res.data);
+  const handleCategoryClick = (name:string)=>{
+    setCategory(name);
+    setPage(0);
   }
+
+  const handleSearchEnter = async () => {
+    
+  }
+
+  interface categoryType {
+    id:string,
+    name:string,
+  }
+
+  const categoryList:categoryType[] = [
+    {
+      id:"recommand",
+      name:"추천"
+    },
+    {
+      id:"normal",
+      name:"일반"
+    },
+    {
+      id:"notice",
+      name:"공지"
+    },
+    {
+      id:"official",
+      name:"공식"
+    },
+    {
+      id:"sns",
+      name:"SNS"
+    },
+    {
+      id:"infor",
+      name:"정보"
+    },
+    {
+      id:"photo",
+      name:"사진"
+    },
+    {
+      id:"video",
+      name:"영상"
+    },
+    {
+      id:"review",
+      name:"후기"
+    },
+    {
+      id:"verify",
+      name:"인증"
+    },
+    {
+      id:"analyze",
+      name:"분석"
+    }
+  ]
 
   return (
     <section className={board.section}>
@@ -450,19 +145,15 @@ export default function Board() {
             </div>
             <div className={board.horseHeadBox}>
               <input type="radio" id="all" name="category" defaultChecked hidden />
-              <label htmlFor="all" className={board.listBox} onClick={() => setSelectData("전체")}>전체</label>
-              <input type="radio" id="recommand" name="category" hidden />
-              <label htmlFor="recommand" className={board.listBox} onClick={() => setSelectData("추천")}>추천</label>
-              <input type="radio" id="standard" name="category" hidden />
-              <label htmlFor="standard" className={board.listBox} onClick={() => setSelectData("일반")}>일반</label>
-              <input type="radio" id="notice" name="category" hidden />
-              <label htmlFor="notice" className={board.listBox} onClick={() => setSelectData("공지")}>공지</label>
-              <input type="radio" id="official" name="category" hidden />
-              <label htmlFor="official" className={board.listBox} onClick={() => setSelectData("공식")}>공식</label>
-              <input type="radio" id="sns" name="category" hidden />
-              <label htmlFor="sns" className={board.listBox} onClick={() => setSelectData("SNS")}>SNS</label>
-              <input type="radio" id="infor" name="category" hidden />
-              <label htmlFor="infor" className={board.listBox} onClick={() => setSelectData("정보")}>정보</label>
+              <label htmlFor="all" className={board.listBox} onClick={() => handleCategoryClick("")}>전체</label>
+              {categoryList.map((value, index)=>{
+                return (
+                  <div key={index}>
+                    <input type="radio" id={value.id} name="category" hidden />
+                    <label htmlFor={value.id} className={board.listBox} onClick={() => handleCategoryClick(value.name)}>{value.name}</label>
+                  </div>
+                )
+              })}
             </div>
           </div>
           <div>
@@ -479,19 +170,19 @@ export default function Board() {
           <div className={board.headerData6}>조회수</div>
           <div className={board.headerData7}>추천</div>
         </div>
-        {contents.map((content) => {
+        {boards.map((value, index) => {
           return (
-            <div key={content.number} className={board.mainBox}>
-              <div className={board.data1}>{content.number}</div>
-              <div className={board.data2}>{content.select}</div>
-              <div className={board.emoji}>{<FontAwesomeIcon icon={content.emoji}></FontAwesomeIcon>}</div>
+            <div key={index} className={board.mainBox}>
+              <div className={board.data1}>{value.id}</div>
+              <div className={board.data2}>{value.category}</div>
+              <div className={board.emoji}></div>
               <div className={board.contentBox}>
-                <Link href={`/board/${content.number}`} className={board.content}>{content.title.length > 16 ? content.title.substring(0, 16) + "..." : content.title}</Link>
+                <Link href={`/board/${value.id}`} className={board.content}>{value.title.length > 16 ? value.title.substring(0, 16) + "..." : value.title}</Link>
               </div>
-              <div className={board.data4}>{content.writer}</div>
-              <div className={board.data5}>{content.date}</div>
-              <div className={board.data6}>{content.view}</div>
-              <div className={board.data7}>{content.like}</div>
+              <div className={board.data4}>{value.user_id.profile.length > 8 ? value.user_id.profile.substring(0, 8) + "..." : value.user_id.profile }</div>
+              <div className={board.data5}>{korTime(new Date(value.create_date))}</div>
+              <div className={board.data6}>{value.view}</div>
+              <div className={board.data7}>{value.like}</div>
             </div>
           )
         })}
@@ -502,7 +193,7 @@ export default function Board() {
           <Pagination
             activePage={page}
             itemsCountPerPage={30}
-            totalItemsCount={1000}
+            totalItemsCount={totalCount}
             pageRangeDisplayed={10}
             prevPageText={"이전"}
             nextPageText={"다음"}
@@ -518,7 +209,7 @@ export default function Board() {
           <input type="text"
             className={board.searchInput}
             onChange={(e) => setSearchData(e.target.value)}
-            onKeyDown={(e) => { if (e.key === "Enter") { searchEnter() } }}
+            onKeyDown={(e) => { if (e.key === "Enter") { handleSearchEnter() } }}
           />
           <div className={board.searchBtn}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
