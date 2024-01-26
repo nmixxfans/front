@@ -3,6 +3,12 @@ import videoInformation from "../videoInformationType";
 // MIXXTORY
 const storyList : videoInformation[] = [
     {
+        href:"zgWc78qUGzs",
+        src:"",
+        title:`오늘부터 저 운전해보려고요🚘 해원 운전 연습 VLOG | 크리스마스 소원권 쓰기`,
+        ch:"y"
+    },
+    {
         href:"2nHm5fhiFN0",
         src:"",
         title:`[NMIXX]🐰HAPPY SULLYOON DAY🦌 #MIXXTORY`,

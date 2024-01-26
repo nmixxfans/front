@@ -154,7 +154,7 @@ export default function Home() {
                 <div className={home.contentBox}>
                     <div>
                         <div className={home.title} title='최신 엔믹스'>NMIXX NEW</div>
-                        <iframe className={home.youtubePlayer} src="https://www.youtube.com/embed/JM88m7SY8FE" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        <iframe className={home.youtubePlayer} src="https://www.youtube.com/embed/QhhMY3io85s" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                     </div>
                     <div>
                         <div className={home.title} title='엔믹스 최신 라이브'>NMIXX ON AIR<div className={home.onAir}><div className={home.onAirContent}></div></div></div>

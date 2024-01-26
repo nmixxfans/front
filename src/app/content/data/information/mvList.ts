@@ -27,6 +27,18 @@ const mvList : videoInformation[] = [
         ch:"y"
     },
     {
+        href:"4q3JKyLc4xA",
+        src:"",
+        title:`NMIXX - My Gosh | SPECIAL VIDEO`,
+        ch:"y"
+    },
+    {
+        href:"lH_n29wkT_4",
+        src:"",
+        title:`NMIXX - PAXXWORD | SPECIAL VIDEO`,
+        ch:"y"
+    },
+    {
         href:"EDnwWcFpObo",
         src:"",
         title:`NMIXX "Love Me Like This" M/V`,
@@ -42,6 +54,12 @@ const mvList : videoInformation[] = [
         href:"kBwikDvbRbI",
         src:"",
         title:`NMIXX "Funky Glitter Christmas" M/V`,
+        ch:"y"
+    },
+    {
+        href:"4wKU9oIXnTI",
+        src:"",
+        title:`NMIXX - COOL (Your rainbow) | SPECIAL VIDEO`,
         ch:"y"
     },
     {

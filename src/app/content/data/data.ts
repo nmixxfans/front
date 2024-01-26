@@ -6,6 +6,9 @@ import wonderlandList from "./information/wonderlandList";
 import storyList from "./information/storyList";
 import videoInformation from "./videoInformationType";
 import vlogList from "./information/vlogList";
+import makingList from "./information/makingList";
+import practiceList from "./information/practiceList";
+import performanceList from "./information/performanceList";
 
 interface information {
     name:string,
@@ -41,9 +44,24 @@ const controll : information[] = [
         array: liveList,
     },
     {
+        name:"NMIXX PRACTICE VIDEO",
+        title:"엔믹스 연습 영상",
+        array: practiceList,
+    },
+    {
+        name:"NMIXX PERFORMANCE VIDEO",
+        title:"엔믹스 퍼포먼스 비디오",
+        array: performanceList,
+    },
+    {
         name:"MIXXTAPE",
         title:"엔믹스 커버",
         array: tapeList,
+    },
+    {
+        name:"Making MIXX",
+        title:"엔믹스 메이킹",
+        array: makingList,
     },
     {
         name:"MIXXTREAM",
