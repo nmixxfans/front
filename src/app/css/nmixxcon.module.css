@@ -7,3 +7,118 @@
     width: 1000px;
     min-height:500px;
 }
+
+.titleBox{
+    margin-bottom: 25px;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+}
+
+.title{
+    font-size: 18px;
+    font-family: 'S-CoreDream-9Black';
+    background-color: #000;
+    color: #fff;
+    padding: 0px 4px;
+    width: fit-content;
+}
+
+.contentBox{
+    width: 1000px;
+}
+
+.listBox{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    border-bottom: 1px solid #dadada;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+.listItem{
+    width: 166px;
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+    transition: all 0.3s;
+    border-radius: 5px;
+}
+
+.listItem:hover{
+    transform: scale(1.1);
+    background-color: #f3f3f3;
+}
+
+.listLink{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.listImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    object-fit: cover;
+}
+
+.listName{
+    font-size: 14px;
+}
+
+.listNick{
+    font-size: 12px;
+    color: #dadada;
+}
+
+.pageBox{
+    display: flex;
+    justify-content: center;
+}
+
+.page{
+
+}
+
+.searchBox{
+    display: flex;
+    gap: 5px;
+    height: 25px;
+}
+
+.searchSelect{
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.searchInput{
+    width: 150px;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #dadada;
+    border-radius: 3px;
+}
+
+.searchBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    height: 100%;
+    font-size: 12px;
+    border-radius: 3px;
+}
+

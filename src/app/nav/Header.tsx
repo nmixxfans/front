@@ -36,9 +36,9 @@ export default function Header(){
                 <Link href={'/fantube'}>팬채널</Link>
                 <Link href={'/board'}>자유게시판</Link>
                 <Link href={'/notice'}>공지사항</Link>
-                <Link href={'/send'}>건의</Link>
+                <Link href={'/mc'}>엔믹스콘</Link>
                 <Link href={'/apply'}>매니저신청</Link>
-                <Link href={'/mc'}>믹스콘</Link>
+                <Link href={'/send'}>건의</Link>
             </div>
         </header>
     )

@@ -2,115 +2,216 @@
 
 import Link from "next/link";
 import board from '../css/board.module.css';
-import { useEffect, useState } from "react";
+import "../css/pagination.css";
+import { KeyboardEvent, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  IconDefinition,
+  faCamera,
+  faVideo,
+  faPenToSquare,
+  faClipboard,
+  faFlag,
+  faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"; //포토, 영상, 설문, 일반, 공지
+import Pagination from "react-js-pagination";
+import PostItem from "./element/PostItem";
 
 export default function Board() {
-    // const [datas, setDatas] = useState<[]>([]);
-    const [category, setCategory] = useState<boolean>(true);
-    const [selectData, setSelectData] = useState<any>("");
-    const datas = [
-        {
-            number: 4,
-            select: "공지",
-            title: "엔믹스 최고야 이야이야이야요",
-            writer: "박지성",
-            date: "23.12.12",
-            view: 532,
-            like: 57
-        },
-        {
-            number: 3,
-            select: "일반",
-            title: "엔믹스 최고야 라라라라라ㅏ라라라",
-            writer: "손흥민",
-            date: "23.12.14",
-            view: 777,
-            like: 357
-        },
-        {
-            number: 2,
-            select: "일반",
-            title: "나랏말씀이 듕귁에 닿아 문자와 서로 사맣디 아니할세",
-            writer: "마틴",
-            date: "23.12.16",
-            view: 999,
-            like: 558
-        },
-        {
-            number: 1,
-            select: "설문",
-            title: "엔믹스가 왜 성공하지 못하는지",
-            writer: "이원노",
-            date: "23.12.17",
-            view: 421,
-            like: 280
-        },
-    ];
-    useEffect(() => {
 
-    }, [selectData])//데이터요청
+  interface userDataType{
+    id:number,
+    profile:string;
+  }
+  interface boardDataType {
+    id: number,
+    category: string,
+    title: string,
+    user_nick: string,
+    content: string,
+    view: number,
+    like: number,
+    create_date:Date,
+    user_id:userDataType,
+  }
 
-    useEffect(() => {
-        document.title = "자유게시판";
-    }, [])
+  const [boards, setBoards] = useState<boardDataType[]>([]);
+  const [fixs, setFixs] = useState<boardDataType[]>([]);
 
-    return (
-        <section className={board.section}>
-            <div className={board.container}>
-                <div className={board.headBox}>
-                    <div className={board.headWrapper}>
-                        <div className={board.title}>
-                            자유게시판
-                        </div>
-                        <input type="radio" id="standard" name="category" defaultChecked hidden/>
-                        <label htmlFor="standard" className={board.listBox} onClick={() => setSelectData("일반")}>일반</label>
-                        <input type="radio" id="notice" name="category" hidden/>
-                        <label htmlFor="notice" className={board.listBox} onClick={() => setSelectData("공지")}>공지</label>
-                        <input type="radio" id="photo" name="category" hidden/>
-                        <label htmlFor="photo" className={board.listBox} onClick={() => setSelectData("포토")}>포토</label>
-                        <input type="radio" id="video" name="category" hidden/>
-                        <label htmlFor="video" className={board.listBox} onClick={() => setSelectData("영상")}>영상</label>
-                        <input type="radio" id="que" name="category" hidden/>
-                        <label htmlFor="que" className={board.listBox} onClick={() => setSelectData("설문")}>설문</label>
-                    </div>
-                    <div className={board.btnBox}>
-                        <Link href={'/board/write'} className={board.link}>글쓰기</Link>
-                    </div>
-                </div>
-                <div className={board.mainBox}>
-                    <div className={board.headerData1}>번호</div>
-                    <div className={board.headerData2}>말머리</div>
-                    <div className={board.headerData3}>제목</div>
-                    <div className={board.headerData4}>작성자</div>
-                    <div className={board.headerData5}>작성일</div>
-                    <div className={board.headerData6}>조회수</div>
-                    <div className={board.headerData7}>추천</div>
-                </div>
-                {datas.map((data) => {
-                    return (
-                        <div key={data.number} className={board.mainBox}>
-                            <div className={board.data1}>{data.number}</div>
-                            <div className={board.data2}>{data.select}</div>
-                            <div className={board.data3}>{(data.title).substring(0, 16)}</div>
-                            <div className={board.data4}>{data.writer}</div>
-                            <div className={board.data5}>{data.date}</div>
-                            <div className={board.data6}>{data.view}</div>
-                            <div className={board.data7}>{data.like}</div>
-                        </div>
-                    )
-                })}
-                <div className={board.btnBox}>
-                    <Link href={'/board/write'} className={board.link}>글쓰기</Link>
-                </div>
-                <div className={board.searchBox}>
-                    <select className={board.searchSelect}>
-                        <option>제목</option>
-                        <option>내용</option>
-                        <option>제목+내용</option>
-                    </select>
-                    <input className={board.searchInput} placeholder="검색"/>
-                </div>
+  // type 변수 이름 변경 필요
+  const [searchData, setSearchData] = useState<string>(""); //검색 input value
+  const [type, setType] = useState<string>(""); //검색 select value
+  
+  const [page, setPage] = useState<number>(0); //페이지
+  const [category, setCategory] = useState<string>("");
+  const [totalCount, setTotalCount] = useState<number>(0);
+
+
+  const getData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/list?page=${page}&category=${category}`);
+    const data = await res.json();
+    if(data.result){
+      setTotalCount(data.count);
+      setBoards((prev)=>[...prev, ...data.board]);
+      setFixs((prev)=>[...prev, ...data.fixBoard]);
+    }
+  }
+
+  useEffect(() => {
+    document.title = "자유게시판";
+  }, []);
+
+  useEffect(()=>{
+    if(page===0){
+      setPage(1);
+      return;
+    }
+    setFixs([]);
+    setBoards([]);
+    getData();
+  }, [page])
+
+  const handlePageChange = (pageNumber: number) => {
+    setPage(pageNumber);
+  };
+
+  const handleCategoryClick = (name:string)=>{
+    setCategory(name);
+    setPage(0);
+  }
+
+  const handleSearchEnter = async () => {
+    
+  }
+
+  interface categoryType {
+    id:string,
+    name:string,
+  }
+
+  const categoryList:categoryType[] = [
+    {
+      id:"recommand",
+      name:"추천"
+    },
+    {
+      id:"normal",
+      name:"일반"
+    },
+    {
+      id:"notice",
+      name:"공지"
+    },
+    {
+      id:"official",
+      name:"공식"
+    },
+    {
+      id:"sns",
+      name:"SNS"
+    },
+    {
+      id:"infor",
+      name:"정보"
+    },
+    {
+      id:"photo",
+      name:"사진"
+    },
+    {
+      id:"video",
+      name:"영상"
+    },
+    {
+      id:"review",
+      name:"후기"
+    },
+    {
+      id:"verify",
+      name:"인증"
+    },
+    {
+      id:"analyze",
+      name:"분석"
+    }
+  ]
+
+  return (
+    <section className={board.section}>
+      <div className={board.container}>
+        <div className={board.headBox}>
+          <div className={board.headWrapper}>
+            <div className={board.title}>
+              자유게시판
             </div>
-        </section>
-    )
+            <div className={board.horseHeadBox}>
+              <input type="radio" id="all" name="category" defaultChecked hidden />
+              <label htmlFor="all" className={board.listBox} onClick={() => handleCategoryClick("")}>전체</label>
+              {categoryList.map((value, index)=>{
+                return (
+                  <div key={index}>
+                    <input type="radio" id={value.id} name="category" hidden />
+                    <label htmlFor={value.id} className={board.listBox} onClick={() => handleCategoryClick(value.name)}>{value.name}</label>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <div>
+            <Link href={'/board/write'} className={board.link}>글쓰기</Link>
+          </div>
+        </div>
+        <div className={board.mainBox}>
+          <div className={board.headerData1}>번호</div>
+          <div className={board.headerData2}>말머리</div>
+          <div className={board.headerEmoji}></div>
+          <div className={board.headerData3}>제목</div>
+          <div className={board.headerData4}>작성자</div>
+          <div className={board.headerData5}>작성일</div>
+          <div className={board.headerData6}>조회수</div>
+          <div className={board.headerData7}>추천</div>
+        </div>
+        {
+          fixs.map((value, index)=>{
+            return (
+              <PostItem key={index} index={index} value={value} fix={true}></PostItem>
+            )
+          })
+        }
+        {boards.map((value, index) => {
+          return (
+            <PostItem key={index} index={index} value={value} fix={false}></PostItem>
+          )
+        })}
+        <div className={board.writeBtnBox}>
+          <Link href={'/board/write'} className={board.link}>글쓰기</Link>
+        </div>
+        <div className={board.pageBox}>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={30}
+            totalItemsCount={totalCount}
+            pageRangeDisplayed={10}
+            prevPageText={"이전"}
+            nextPageText={"다음"}
+            onChange={handlePageChange}
+          />
+        </div>
+        <div className={board.searchBox}>
+          <select className={board.searchSelect} onChange={(e) => setType(e.target.value)} >
+            <option value={"content"}>내용</option>
+            <option value={"titleAndContent"}>제목+내용</option>
+            <option value={"writer"}>작성자</option>
+          </select>
+          <input type="text"
+            className={board.searchInput}
+            onChange={(e) => setSearchData(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") { handleSearchEnter() } }}
+          />
+          <div className={board.searchBtn}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </div>
+        </div>
+      </div>
+    </section>
+  )
 }
