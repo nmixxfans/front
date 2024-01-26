@@ -5,17 +5,16 @@ import board from '../css/board.module.css';
 import "../css/pagination.css";
 import { KeyboardEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition, faCamera } from "@fortawesome/free-solid-svg-icons"; //포토
-import { faVideo } from "@fortawesome/free-solid-svg-icons"; //영상
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"; //설문
-import { faFlag } from "@fortawesome/free-solid-svg-icons"; //공지
-import { faClipboard } from "@fortawesome/free-solid-svg-icons"; //일반
-import Pagination from "react-js-pagination";
-import axios from "axios";
 import {
-  faMagnifyingGlass
-} from "@fortawesome/free-solid-svg-icons";
-import { korTime } from "../functions/utc-to-kor";
+  IconDefinition,
+  faCamera,
+  faVideo,
+  faPenToSquare,
+  faClipboard,
+  faFlag,
+  faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"; //포토, 영상, 설문, 일반, 공지
+import Pagination from "react-js-pagination";
+import PostItem from "./element/PostItem";
 
 export default function Board() {
 
@@ -32,7 +31,7 @@ export default function Board() {
     view: number,
     like: number,
     create_date:Date,
-    user_id:userDataType
+    user_id:userDataType,
   }
 
   const [boards, setBoards] = useState<boardDataType[]>([]);
@@ -66,6 +65,7 @@ export default function Board() {
       setPage(1);
       return;
     }
+    setFixs([]);
     setBoards([]);
     getData();
   }, [page])
@@ -170,20 +170,16 @@ export default function Board() {
           <div className={board.headerData6}>조회수</div>
           <div className={board.headerData7}>추천</div>
         </div>
+        {
+          fixs.map((value, index)=>{
+            return (
+              <PostItem key={index} index={index} value={value} fix={true}></PostItem>
+            )
+          })
+        }
         {boards.map((value, index) => {
           return (
-            <div key={index} className={board.mainBox}>
-              <div className={board.data1}>{value.id}</div>
-              <div className={board.data2}>{value.category}</div>
-              <div className={board.emoji}></div>
-              <div className={board.contentBox}>
-                <Link href={`/board/${value.id}`} className={board.content}>{value.title.length > 16 ? value.title.substring(0, 16) + "..." : value.title}</Link>
-              </div>
-              <div className={board.data4}>{value.user_id.profile.length > 8 ? value.user_id.profile.substring(0, 8) + "..." : value.user_id.profile }</div>
-              <div className={board.data5}>{korTime(new Date(value.create_date))}</div>
-              <div className={board.data6}>{value.view}</div>
-              <div className={board.data7}>{value.like}</div>
-            </div>
+            <PostItem key={index} index={index} value={value} fix={false}></PostItem>
           )
         })}
         <div className={board.writeBtnBox}>
