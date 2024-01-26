@@ -31,7 +31,7 @@
     justify-content: space-between;
     width: 1000px;
     border-bottom: 2px solid black;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
 }
 
 .headWrapper {
@@ -100,11 +100,11 @@ input:checked + .listBox {
 }
 
 .headerEmoji{
-    width: 7%;
+    width: 5%;
 }
 
 .headerData3 {
-    width: 55%;
+    width: 57%;
 }
 
 .headerData4 {
@@ -151,7 +151,7 @@ input:checked + .listBox {
 
 .contentBox {
     justify-content: flex-start;
-    width: 55%;
+    width: 57%;
     
 }
 
@@ -165,7 +165,8 @@ input:checked + .listBox {
 }
 
 .emoji {
-    width: 7%;
+    width: 5%;
+    font-size: 15px;
 }
 
 .data4 {
