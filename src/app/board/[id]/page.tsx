@@ -12,7 +12,7 @@ export default function BoardView(props: Params) {
 
     const [data, setData] = useState<[]>([])
     const [review, setReview] = useState<string>("") //댓글input값
-    const [like, setLike] = useState<string>(""); //좋아요
+    const [like, setLike] = useState<boolean>(false); //좋아요
     const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
 
 
@@ -45,15 +45,15 @@ export default function BoardView(props: Params) {
     }
 
     const likes = async () => { //좋아요기능
-        if (like === "m") {
+        if (like) {
             alert("이미 좋아요를 누르셨습니다.");
         }
-        setLike("m")
+        setLike(true);
         const res = await axios({
             method: "POST",
             data: {
                 // id:data.id,
-                like: like
+                like: like,
             }
         })
         if (res.data.result) {
@@ -87,7 +87,7 @@ export default function BoardView(props: Params) {
                 </div>
                 <div className={bv.mainContent}>내용</div>
                 <div className={bv.likeBox}>
-                    <div className={like === "m" ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
+                    <div className={like ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
                         <FontAwesomeIcon icon={faThumbsUp} className={bv.like}></FontAwesomeIcon>
                         <div className={bv.likeNumber}>{likeNumber}</div>
                     </div>

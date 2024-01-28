@@ -97,22 +97,21 @@ export default function Profile() {
                 <div>가입일</div>
             </div>
             <div className={pr.title}>작성한 글</div>
-            <div className={pr.detailTitle}>
-                <div>제목</div>
-                <div>날짜</div>
-                <div>주제</div>
-            </div>
-            
             <div className={pr.myWriting}>
                 {myContents.map((myContent) => {
                     return (
                         <Link href={`/board/${myContent.id}`} key={myContent.id} className={pr.myContentBox}>
-                            <div className={pr.myContentTitle}>{myContent.title}</div>
-                            <div className={pr.myContentDate}>{myContent.date}</div>
-                            <div className={pr.myContentSelect}>{myContent.select}</div>
+                            <div className={pr.myContentSelect}>{myContent.title}</div>
+                            <div className={pr.myContentInfor}>
+                                <div className={pr.myContentTitle}>{myContent.date}</div>
+                                <div>|</div>
+                                <div className={pr.myContentDate}>{myContent.select}</div>
+                            </div>
                         </Link>
                     )
                 })}
+
+
             </div>
             <div className={pr.myWritingSelect}>
                 <Pagination
