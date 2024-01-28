@@ -24,7 +24,7 @@ export default function Signin() {
         else if(password===""){
             alert("비밀번호를 입력해주세요.")
         }else{
-
+            signIn()
         }
     }
 
@@ -36,9 +36,22 @@ export default function Signin() {
             else if(password===""){
                 alert("비밀번호를 입력해주세요.")
             }else{
-                
+                signIn()
             }
         }
+    }
+
+    const signIn = async ()=>{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signin`,{
+            method:"POST",
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userid:id, password })
+        })
+        const data = await res.json();
+        // message, refresh_token, access_token 넘어옴
+        console.log(data);
     }
 
     return (
