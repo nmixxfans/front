@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "../../css/pagination.css";
 import Link from "next/link";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
-
-export default function Profile() {
+export default function Profile(props: Params) {
 
     interface datas {
         id: number,
@@ -64,18 +64,19 @@ export default function Profile() {
     const [page, setPage] = useState<number>(1); //페이지
     const [page2, setPage2] = useState<number>(1); //페이지
 
+    const getData = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/profile/info/:${props.params.id}`);
+        const data = await res.json();
+        if(data.result) {
+            setMyContents(data.content);
+            setComments(data.comment);
+        }
+    }
+
     useEffect(() => {
         setMyContents(datas);
         setComments(comment);
-        const data = async () => {
-            const res = await axios({
-                url: "http://localhost:3000/board/api/board?word=${word}",
-                method: "GET",
-            })
-            setMyContents(res.data);
-            setComments(res.data);
-        }
-        data()
+        getData()
     }, []);
 
 
