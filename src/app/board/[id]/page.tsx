@@ -16,27 +16,29 @@ export default function BoardView(props: Params) {
     const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
 
 
-    useEffect(() => {
-        const data = async () => {
-            const res = await axios({
-                url: `/api/board/:${props.params.id}`,
-                method: "GET"
-            })
-            setData(res.data);
+    
+    const getData = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/:${props.params.id}`);
+        const data = await res.json();
+        if(data.result) {
+            setData(data.data);
         }
-        data();
+    }
+
+    useEffect(() => {
+        getData();
     })
+        
+    
 
     const resister = async () => { //댓글등록
-        const res = await axios({
-            method: "POST",
-            data: {
-                // id:data.id,
-                review: review, //리뷰
-            }
-        })
-        setReview("");
-        if (res.data.result) {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/comment`);
+        const data = await res.json();
+        if(data.result) {
+            setReview("");
+        }
+        
+        if (data.result) {
             alert("댓글이 등록되었습니다.");
         } else {
             alert("댓글 등록이 안된듯? ㅋ");
@@ -49,15 +51,10 @@ export default function BoardView(props: Params) {
             alert("이미 좋아요를 누르셨습니다.");
         }
         setLike(true);
-        const res = await axios({
-            method: "POST",
-            data: {
-                // id:data.id,
-                like: like,
-            }
-        })
-        if (res.data.result) {
-            setLikeNumber(res.data.likeNumber);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/comment`);   
+        const data = await res.json();
+        if (data.result) {
+            setLikeNumber(data.likeNumber);
             alert("좋아요를 누르셨습니다.")
         }
     }
