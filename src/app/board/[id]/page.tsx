@@ -32,7 +32,7 @@ export default function BoardView(props: Params) {
     
 
     const resister = async () => { //댓글등록
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/comment`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/comment`);
         const data = await res.json();
         if(data.result) {
             setReview("");
@@ -51,11 +51,11 @@ export default function BoardView(props: Params) {
             alert("이미 좋아요를 누르셨습니다.");
         }
         setLike(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/comment`);   
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);   
         const data = await res.json();
         if (data.result) {
             setLikeNumber(data.likeNumber);
-            alert("좋아요를 누르셨습니다.")
+            alert("좋아요를 누르셨습니다.");
         }
     }
 
