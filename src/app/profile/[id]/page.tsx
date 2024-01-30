@@ -65,7 +65,7 @@ export default function Profile(props: Params) {
     const [page2, setPage2] = useState<number>(1); //페이지
 
     const getData = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/api/profile/info/:${props.params.id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/profile/info/:${props.params.id}`);
         const data = await res.json();
         if(data.result) {
             setMyContents(data.content);
