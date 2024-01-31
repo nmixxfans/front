@@ -1,5 +1,11 @@
+import style from "../../css/nmixxcon-upload.module.css";
+
 export default function MixxConUpload(){
     return(
-        <>엔믹스콘 업로드</>
+        <section className={style.section}>
+            <div className={style.container}>
+                
+            </div>
+        </section>
     )
 }
