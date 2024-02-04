@@ -1,0 +1,161 @@
+.section {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+}
+.title {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-right: 900px;
+    padding-top: 20px;
+}
+
+.detailTitle {
+    display: flex;
+    justify-content: space-around;
+    width: 1000px;
+    margin-bottom: 10px;
+}
+
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 1000px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.userMain {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
+    padding: 32px;
+}
+
+.userImg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 100px;
+}
+
+.userInfor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.userPatch {
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    margin-top: 50px;
+}
+
+.userPatchBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    border: 1px solid black;
+    padding: 5px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.myWriting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid black;
+    width: 1000px;
+}
+
+.myWritingSelect {
+    margin-bottom: 40px;
+}
+
+.myCommentBox, .myContentBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    height: 60px;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    gap: 10px;
+}
+
+.myCommentSelect, .myContentSelect {
+    width: 1000px;
+    display: flex;
+    padding-left: 20px;
+}
+
+.myCommentInfor, .myContentInfor {
+    display: flex;
+    padding-left: 20px;
+    width: 1000px;
+    gap:20px
+}
+
+
+/* modal */
+.modalSection {
+    position: fixed;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+    top: 50%;
+    left: 50%;
+}
+
+.modalBack {
+    position: absolute;
+    background-color: #00000085;
+    z-index: 5;
+    height: 100%;
+    width: 100%;
+}
+
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 600px;
+    height: 600px;
+    transform: translate(-50%, -50%);
+    background:white;
+    border-radius: 16px;
+    z-index: 6;
+}
+
+.modalInfor {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+    height: 500px;
+}
+
+.modalBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: black;
+    color:white
+}
