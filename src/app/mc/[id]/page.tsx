@@ -24,18 +24,20 @@ export default function MixxConView() {
                 <div className={style.nmixxconName}>
                   엔믹스콘 V.5
                 </div>
-                <div className={style.creater}>
+                <div className={style.createrNick}>
                   닉네임
                 </div>
               </div>
-              <div>
-                수정
-              </div>
-              <div>
-                담기
-              </div>
-              <div>
-                삭제
+              <div className={style.btnBox}>
+                <div className={style.modifyBtn}>
+                  수정
+                </div>
+                <div className={style.getBtn}>
+                  담기
+                </div>
+                <div className={style.deleteBtn}>
+                  삭제
+                </div>
               </div>
             </div>
             

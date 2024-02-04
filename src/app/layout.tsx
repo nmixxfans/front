@@ -11,6 +11,7 @@ import {
     QueryClient,
     QueryClientProvider,
   } from '@tanstack/react-query'
+import Token from './nav/Token'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -43,6 +44,7 @@ export default function RootLayout({
                     <Header />
                     {children}
                     <Footer />
+                    <Token />
                 </RecoilRootProvider>
             {/* </QueryClientProvider> */}
             </body>

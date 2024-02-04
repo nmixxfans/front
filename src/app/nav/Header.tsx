@@ -7,11 +7,11 @@ import {
  } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from 'recoil';
-import { signState } from '../Atom';
+import { userState } from '../Atom';
 
 export default function Header(){
 
-    const [sign, setSign] = useRecoilState(signState)
+    const [sign, setSign] = useRecoilState(userState)
 
     return(
         <header className={header.header}>
@@ -20,7 +20,7 @@ export default function Header(){
                     <Link href={'/'} className={header.siteLogo}><img className={header.logoImg} src='/wenmixx_logo.png'></img></Link>
                 </div>
 
-                {sign.length === 0 ?
+                {sign.id === 0 ?
                 <div className={header.userBtnBox}>
                     <Link href={'/signin'} className={header.signBtn} title='로그인'>로그인</Link>
                 </div>

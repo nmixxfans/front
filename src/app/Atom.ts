@@ -1,8 +1,27 @@
 import { atom } from "recoil";
 
-export const signState = atom({
+interface UserType{
+    id:number,
+    userid:string,
+    block:boolean,
+    nick:string,
+    grade:string,
+}
+
+export const userState = atom<UserType>({
     key: "sign",
-    default: ""
+    default:{
+        id:0,
+        userid:"",
+        block:true,
+        nick:"",
+        grade:"N"
+    }
+})
+
+export const accessTokenState = atom({
+    key:"access_token",
+    default:"",
 })
 
 interface FantubeType{
