@@ -1,7 +1,6 @@
 'use client'
 
 import pr from "../../css/profile.module.css";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "../../css/pagination.css";
@@ -68,8 +67,8 @@ export default function Profile(props: Params) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/profile/info/:${props.params.id}`);
         const data = await res.json();
         if(data.result) {
-            setMyContents(data.content);
-            setComments(data.comment);
+            setMyContents(datas);
+            setComments(comment);
         }
     }
 
@@ -111,8 +110,6 @@ export default function Profile(props: Params) {
                         </Link>
                     )
                 })}
-
-
             </div>
             <div className={pr.myWritingSelect}>
                 <Pagination
