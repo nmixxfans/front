@@ -4,6 +4,8 @@ import Link from "next/link"
 import signin from "../css/signin.module.css"
 import { useEffect, useRef, useState } from "react"
 import { KeyboardEvent } from 'react';
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../Atom";
 
 export default function Signin() {
 
@@ -11,6 +13,9 @@ export default function Signin() {
 
     const [id, setId] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+
+    const [accessToken, setAcessToken] = useRecoilState<string>(accessTokenState);
+
 
     useEffect(()=>{
         // 페이지 로드되면, ID 입력란에 포커스주기
@@ -44,14 +49,21 @@ export default function Signin() {
     const signIn = async ()=>{
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/signin`,{
             method:"POST",
+            credentials: 'include',
             headers:{
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ userid:id, password })
         })
         const data = await res.json();
-        // message, refresh_token, access_token 넘어옴
+        // message, access_token 넘어옴
+        // access_token recoil이용해 저장
         console.log(data);
+
+        if(data.message === 'login success'){
+            setAcessToken(data.access_token);
+            console.log("로그인 성공");
+        }
     }
 
     return (
