@@ -24,6 +24,7 @@ export default function Header() {
 
     const data = await res.json();
     if(data.result){
+      window.location.href = '/signin'
       console.log("로그아웃")
     }
   }

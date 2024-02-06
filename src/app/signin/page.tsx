@@ -62,6 +62,7 @@ export default function Signin() {
 
         if(data.message === 'login success'){
             setAcessToken(data.access_token);
+            window.location.href = '/'
             console.log("로그인 성공");
         }
     }
