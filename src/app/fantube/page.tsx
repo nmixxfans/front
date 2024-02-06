@@ -17,6 +17,7 @@ export default function Fantube() {
   const [sort, setSort] = useState<"sub" | "name" | "view">("sub");
   const [country, setCountry] = useState<"ko" | "wo">("ko");
   const [page, setPage] = useState<number>(1);
+  const [end, setEnd] = useState<boolean>(false);
 
   useEffect(() => {
     // console.log(params.get('sort'))
@@ -40,7 +41,11 @@ export default function Fantube() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/fantube?sort=${sort}&country=${country}&page=${page}`);
     const data = await res.json();
     console.log(res);
+    console.log(data.fantube);
     if(data.result){
+      if(data.fantube.length === 0){
+        setEnd(true);
+      }
       setFantubeData((prev) => [...prev, ...data.fantube]);
     }
   }
@@ -51,12 +56,16 @@ export default function Fantube() {
       setPage(1);
     }else{
       console.log("page에서 실행")
+      if(end){
+        return;
+      }
       getData();
       setFetching(false);
     }
   }, [page]);
 
   const handleChangeSort = (e:ChangeEvent<HTMLSelectElement>)=>{
+    setEnd(false);
     setSort(e.target.value as "sub" | "name" | "view");
     setFantubeData([]);
     setFetching(true);
@@ -87,6 +96,7 @@ export default function Fantube() {
 
 
   const handleClickCountry = (countrys : "wo" | "ko")=>{
+    setEnd(false);
     setCountry(countrys);
     setFantubeData([]);
     setFetching(true);
