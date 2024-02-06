@@ -40,8 +40,6 @@ export default function Fantube() {
   const getData = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/fantube?sort=${sort}&country=${country}&page=${page}`);
     const data = await res.json();
-    console.log(res);
-    console.log(data.fantube);
     if(data.result){
       if(data.fantube.length === 0){
         setEnd(true);
@@ -51,11 +49,9 @@ export default function Fantube() {
   }
 
   useEffect(() => {
-    console.log(page);
     if(page===0){
       setPage(1);
     }else{
-      console.log("page에서 실행")
       if(end){
         return;
       }

@@ -23,6 +23,7 @@ export default function Token() {
 
         const data = await res.json();
         if(data.result){
+          console.log(data.access_token);
           setAccessToken(data.access_token);
         }
       }
@@ -40,8 +41,11 @@ export default function Token() {
 
         const data = await res.json();
 
-        console.log("인증 후 ", data);
         if(data.result){
+          if(data.user.block){
+            alert("차단된 사용자입니다.");
+            return;
+          }
           setUser({
             id:data.user.id,
             userid:data.user.userid,

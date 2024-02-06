@@ -8,10 +8,15 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRecoilState } from 'recoil';
 import { userState } from '../Atom';
+import { useEffect } from 'react';
 
 export default function Header() {
 
-  const [sign, setSign] = useRecoilState(userState)
+  const [sign, setSign] = useRecoilState(userState);
+
+  useEffect(()=>{
+    console.log(sign);
+  }, [sign])
 
   const handleLogout = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/logout`, {
@@ -25,7 +30,6 @@ export default function Header() {
     const data = await res.json();
     if(data.result){
       window.location.href = '/signin'
-      console.log("로그아웃")
     }
   }
 
