@@ -6,12 +6,6 @@ import "../css/pagination.css";
 import { KeyboardEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  IconDefinition,
-  faCamera,
-  faVideo,
-  faPenToSquare,
-  faClipboard,
-  faFlag,
   faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"; //포토, 영상, 설문, 일반, 공지
 import Pagination from "react-js-pagination";
 import PostItem from "./element/PostItem";
