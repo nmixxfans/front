@@ -82,7 +82,10 @@ export default function Home() {
         setBoard(exampleData);
         setNotice(exampleData);
 
-        const diffDate = new Date().getTime() - new Date("2022-02-22").getTime();
+
+        let date = new Date();
+        const diffDate = date.getTime() - new Date(2022, 1, 22, date.getHours(), date.getMinutes()).getTime();
+        console.log(diffDate / (1000 * 60 * 60 * 24));
         setDebut(Math.ceil(diffDate / (1000 * 60 * 60 * 24)))
     }, [])
 
