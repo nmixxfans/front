@@ -8,70 +8,6 @@ import Loading from './loading';
 import LoadingCircle from './component/LoadingCircle';
 
 export default function Home() {
-
-  // const exampleData = [
-  //   {
-  //     title: "엔믹스 컴백 하루 전",
-  //     content: "미쳤다",
-  //     id: 1,
-  //     create_date: "2023.12.28"
-  //   },
-  //   {
-  //     title: "엔믹스 컴백 언제임?",
-  //     content: "제목이 곧 내용",
-  //     id: 2,
-  //     create_date: "2023.12.28"
-  //   },
-  //   {
-  //     title: "배진솔 미쳤다",
-  //     content: "그냥 미쳤다",
-  //     id: 3,
-  //     create_date: "2023.12.28"
-  //   },
-  //   {
-  //     title: "엔믹스 컴백 빨리해",
-  //     content: "미쳤다",
-  //     id: 4,
-  //     create_date: "2023.12.27"
-  //   },
-  //   {
-  //     title: "최강 엔믹스",
-  //     content: "제목이 곧 내용",
-  //     id: 5,
-  //     create_date: "2023.12.27"
-  //   },
-  //   {
-  //     title: "배진솔 미쳤다22",
-  //     content: "그냥 미쳤다",
-  //     id: 6,
-  //     create_date: "2023.12.27"
-  //   },
-  //   {
-  //     title: "배진솔 그냥 미쳤다",
-  //     content: "그냥 미쳤다",
-  //     id: 7,
-  //     create_date: "2023.12.28"
-  //   },
-  //   {
-  //     title: "엔믹스 컴백 빨리해",
-  //     content: "미쳤다",
-  //     id: 8,
-  //     create_date: "2023.12.27"
-  //   },
-  //   {
-  //     title: "최강 엔믹스",
-  //     content: "제목이 곧 내용",
-  //     id: 9,
-  //     create_date: "2023.12.27"
-  //   },
-  //   {
-  //     title: "배진솔 미쳤다33",
-  //     content: "그냥 미쳤다",
-  //     id: 10,
-  //     create_date: "2023.12.27"
-  //   },
-  // ]
-
   const [board, setBoard] = useState<any[]>([]);
   const [notice, setNotice] = useState<any[]>([]);
   const [recent, setRecent] = useState<string>("");
@@ -85,7 +21,6 @@ export default function Home() {
     const getData = async ()=>{
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
       const data = await res.json();
-      console.log(data);
       if(data.result){
         setBoard(data.board);
         setNotice(data.board);
