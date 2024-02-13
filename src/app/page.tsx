@@ -21,7 +21,6 @@ export default function Home() {
     const getData = async ()=>{
       const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
       const data = await res.json();
-      console.log(data);
       if(data.result){
         setBoard(data.board);
         setNotice(data.board);
