@@ -7,8 +7,16 @@ import bw from "../../css/boardWrite.module.css";
 export default function BoardWrite() {
 
   const [title, setTitle] = useState<string>("");
-  const [state, setState] = useState({ html: "", tagName: "div" });
-  const ref = useRef<HTMLDivElement>(null);
+
+  const initialBlock = {
+    id: 0,
+    html: '',
+    tag: 'p',
+    flag:0,
+  }
+
+  // const [state, setState] = useState({ html: "", tagName: "div" });
+  // const ref = useRef<HTMLDivElement>(null);
 
   return (
     <section className={bw.section}>
@@ -26,13 +34,14 @@ export default function BoardWrite() {
           <div className={bw.editorBtnBox}>
 
           </div>
+          {/* <EditableElement></EditableElement>
           <ContentEditable
             innerRef={ref}
             className={bw.editor}
             html={state.html}
             disabled={false}
             onChange={(e) => setState((prev) => ({ ...prev, html: e.target.value }))}
-             />
+             /> */}
         </div>
         <div className={bw.noticeBox}>
           안내사항
