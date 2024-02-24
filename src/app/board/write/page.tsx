@@ -34,8 +34,8 @@ export default function BoardWrite() {
           <div className={bw.editorBtnBox}>
 
           </div>
-          {/* <EditableElement></EditableElement>
-          <ContentEditable
+          {/* <EditableElement></EditableElement> */}
+          {/* <ContentEditable
             innerRef={ref}
             className={bw.editor}
             html={state.html}
