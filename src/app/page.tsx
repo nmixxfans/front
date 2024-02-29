@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import Script from 'next/script'
 import Loading from './loading';
 import LoadingCircle from './component/LoadingCircle';
+import { korTime } from './functions/utc-to-kor';
 
 export default function Home() {
   const [board, setBoard] = useState<any[]>([]);
@@ -70,7 +71,7 @@ export default function Home() {
                       </Link>
                     </div>
                     <div className={home.boardDate}>
-                      {value.create_date}
+                      {korTime(new Date(value.create_date))}
                     </div>
                   </div>
                 )
@@ -91,7 +92,7 @@ export default function Home() {
                       </Link>
                     </div>
                     <div className={home.boardDate}>
-                      {value.create_date}
+                      {korTime(new Date(value.create_date))}
                     </div>
                   </div>
                 )

@@ -1,8 +1,8 @@
 "use client"
 
-import { useRef, useState } from "react";
-import ContentEditable from "react-contenteditable";
+import { useState } from "react";
 import bw from "../../css/boardWrite.module.css";
+import Editor from "@/app/share/editor/Editor";
 
 export default function BoardWrite() {
 
@@ -15,8 +15,7 @@ export default function BoardWrite() {
     flag:0,
   }
 
-  // const [state, setState] = useState({ html: "", tagName: "div" });
-  // const ref = useRef<HTMLDivElement>(null);
+  
 
   return (
     <section className={bw.section}>
@@ -34,14 +33,9 @@ export default function BoardWrite() {
           <div className={bw.editorBtnBox}>
 
           </div>
-          {/* <EditableElement></EditableElement> */}
-          {/* <ContentEditable
-            innerRef={ref}
-            className={bw.editor}
-            html={state.html}
-            disabled={false}
-            onChange={(e) => setState((prev) => ({ ...prev, html: e.target.value }))}
-             /> */}
+          <div className={bw.editorContainer}>
+            <Editor></Editor>
+          </div>
         </div>
         <div className={bw.noticeBox}>
           안내사항

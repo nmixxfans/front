@@ -43,13 +43,17 @@
 
 }
 
-.editor{
+.editorContainer{
     outline: none;
     border: 1px solid #dadada;
     min-height: 500px;
     max-height: 500px;
     padding: 10px;
     overflow-y: auto;
+}
+
+.editor{
+    
 }
 
 .editor:focus{
