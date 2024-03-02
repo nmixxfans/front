@@ -37,7 +37,8 @@ export default function BoardView(props: Params) {
     const [like, setLike] = useState<boolean>(false); //좋아요
     const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
 
-
+    const date = boards?.create_date.split("T");
+    const newDate = date?.[0];
     
     const getData = async () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
@@ -95,7 +96,7 @@ export default function BoardView(props: Params) {
                         <div className={bv.headerInfor1}>
                             <div>마틴</div>
                             <div>|</div>
-                            <div>{boards?.create_date}</div>
+                            <div>{newDate}</div>
                         </div>
                         <div className={bv.headerInfor2}>
                             <div>조회 {boards?.view}</div>
