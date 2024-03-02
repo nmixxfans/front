@@ -4,13 +4,35 @@ import { useEffect, useState } from "react";
 import bv from "../../css/boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 
 
+interface Datas {
+    result:boolean,
+    board: {
+        category: string,
+        content: string,
+        create_date: string,
+        fix: boolean,
+        id: number,
+        like: number,
+        title: string,
+        update_date: string,
+        user_id: number,
+        view: number
+    },
+    boardComment: {
+        commentCount:number,
+        comments: {
+
+        }
+    }
+}
+
 export default function BoardView(props: Params) {
 
-    const [data, setData] = useState<[]>([])
+    const [boards, setBoards] = useState<Datas['board'] | null>(null);
+    const [boardsComment, setBoardsComment] = useState<Datas['boardComment'] | null>(null);
     const [review, setReview] = useState<string>("") //댓글input값
     const [like, setLike] = useState<boolean>(false); //좋아요
     const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
@@ -18,16 +40,18 @@ export default function BoardView(props: Params) {
 
     
     const getData = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/:${props.params.id}`);
-        const data = await res.json();
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
+        const data = await res.json() as Datas;
+        console.log(data,"hihihi")
         if(data.result) {
-            setData(data.data);
+            setBoards(data.board);
+            setBoardsComment(data.boardComment);
         }
     }
 
     useEffect(() => {
         getData();
-    })
+    },[])
         
     
 
@@ -51,7 +75,7 @@ export default function BoardView(props: Params) {
             alert("이미 좋아요를 누르셨습니다.");
         }
         setLike(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);   
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);
         const data = await res.json();
         if (data.result) {
             setLikeNumber(data.likeNumber);
@@ -64,25 +88,25 @@ export default function BoardView(props: Params) {
             <div className={bv.mainBox}>
                 <div className={bv.header}>
                     <div className={bv.headerTitle}>
-                        <div>[일반]</div>
-                        <div>엔믹스 앨범 수록곡이 몇 곡인가요?</div>
+                        <div>{boards?.category}</div>
+                        <div>{boards?.title}</div>
                     </div>
                     <div className={bv.headerInforWrapper}>
                         <div className={bv.headerInfor1}>
                             <div>마틴</div>
                             <div>|</div>
-                            <div>2024.01.20</div>
+                            <div>{boards?.create_date}</div>
                         </div>
                         <div className={bv.headerInfor2}>
-                            <div>조회 30</div>
+                            <div>조회 {boards?.view}</div>
                             <div>|</div>
-                            <div>추천 25</div>
+                            <div>추천 {boards?.like}</div>
                             <div>|</div>
-                            <div>댓글 5</div>
+                            <div>댓글 {boardsComment?.commentCount}</div>
                         </div>
                     </div>
                 </div>
-                <div className={bv.mainContent}>내용</div>
+                <div className={bv.mainContent}>{boards?.content}</div>
                 <div className={bv.likeBox}>
                     <div className={like ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
                         <FontAwesomeIcon icon={faThumbsUp} className={bv.like}></FontAwesomeIcon>
