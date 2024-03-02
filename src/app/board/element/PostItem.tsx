@@ -1,7 +1,7 @@
 import board from "../board.module.css";
 import boardDataType from "../page";
 import Link from "next/link";
-import { korTime } from "@/app/functions/utc-to-kor";
+import { korTime } from "@/app/asset/functions/utc-to-kor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBell,

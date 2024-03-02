@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import signup from './signup.module.css'
-import slang from '../slang';
+import slang from '../asset/functions/slang';
 
 export default function Signup() {
 
