@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import content from '../css/content.module.css'
+import content from './content.module.css'
 import SelfContentBox from "./element/SelfContentBox";
 import OutContentBox from "./element/OutContentBox";
 

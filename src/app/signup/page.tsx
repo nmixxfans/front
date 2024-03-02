@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import signup from '../css/signup.module.css'
+import signup from './signup.module.css'
 import slang from '../slang';
 
 export default function Signup() {

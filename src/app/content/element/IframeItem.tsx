@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react';
-import content from '../../css/content.module.css';
+import content from '../content.module.css';
 
 // 가로 스크롤 마우스 휠에 따라 움직이기
 function useHorizontalScroll() {
