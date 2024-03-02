@@ -1,8 +1,8 @@
 'use client'
 
 import Link from "next/link";
-import board from '../css/board.module.css';
-import "../css/pagination.css";
+import board from "./board.module.css";
+import "../asset/css/pagination.css";
 import { KeyboardEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

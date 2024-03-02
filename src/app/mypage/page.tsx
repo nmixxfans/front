@@ -1,6 +1,6 @@
 "use client"
 
-import my from "../css/mypage.module.css";
+import my from "./mypage.module.css";
 import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import Pagination from "react-js-pagination";
 import "../css/pagination.css";

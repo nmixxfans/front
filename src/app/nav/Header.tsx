@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import header from '../css/header.module.css'
+import header from './header.module.css'
 import {
   faUser
 } from "@fortawesome/free-solid-svg-icons";

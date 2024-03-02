@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import bv from "../../css/boardView.module.css";
+import bv from "./boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";

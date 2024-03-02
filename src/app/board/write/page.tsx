@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import bw from "../../css/boardWrite.module.css";
+import bw from "./boardWrite.module.css";
 import Editor from "@/app/share/editor/Editor";
 
 export default function BoardWrite() {

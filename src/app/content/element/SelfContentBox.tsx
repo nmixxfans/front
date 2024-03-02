@@ -1,4 +1,4 @@
-import content from '../../css/content.module.css';
+import content from '../content.module.css';
 import IframeItem from './IframeItem';
 import controll from '../data/data';
 

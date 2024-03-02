@@ -1,4 +1,4 @@
-import content from '../../css/content.module.css';
+import content from '../content.module.css';
 
 export default function OutContentBox(){
     return (

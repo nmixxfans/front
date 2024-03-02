@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import home from './css/home.module.css';
+import home from './asset/css/home.module.css';
 import { useEffect, useState } from 'react';
 import Script from 'next/script'
 import Loading from './loading';

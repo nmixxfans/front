@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
-import fantube from "../css/fantube.module.css"
+import fantube from "./fantube.module.css"
 import KorFantube from "./element/KorFantube";
 import ForFantube from "./element/ForFantube";
 import { useSearchParams } from "next/navigation";

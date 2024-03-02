@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link";
-import nmixxcon from "../css/nmixxcon.module.css";
+import nmixxcon from "./nmixxcon.module.css";
 import "../css/pagination.css";
 import { useEffect, useState } from "react";
 import Loading from "../loading";

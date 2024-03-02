@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent, DragEvent, useRef, useState } from "react";
-import send from "../css/send.module.css";
+import send from "./send.module.css";
 import {
     faFile
  } from "@fortawesome/free-solid-svg-icons";

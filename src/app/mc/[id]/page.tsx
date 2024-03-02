@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import style from "../../css/nmixxcon-information.module.css";
+import style from "./nmixxcon-information.module.css";
 
 export default function MixxConView() {
 

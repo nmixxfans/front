@@ -1,6 +1,6 @@
 'use client'
 
-import pr from "../../css/profile.module.css";
+import pr from "./profile.module.css";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "../../css/pagination.css";

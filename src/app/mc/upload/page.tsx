@@ -1,7 +1,7 @@
 'use client'
 
 import { ChangeEvent, useRef, useState } from "react";
-import style from "../../css/nmixxcon-upload.module.css";
+import style from "./nmixxcon-upload.module.css";
 import {
   faCirclePlus
 } from "@fortawesome/free-solid-svg-icons";
