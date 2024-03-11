@@ -19,18 +19,42 @@ function Modal({ modalOn, setModalOn, userPw, setUserPw, userNick }: { modalOn: 
     const [confirmPw, setConfirmPw] = useState<boolean>(false);
     const [didSubmit, setDidSubmit] = useState(false);
 
-    const nickCheck = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/nick`);
+    useEffect(() => {
+        setNick(userNick);
+    }, []);
+
+
+    const handelNickCheck = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/nick`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ nick })
+        });
+        console.log(nick,"asd")
         const data = await res.json();
-        if (data.result) {
-            setNick(data.nick);
-            alert("닉네임이 변경되었습니다.");
-            window.location.href = `${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage`;
+        console.log(data,"asd")
+        if (!data.duplicate) {
+            alert("사용가능한 닉네임 입니다.");
         }
     };
 
 
     const confirm = async (e: KeyboardEvent<HTMLInputElement>) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/nick`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userNick })
+        });
+        const data = await res.json();
+        if (data.result) {
+            window.alert(data.message);
+            return;
+        }
+
         setDidSubmit(true);
         if (e.key === "Enter") {
             if (pw === "" || pw2 === "") {
@@ -66,7 +90,8 @@ function Modal({ modalOn, setModalOn, userPw, setUserPw, userNick }: { modalOn: 
             <div className={my.modalContainer}>
                 <div className={my.modalInfor}>
                     <div>닉네임</div>
-                    <input value={userNick} onChange={e => setNick(e.target.value)} />
+                    <input defaultValue={userNick} onChange={e => setNick(e.target.value)} /*onKeyDown={nickCheck}*//>
+                    <button onClick={handelNickCheck}>중복확인</button>
                     <div>비밀번호</div>
                     <input type="password" placeholder="pw" onChange={e => setPw(e.target.value)} />
                     {didSubmit && (confirmPw ? <div>비밀번호가 일치합니다.</div> : <div>비밀번호가 불일치합니다.</div>)}
