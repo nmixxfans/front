@@ -1,8 +1,7 @@
 import styles from "../mypage.module.css"
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 
-export default function UserModal({ modalOn, setModalOn, userPw, setUserPw, userNick }: { modalOn: boolean, setModalOn: Dispatch<SetStateAction<boolean>>, userPw: string, setUserPw: Dispatch<SetStateAction<string>>, userNick: string }) {
-  const [myData, setMyData] = useState<string>("");
+export default function UserModal({ setModalOn, setUserPw }: { setModalOn: Dispatch<SetStateAction<boolean>>,setUserPw: Dispatch<SetStateAction<string>> }) {
   const [pw, setPw] = useState<string>("");
   const [pw2, setPw2] = useState<string>("");
   const [nick, setNick] = useState<string>("");
@@ -13,7 +12,6 @@ export default function UserModal({ modalOn, setModalOn, userPw, setUserPw, user
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/nick`);
     const data = await res.json();
     if (data.result) {
-      setNick(data.nick);
       alert("닉네임이 변경되었습니다.");
       window.location.href = `${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage`;
     }
@@ -56,13 +54,13 @@ export default function UserModal({ modalOn, setModalOn, userPw, setUserPw, user
       <div className={styles.modalContainer}>
         <div className={styles.modalInfor}>
           <div>닉네임</div>
-          <input value={userNick} onChange={e => setNick(e.target.value)} />
+          <input value={nick} onChange={e => setNick(e.target.value)} />
           <div>비밀번호</div>
           <input type="password" placeholder="pw" onChange={e => setPw(e.target.value)} />
           {didSubmit && (confirmPw ? <div>비밀번호가 일치합니다.</div> : <div>비밀번호가 불일치합니다.</div>)}
           <div>비밀번호확인</div>
           <input type="password" placeholder="pw" onChange={e => setPw2(e.target.value)} />
-          <div className={styles.modalBtn} onClick={confirm}>
+          <div className={styles.modalBtn} onClick={()=>confirm}>
             완료
           </div>
         </div>

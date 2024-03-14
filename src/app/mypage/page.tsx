@@ -92,8 +92,10 @@ export default function Mypage(props: Params) {
     <section className={styles.section}>
       <div className={styles.title}>프로필</div>
       <div className={styles.user}>
-        <div className={styles.userMain}>
-          <div className={styles.userImg}>{userImg}</div>
+        <div className={styles.userInformation}>
+          <div className={styles.userImgBox}>
+            <img className={styles.userImg} src={userImg} alt="프로필 사진"/>
+          </div>
           <div className={styles.userInfor}>
             <div>{userNick}</div>
             <div>{newDate}</div>
@@ -161,7 +163,7 @@ export default function Mypage(props: Params) {
           onChange={handlePageChange2}
         />
       </div>
-      {modalOn && <UserModal modalOn={modalOn} setModalOn={setModalOn} userPw={userPw} setUserPw={setUserPw} userNick={userNick} />}
+      {modalOn && <UserModal setModalOn={setModalOn} setUserPw={setUserPw} />}
     </section>
   )
 }

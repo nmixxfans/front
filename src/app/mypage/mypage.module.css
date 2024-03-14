@@ -30,20 +30,24 @@
     margin-bottom: 20px;
 }
 
-.userMain {
+.userInformation {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 40px;
-    padding: 32px;
 }
 
-.userImg {
+.userImgBox{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 100px;
     height: 100px;
+}
+
+.userImg {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
 
 .userInfor {
