@@ -90,80 +90,83 @@ export default function Mypage(props: Params) {
   return (
 
     <section className={styles.section}>
-      <div className={styles.title}>프로필</div>
-      <div className={styles.user}>
-        <div className={styles.userInformation}>
-          <div className={styles.userImgBox}>
-            <img className={styles.userImg} src={userImg} alt="프로필 사진"/>
+      <div className={styles.container}>
+
+        <div className={styles.title}>프로필</div>
+        <div className={styles.user}>
+          <div className={styles.userInformation}>
+            <div className={styles.userImgBox}>
+              <img className={styles.userImg} src={userImg} alt="프로필 사진" />
+            </div>
+            <div className={styles.userInfor}>
+              <div>{userNick}</div>
+              <div>{newDate}</div>
+              <div>{userEmail}</div>
+            </div>
           </div>
-          <div className={styles.userInfor}>
-            <div>{userNick}</div>
-            <div>{newDate}</div>
-            <div>{userEmail}</div>
+          <div className={styles.userPatch}>
+            <div className={styles.userPatchBtn} onClick={() => setModalOn(true)}>회원정보수정</div>
           </div>
         </div>
-        <div className={styles.userPatch}>
-          <div className={styles.userPatchBtn} onClick={() => setModalOn(true)}>회원정보수정</div>
+        <div className={styles.title}>작성한 글</div>
+        <div className={styles.myWriting}>
+          {!myBoards.length && <div>작성된 글이 없습니다.</div>}
+          {myBoards.map((myBoard: any) => {
+            const date = myBoard.create_date.split("T");
+            const newDate = date[0];
+            return (
+              <Link href={`/board/${myBoard.comment}`} key={myBoard.id} className={styles.myContentBox}>
+                <div className={styles.myContentSelect}>{myBoard.title}</div>
+                <div className={styles.myContentInfor}>
+                  <div className={styles.myContentTitle}>{newDate}</div>
+                  <div>|</div>
+                  <div className={styles.myContentDate}>{myBoard.category}</div>
+                </div>
+              </Link>)
+          })}
         </div>
+        <div className={styles.myWritingSelect}>
+          <Pagination
+            activePage={page}
+            itemsCountPerPage={30}
+            totalItemsCount={1000}
+            pageRangeDisplayed={5}
+            prevPageText={"이전"}
+            nextPageText={"다음"}
+            onChange={handlePageChange}
+          />
+        </div>
+        <div className={styles.title}>작성한 댓글</div>
+        <div className={styles.myWriting}>
+          {!comments.length && <div>작성된 글이 없습니다.</div>}
+          {comments.map((comment: any) => {
+            const date = comment.create_date.split("T");
+            const newDate = date[0];
+            return (
+              <Link href={`/board/${comment.commentCount}`} key={comment.id} className={styles.myCommentBox}>
+                <div className={styles.myCommentSelect}>{comment.content}</div>
+                <div className={styles.myCommentInfor}>
+                  <div className={styles.myCommentTitle}>{newDate}</div>
+                  <div>|</div>
+                  <div className={styles.myCommentDate}>{comment.id}</div>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+        <div className={styles.myWritingSelect}>
+          <Pagination
+            activePage={page2}
+            itemsCountPerPage={30}
+            totalItemsCount={1000}
+            pageRangeDisplayed={5}
+            prevPageText={"이전"}
+            nextPageText={"다음"}
+            onChange={handlePageChange2}
+          />
+        </div>
+        {modalOn && <UserModal setModalOn={setModalOn} setUserPw={setUserPw} />}
       </div>
-      <div className={styles.title}>작성한 글</div>
-      <div className={styles.myWriting}>
-        {!myBoards.length && <div>작성된 글이 없습니다.</div>}
-        {myBoards.map((myBoard: any) => {
-          const date = myBoard.create_date.split("T");
-          const newDate = date[0];
-          return (
-            <Link href={`/board/${myBoard.comment}`} key={myBoard.id} className={styles.myContentBox}>
-              <div className={styles.myContentSelect}>{myBoard.title}</div>
-              <div className={styles.myContentInfor}>
-                <div className={styles.myContentTitle}>{newDate}</div>
-                <div>|</div>
-                <div className={styles.myContentDate}>{myBoard.category}</div>
-              </div>
-            </Link>)
-        })}
-      </div>
-      <div className={styles.myWritingSelect}>
-        <Pagination
-          activePage={page}
-          itemsCountPerPage={30}
-          totalItemsCount={1000}
-          pageRangeDisplayed={5}
-          prevPageText={"이전"}
-          nextPageText={"다음"}
-          onChange={handlePageChange}
-        />
-      </div>
-      <div className={styles.title}>작성한 댓글</div>
-      <div className={styles.myWriting}>
-        {!comments.length && <div>작성된 글이 없습니다.</div>}
-        {comments.map((comment: any) => {
-          const date = comment.create_date.split("T");
-          const newDate = date[0];
-          return (
-            <Link href={`/board/${comment.commentCount}`} key={comment.id} className={styles.myCommentBox}>
-              <div className={styles.myCommentSelect}>{comment.content}</div>
-              <div className={styles.myCommentInfor}>
-                <div className={styles.myCommentTitle}>{newDate}</div>
-                <div>|</div>
-                <div className={styles.myCommentDate}>{comment.id}</div>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
-      <div className={styles.myWritingSelect}>
-        <Pagination
-          activePage={page2}
-          itemsCountPerPage={30}
-          totalItemsCount={1000}
-          pageRangeDisplayed={5}
-          prevPageText={"이전"}
-          nextPageText={"다음"}
-          onChange={handlePageChange2}
-        />
-      </div>
-      {modalOn && <UserModal setModalOn={setModalOn} setUserPw={setUserPw} />}
     </section>
   )
 }
