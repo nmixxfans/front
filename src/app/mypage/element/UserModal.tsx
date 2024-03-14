@@ -1,7 +1,7 @@
 import styles from "../mypage.module.css"
 import { Dispatch, KeyboardEvent, SetStateAction, useState } from "react";
 
-export default function UserModal({ setModalOn, setUserPw }: { setModalOn: Dispatch<SetStateAction<boolean>>,setUserPw: Dispatch<SetStateAction<string>> }) {
+export default function UserModal({ setModalOn, setUserPassword }: { setModalOn: Dispatch<SetStateAction<boolean>>,setUserPassword: Dispatch<SetStateAction<string>> }) {
   const [pw, setPw] = useState<string>("");
   const [pw2, setPw2] = useState<string>("");
   const [nick, setNick] = useState<string>("");
@@ -38,7 +38,7 @@ export default function UserModal({ setModalOn, setUserPw }: { setModalOn: Dispa
       console.log(data, "asdf")
       if (data.result) {
         console.log(data)
-        setUserPw(data.pw);
+        setUserPassword(data.pw);
         alert("비밀번호가 변경되었습니다.");
         window.location.href = `${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage`;
       }

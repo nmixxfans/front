@@ -38,7 +38,7 @@
     display: flex;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    margin-bottom: 20px;
+    margin-bottom: 75px;
     width: 100%;
     padding: 20px;
 }
@@ -86,12 +86,14 @@
 .userCreateDate{
     font-size: 15px;
     color: #cdcdcd;
+    cursor: pointer;
 }
 
 .userEmail{
     font-size: 15px;
     color: #cdcdcd;
     margin-bottom: 2px;
+    cursor: pointer;
 }
 
 .userUpdateBox {
@@ -105,49 +107,82 @@
     border-radius: 25px;
     border: 2px solid black;
     cursor: pointer;
-    width: 110px;
+    width: 100px;
     padding: 5px;
+    font-size: 14px;
 }
 
-.myWriting {
+.sectionBox{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.myPostBox {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    border-top: 1px solid black;
-    width: 1000px;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
 }
 
-.myWritingSelect {
-    margin-bottom: 40px;
-}
-
-.myCommentBox, .myContentBox {
+.noneData{
+    min-height: 500px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1000px;
-    height: 60px;
-    border-bottom: 1px solid black;
+}
+
+/* .paginationBox {
+    margin-bottom: 40px;
+} */
+
+.myContentBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 75px;
+    border-bottom: 1px solid #cdcdcd;
     text-decoration: none;
     cursor: pointer;
-    color: black;
-    gap: 10px;
+    color: #000;
 }
 
-.myCommentSelect, .myContentSelect {
-    width: 1000px;
+.myContentBox:nth-last-child(1){
+    border-bottom: 0px solid #cdcdcd;
+}
+
+.myContentTitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.myContentBox:hover .myContentTitle{
+    text-decoration: underline;
+}
+
+.myContentInformation {
     display: flex;
-    padding-left: 20px;
+    align-items: center;
+    gap: 5px;
 }
 
-.myCommentInfor, .myContentInfor {
-    display: flex;
-    padding-left: 20px;
-    width: 1000px;
-    gap:20px
+.myContentDivide{
+    font-size: 12px;
+    color: #cdcdcd;
 }
 
+.myContentDate{
+    font-size: 13px;
+    color: #cdcdcd;
+}
+
+.myContentCategory{
+    font-size: 13px;
+    color: #cdcdcd;
+}
+
+.myContentName{
+
+}
 
 /* modal */
 .modalSection {
