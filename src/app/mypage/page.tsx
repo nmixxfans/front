@@ -1,14 +1,13 @@
 "use client"
 
-import my from "./mypage.module.css";
+import styles from "./mypage.module.css";
 import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination";
 import "../asset/css/pagination.css";
 import Link from "next/link";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { accessTokenState } from "../Atom";
-import { KeyboardEvent } from 'react';
 import UserModal from "./element/UserModal";
 
 interface Board {
@@ -51,7 +50,7 @@ export default function Mypage(props: Params) {
   const [page, setPage] = useState<number>(1); //페이지
   const [page2, setPage2] = useState<number>(1); //페이지
   const [modalOn, setModalOn] = useState<boolean>(false);
-  const [accessToken, setAcessToken] = useRecoilState<string>(accessTokenState);
+  const accessToken = useRecoilValue<string>(accessTokenState);
 
   const getData = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage?access_token=${accessToken}`);
@@ -90,39 +89,39 @@ export default function Mypage(props: Params) {
 
   return (
 
-    <section className={my.section}>
-      <div className={my.title}>프로필</div>
-      <div className={my.user}>
-        <div className={my.userMain}>
-          <div className={my.userImg}>{userImg}</div>
-          <div className={my.userInfor}>
+    <section className={styles.section}>
+      <div className={styles.title}>프로필</div>
+      <div className={styles.user}>
+        <div className={styles.userMain}>
+          <div className={styles.userImg}>{userImg}</div>
+          <div className={styles.userInfor}>
             <div>{userNick}</div>
             <div>{newDate}</div>
             <div>{userEmail}</div>
           </div>
         </div>
-        <div className={my.userPatch}>
-          <div className={my.userPatchBtn} onClick={() => setModalOn(true)}>회원정보수정</div>
+        <div className={styles.userPatch}>
+          <div className={styles.userPatchBtn} onClick={() => setModalOn(true)}>회원정보수정</div>
         </div>
       </div>
-      <div className={my.title}>작성한 글</div>
-      <div className={my.myWriting}>
+      <div className={styles.title}>작성한 글</div>
+      <div className={styles.myWriting}>
         {!myBoards.length && <div>작성된 글이 없습니다.</div>}
         {myBoards.map((myBoard: any) => {
           const date = myBoard.create_date.split("T");
           const newDate = date[0];
           return (
-            <Link href={`/board/${myBoard.comment}`} key={myBoard.id} className={my.myContentBox}>
-              <div className={my.myContentSelect}>{myBoard.title}</div>
-              <div className={my.myContentInfor}>
-                <div className={my.myContentTitle}>{newDate}</div>
+            <Link href={`/board/${myBoard.comment}`} key={myBoard.id} className={styles.myContentBox}>
+              <div className={styles.myContentSelect}>{myBoard.title}</div>
+              <div className={styles.myContentInfor}>
+                <div className={styles.myContentTitle}>{newDate}</div>
                 <div>|</div>
-                <div className={my.myContentDate}>{myBoard.category}</div>
+                <div className={styles.myContentDate}>{myBoard.category}</div>
               </div>
             </Link>)
         })}
       </div>
-      <div className={my.myWritingSelect}>
+      <div className={styles.myWritingSelect}>
         <Pagination
           activePage={page}
           itemsCountPerPage={30}
@@ -133,25 +132,25 @@ export default function Mypage(props: Params) {
           onChange={handlePageChange}
         />
       </div>
-      <div className={my.title}>작성한 댓글</div>
-      <div className={my.myWriting}>
+      <div className={styles.title}>작성한 댓글</div>
+      <div className={styles.myWriting}>
         {!comments.length && <div>작성된 글이 없습니다.</div>}
         {comments.map((comment: any) => {
           const date = comment.create_date.split("T");
           const newDate = date[0];
           return (
-            <Link href={`/board/${comment.commentCount}`} key={comment.id} className={my.myCommentBox}>
-              <div className={my.myCommentSelect}>{comment.content}</div>
-              <div className={my.myCommentInfor}>
-                <div className={my.myCommentTitle}>{newDate}</div>
+            <Link href={`/board/${comment.commentCount}`} key={comment.id} className={styles.myCommentBox}>
+              <div className={styles.myCommentSelect}>{comment.content}</div>
+              <div className={styles.myCommentInfor}>
+                <div className={styles.myCommentTitle}>{newDate}</div>
                 <div>|</div>
-                <div className={my.myCommentDate}>{comment.id}</div>
+                <div className={styles.myCommentDate}>{comment.id}</div>
               </div>
             </Link>
           )
         })}
       </div>
-      <div className={my.myWritingSelect}>
+      <div className={styles.myWritingSelect}>
         <Pagination
           activePage={page2}
           itemsCountPerPage={30}
