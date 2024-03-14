@@ -9,6 +9,7 @@ import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { useRecoilValue } from "recoil";
 import { accessTokenState } from "../Atom";
 import UserModal from "./element/UserModal";
+import { myUtcToKorTime } from "../asset/functions/utc-to-kor-mypage";
 
 interface Board {
   board: string,
@@ -83,32 +84,35 @@ export default function Mypage(props: Params) {
     console.log(page);
   };
 
-
-  const date = userCreate.split("T");
-  const newDate = date[0];
-
   return (
 
     <section className={styles.section}>
       <div className={styles.container}>
-
-        <div className={styles.title}>프로필</div>
-        <div className={styles.user}>
+        <div className={styles.titleBox}>
+          <div className={styles.title}>내 정보</div>
+        </div>
+        
+        <div className={styles.userInformationBox}>
           <div className={styles.userInformation}>
             <div className={styles.userImgBox}>
               <img className={styles.userImg} src={userImg} alt="프로필 사진" />
             </div>
-            <div className={styles.userInfor}>
-              <div>{userNick}</div>
-              <div>{newDate}</div>
-              <div>{userEmail}</div>
+            <div className={styles.userDataBox}>
+              <div className={styles.userOutputBox}>
+                <div className={styles.userNickname}>{userNick}</div>
+                <div className={styles.userEmail}>{userEmail}</div>
+                <div className={styles.userCreateDate}>{myUtcToKorTime(new Date(userCreate))}</div>
+              </div>
+              <div className={styles.userUpdateBox}>
+                <div className={styles.userUpdate} onClick={() => setModalOn(true)}>회원정보수정</div>
+              </div>
             </div>
           </div>
-          <div className={styles.userPatch}>
-            <div className={styles.userPatchBtn} onClick={() => setModalOn(true)}>회원정보수정</div>
-          </div>
+          
         </div>
-        <div className={styles.title}>작성한 글</div>
+        <div className={styles.titleBox}>
+          <div className={styles.title}>작성한 글</div>
+        </div>
         <div className={styles.myWriting}>
           {!myBoards.length && <div>작성된 글이 없습니다.</div>}
           {myBoards.map((myBoard: any) => {
@@ -136,7 +140,9 @@ export default function Mypage(props: Params) {
             onChange={handlePageChange}
           />
         </div>
-        <div className={styles.title}>작성한 댓글</div>
+        <div className={styles.titleBox}>
+          <div className={styles.title}>작성한 댓글</div>
+        </div>
         <div className={styles.myWriting}>
           {!comments.length && <div>작성된 글이 없습니다.</div>}
           {comments.map((comment: any) => {
