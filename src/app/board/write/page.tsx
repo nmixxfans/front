@@ -15,8 +15,6 @@ export default function BoardWrite() {
     flag:0,
   }
 
-  
-
   return (
     <section className={bw.section}>
       <div className={bw.container}>

@@ -1,15 +1,30 @@
-.section {
+.section{
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
+}
+
+.container{
+    width: 1000px;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.title {
+
+.titleBox{
     display: flex;
-    justify-content: flex-start;
-    margin-bottom: 10px;
-    margin-right: 900px;
-    padding-top: 20px;
+    width: 100%;
+}
+
+.title {
+    font-size: 18px;
+    color: #fff;
+    background-color: #000;
+    margin-right: 10px;
+    padding: 0px 4px;
+    font-family: 'S-CoreDream-9Black';
+    margin-bottom: 5px;
 }
 
 .detailTitle {
@@ -19,96 +34,155 @@
     margin-bottom: 10px;
 }
 
-.user {
+.userInformationBox {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    width: 1000px;
-    height: 150px;
-    margin-bottom: 20px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 75px;
+    width: 100%;
+    padding: 20px;
 }
 
-.userMain {
+.userInformation {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    gap: 40px;
-    padding: 32px;
+}
+
+.userImgBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
 }
 
 .userImg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 100px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid #000;
 }
 
-.userInfor {
+
+.userDataBox {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    height: 100%;
+    margin-left: 40px;
+    justify-content: space-around;
 }
 
-.userPatch {
-    display: flex;
-    width: auto;
-    justify-content: flex-end;
-    margin-top: 50px;
+.userOutputBox{
+
 }
 
-.userPatchBtn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 16px;
-    border: 1px solid black;
-    padding: 5px;
-    height: 40px;
+.userNickname{
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'S-CoreDream-9Black';
+}
+
+.userCreateDate{
+    font-size: 15px;
+    color: #cdcdcd;
     cursor: pointer;
 }
 
-.myWriting {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top: 1px solid black;
-    width: 1000px;
+.userEmail{
+    font-size: 15px;
+    color: #cdcdcd;
+    margin-bottom: 2px;
+    cursor: pointer;
 }
 
-.myWritingSelect {
-    margin-bottom: 40px;
+.userUpdateBox {
+    
 }
 
-.myCommentBox, .myContentBox {
+.userUpdate {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 1000px;
-    height: 60px;
-    border-bottom: 1px solid black;
+    border-radius: 25px;
+    border: 2px solid black;
+    cursor: pointer;
+    width: 100px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.sectionBox{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.myPostBox {
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
+}
+
+.noneData{
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .paginationBox {
+    margin-bottom: 40px;
+} */
+
+.myContentBox {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 75px;
+    border-bottom: 1px solid #cdcdcd;
     text-decoration: none;
     cursor: pointer;
-    color: black;
-    gap: 10px;
+    color: #000;
 }
 
-.myCommentSelect, .myContentSelect {
-    width: 1000px;
+.myContentBox:nth-last-child(1){
+    border-bottom: 0px solid #cdcdcd;
+}
+
+.myContentTitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.myContentBox:hover .myContentTitle{
+    text-decoration: underline;
+}
+
+.myContentInformation {
     display: flex;
-    padding-left: 20px;
+    align-items: center;
+    gap: 5px;
 }
 
-.myCommentInfor, .myContentInfor {
-    display: flex;
-    padding-left: 20px;
-    width: 1000px;
-    gap:20px
+.myContentDivide{
+    font-size: 12px;
+    color: #cdcdcd;
 }
 
+.myContentDate{
+    font-size: 13px;
+    color: #cdcdcd;
+}
+
+.myContentCategory{
+    font-size: 13px;
+    color: #cdcdcd;
+}
+
+.myContentName{
+
+}
 
 /* modal */
 .modalSection {

@@ -5,7 +5,7 @@ import home from './asset/css/home.module.css';
 import { useEffect, useState } from 'react';
 import Script from 'next/script'
 import Loading from './loading';
-import LoadingCircle from './component/LoadingCircle';
+import LoadingCircle from './common/LoadingCircle';
 import { korTime } from './asset/functions/utc-to-kor';
 
 export default function Home() {
