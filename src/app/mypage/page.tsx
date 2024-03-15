@@ -72,7 +72,7 @@ export default function Mypage(props: Params) {
   }
 
   useEffect(() => {
-    getData()
+    getData();
   }, [accessToken]);
 
   const getPost = async()=>{
