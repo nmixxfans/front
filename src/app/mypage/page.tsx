@@ -7,7 +7,7 @@ import "../asset/css/pagination.css";
 import Link from "next/link";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { useRecoilValue } from "recoil";
-import { accessTokenState } from "../Atom";
+import { accessTokenState, userState } from "../Atom";
 import UserModal from "./element/UserModal";
 import { myUtcToKorTime } from "../asset/functions/utc-to-kor-mypage";
 
@@ -58,17 +58,12 @@ export default function Mypage(props: Params) {
   const [modalOn, setModalOn] = useState<boolean>(false);
 
   const accessToken = useRecoilValue<string>(accessTokenState);
+  const sign = useRecoilValue(userState);
 
   const getData = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage?access_token=${accessToken}`);
     const data = await res.json();
-    console.log(data, "aaaa")
     if (data.result) {
-      setBoards(data.boards.board);
-      setComments(data.comments.comment);
-      setPostCount(data.boards.boardCount);
-      setCommentCount(data.comments.commentCount);
-
       setUserNick(data.user.profile[0].nick);
       setUserImg(data.user.profile[0].cover_img);
       setUserCreateDate(data.user.profile[0].create_date);
@@ -79,6 +74,43 @@ export default function Mypage(props: Params) {
   useEffect(() => {
     getData()
   }, [accessToken]);
+
+  const getPost = async()=>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage/content?id=${sign.id}&page=${postPageCount}`);
+    const data = await res.json();
+    if (data.result) {
+      setPostCount(data.boardCount);
+      setBoards(data.board);
+    }
+  }
+
+  const getComment = async()=>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/auth/mypage/comment?id=${sign.id}&page=${commentPageCount}`);
+    const data = await res.json();
+    if (data.result) {
+      setCommentCount(data.commentCount);
+      setComments(data.comment);
+    }
+  }
+
+  useEffect(()=>{
+    if(sign.id !== 0){
+      getPost();
+      getComment();
+    }
+  }, [sign]);
+
+  useEffect(()=>{
+    if(postCount !== 0){
+      getPost();
+    }
+  }, [postPageCount])
+
+  useEffect(()=>{
+    if(commentCount !== 0){
+      getComment();
+    }
+  }, [commentPageCount])
 
 
   const handlePostPageChange = (page: number) => {
