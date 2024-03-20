@@ -187,42 +187,64 @@
 /* modal */
 .modalSection {
     position: fixed;
-    transform: translate(-50%, -50%);
     height: 100vh;
-    width: 100vw;
-    top: 50%;
-    left: 50%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modalBack {
-    position: absolute;
-    background-color: #00000085;
-    z-index: 5;
+    background-color: #000000a3;
+    z-index: 0;
     height: 100%;
     width: 100%;
+    position: absolute;
 }
 
 .modalContainer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-    height: 600px;
-    transform: translate(-50%, -50%);
-    background:white;
-    border-radius: 16px;
-    z-index: 6;
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    z-index: 1;
+    padding: 30px;
 }
 
-.modalInfor {
+.modalInformationBox {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+}
+
+.modalElementBox{
+    margin-bottom: 10px;
+}
+
+.modalTitle{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.modalElementName{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.modalInput{
     width: 300px;
-    height: 500px;
+    outline: none;
+    padding: 5px;
+    height: 30px;
+    border: 1px solid #cdcdcd;
+    font-size: 14px;
+}
+
+.modalInput:focus{
+    border-color: #000;
 }
 
 .modalBtn {
@@ -230,6 +252,28 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background-color: black;
-    color:white
+    background-color: #000;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 8px;
+}
+
+.ValidBox{
+    width: 300px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #c8c8c8;
+    min-height: 15px;
+}
+
+.validTrue{
+    color: #4b7bff;
+}
+
+.validFalse{
+    color: #fc4949;
 }

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import signup from './signup.module.css'
-import slang from '../asset/functions/slang';
+import slang, { slangCheck } from '../asset/functions/slang';
 
 export default function Signup() {
 
@@ -150,7 +150,7 @@ export default function Signup() {
   }, [email])
 
   useEffect(() => {
-    setNickAvailabilityCheck(slangCheck());
+    setNickAvailabilityCheck(slangCheck(nick));
     handleDuplicateNick();
   }, [nick])
 
@@ -163,16 +163,7 @@ export default function Signup() {
     }
   }, [emailVerify])
 
-  const slangCheck = () => {
-    let result: boolean = true;
-
-    if (slang.indexOf(nick) > -1) {
-      result = false;
-    } else {
-      result = true;
-    }
-    return result
-  }
+  
 
   const handleVerifyNumber = () => {
     if (emailCheck && emailAvailabilityCheck) {
