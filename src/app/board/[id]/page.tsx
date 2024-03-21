@@ -5,45 +5,45 @@ import bv from "./boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { boardUtcToKorTime } from "@/app/asset/functions/utc-to-kor-board";
 
 
-interface Datas {
-    result:boolean,
-    board: {
-        category: string,
-        content: string,
-        create_date: string,
-        fix: boolean,
-        id: number,
-        like: number,
-        title: string,
-        update_date: string,
-        user_id: number,
-        view: number
-    },
-    boardComment: {
-        commentCount:number,
-        comments: {
+// interface Datas {
+//     result:boolean,
+//     board: {
+//         category: string,
+//         content: string,
+//         create_date: string,
+//         fix: boolean,
+//         id: number,
+//         like: number,
+//         title: string,
+//         update_date: string,
+//         user_id: number,
+//         view: number
+//     },
+//     boardComment: {
+//         commentCount:number,
+//         comments: {
 
-        }
-    }
-}
+//         }
+//     }
+// }
 
 export default function BoardView(props: Params) {
 
-    const [boards, setBoards] = useState<Datas['board'] | null>(null);
-    const [boardsComment, setBoardsComment] = useState<Datas['boardComment'] | null>(null);
-    const [review, setReview] = useState<string>("") //댓글input값
+    const [boards, setBoards] = useState<any>([]);
+    const [boardsComment, setBoardsComment] = useState<any>([]);
+
+    const [comment, setComment] = useState<string>("") //댓글input값
+    
     const [like, setLike] = useState<boolean>(false); //좋아요
     const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
-
-    const date = boards?.create_date.split("T");
-    const newDate = date?.[0];
     
     const getData = async () => {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
-        const data = await res.json() as Datas;
-        console.log(data,"hihihi")
+        const data = await res.json();
+        console.log(data)
         if(data.result) {
             setBoards(data.board);
             setBoardsComment(data.boardComment);
@@ -60,7 +60,7 @@ export default function BoardView(props: Params) {
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/comment`);
         const data = await res.json();
         if(data.result) {
-            setReview("");
+            setComment("");
         }
         
         if (data.result) {
@@ -96,7 +96,7 @@ export default function BoardView(props: Params) {
                         <div className={bv.headerInfor1}>
                             <div>마틴</div>
                             <div>|</div>
-                            <div>{newDate}</div>
+                            <div>{boardUtcToKorTime(new Date(boards.create_date))}</div>
                         </div>
                         <div className={bv.headerInfor2}>
                             <div>조회 {boards?.view}</div>
@@ -116,7 +116,7 @@ export default function BoardView(props: Params) {
                 </div>
                 <div className={bv.reviewBox}>
                     <div>댓글등록</div>
-                    <input className={bv.writeReview} placeholder="댓글" onChange={(e) => setReview(e.target.value)} />
+                    <input className={bv.writeReview} placeholder="댓글" onChange={(e) => setComment(e.target.value)} />
                     <button className={bv.reviewBtn} onClick={resister}>등록</button>
                 </div>
             </div>
