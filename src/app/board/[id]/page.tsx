@@ -109,27 +109,30 @@ export default function BoardView(props: Params) {
     <section className={styles.section}>
       <div className={styles.mainBox}>
         <div className={styles.boardInformaionBox}>
-          <div className={styles.informaionTitle}>
-            <div>[{boards?.category}]</div>
-            <div>{boards?.title}</div>
+          <div className={styles.informaionTitleBox}>
+            <div className={styles.informationCategory}>[{boards?.category}]</div>
+            <div className={styles.informationTitle}>{boards?.title}</div>
           </div>
-          <div className={styles.headerInforWrapper}>
-            <div className={styles.headerInfor1}>
-              <div>{profile?.nick}</div>
-              <div>|</div>
-              <div>{boardUtcToKorTime(new Date(boards?.create_date ?? "2024-03-01"))}</div>
+          <div className={styles.boardInformaionBox2}>
+            <div className={styles.informationDataBox}>
+              <div className={styles.informationNick}>{profile?.nick}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationCreateDate}>{boardUtcToKorTime(new Date(boards?.create_date ?? "2024-03-01"))}</div>
             </div>
-            <div className={styles.headerInfor2}>
-              <div>조회 {boards?.view}</div>
-              <div>|</div>
-              <div>좋아요 {boards?.like}</div>
-              <div>|</div>
-              <div>댓글 {boardsComment?.commentCount}</div>
+            <div className={styles.informationDataBox}>
+              <div className={styles.informationView}>조회 {boards?.view}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationLike}>좋아요 {boards?.like}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationCommentCount}>댓글 {boardsComment?.commentCount}</div>
             </div>
           </div>
         </div>
-        <div className={styles.mainContent}>{boards?.content}</div>
+        <div className={styles.contentBox}>{boards?.content}</div>
         <div className={styles.likeBox}>
+          <div className={styles.like}>
+          
+          </div>
           <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={likes}>
             <FontAwesomeIcon icon={faThumbsUp} className={styles.like}></FontAwesomeIcon>
             <div className={styles.likeNumber}>{likeNumber}</div>
