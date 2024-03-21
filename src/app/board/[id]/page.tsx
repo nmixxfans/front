@@ -1,137 +1,161 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import bv from "./boardView.module.css";
+import styles from "./boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { boardUtcToKorTime } from "@/app/asset/functions/utc-to-kor-board";
 
 
-interface Datas {
-    result:boolean,
-    board: {
-        category: string,
-        content: string,
-        create_date: string,
-        fix: boolean,
-        id: number,
-        like: number,
-        title: string,
-        update_date: string,
-        user_id: number,
-        view: number
-    },
-    boardComment: {
-        commentCount:number,
-        comments: {
-
-        }
-    }
+interface boardType {
+  category: string,
+  content: string,
+  create_date: Date,
+  fix: boolean,
+  id: number,
+  like: number,
+  title: string,
+  update_date: Date,
+  user_id: number,
+  view: number
 }
+
+interface profileType {
+  cover_img:string,
+  grade:string,
+  nick:string,
+}
+
+// interface Datas {
+//     result:boolean,
+//     board: {
+//         category: string,
+//         content: string,
+//         create_date: string,
+//         fix: boolean,
+//         id: number,
+//         like: number,
+//         title: string,
+//         update_date: string,
+//         user_id: number,
+//         view: number
+//     },
+//     boardComment: {
+//         commentCount:number,
+//         comments: {
+
+//         }
+//     }
+// }
 
 export default function BoardView(props: Params) {
 
-    const [boards, setBoards] = useState<Datas['board'] | null>(null);
-    const [boardsComment, setBoardsComment] = useState<Datas['boardComment'] | null>(null);
-    const [review, setReview] = useState<string>("") //댓글input값
-    const [like, setLike] = useState<boolean>(false); //좋아요
-    const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
+  const [boards, setBoards] = useState<boardType>();
+  const [profile, setProfile] = useState<profileType>();
 
-    const date = boards?.create_date.split("T");
-    const newDate = date?.[0];
-    
-    const getData = async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
-        const data = await res.json() as Datas;
-        console.log(data,"hihihi")
-        if(data.result) {
-            setBoards(data.board);
-            setBoardsComment(data.boardComment);
-        }
+  const [boardsComment, setBoardsComment] = useState<any>([]);
+
+  // 댓글 입력 state
+  const [commentInput, setCommentInput] = useState<string>("")
+
+  const [like, setLike] = useState<boolean>(false); //좋아요
+  const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
+
+  const getData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
+    const data = await res.json();
+    console.log(data)
+    if (data.result) {
+      setBoards(data.board);
+      setProfile(data.profile);
+      setBoardsComment(data.boardComment);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, [])
+
+  const resister = async () => { //댓글등록
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/comment`);
+    const data = await res.json();
+    if (data.result) {
+      setCommentInput("");
     }
 
-    useEffect(() => {
-        getData();
-    },[])
-        
-    
-
-    const resister = async () => { //댓글등록
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/comment`);
-        const data = await res.json();
-        if(data.result) {
-            setReview("");
-        }
-        
-        if (data.result) {
-            alert("댓글이 등록되었습니다.");
-        } else {
-            alert("댓글 등록이 안된듯? ㅋ");
-            document.location.reload();
-        }
+    if (data.result) {
+      alert("댓글이 등록되었습니다.");
+    } else {
+      alert("댓글 등록이 안된듯? ㅋ");
+      document.location.reload();
     }
+  }
 
-    const likes = async () => { //좋아요기능
-        if (like) {
-            alert("이미 좋아요를 누르셨습니다.");
-        }
-        setLike(true);
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);
-        const data = await res.json();
-        if (data.result) {
-            setLikeNumber(data.likeNumber);
-            alert("좋아요를 누르셨습니다.");
-        }
+  const likes = async () => { //좋아요기능
+    if (like) {
+      alert("이미 좋아요를 누르셨습니다.");
     }
+    setLike(true);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);
+    const data = await res.json();
+    if (data.result) {
+      setLikeNumber(data.likeNumber);
+      alert("좋아요를 누르셨습니다.");
+    }
+  }
 
-    return (
-        <section className={bv.section}>
-            <div className={bv.mainBox}>
-                <div className={bv.header}>
-                    <div className={bv.headerTitle}>
-                        <div>{boards?.category}</div>
-                        <div>{boards?.title}</div>
-                    </div>
-                    <div className={bv.headerInforWrapper}>
-                        <div className={bv.headerInfor1}>
-                            <div>마틴</div>
-                            <div>|</div>
-                            <div>{newDate}</div>
-                        </div>
-                        <div className={bv.headerInfor2}>
-                            <div>조회 {boards?.view}</div>
-                            <div>|</div>
-                            <div>추천 {boards?.like}</div>
-                            <div>|</div>
-                            <div>댓글 {boardsComment?.commentCount}</div>
-                        </div>
-                    </div>
-                </div>
-                <div className={bv.mainContent}>{boards?.content}</div>
-                <div className={bv.likeBox}>
-                    <div className={like ? bv.likeWrapper : bv.likeWrapper2} onClick={likes}>
-                        <FontAwesomeIcon icon={faThumbsUp} className={bv.like}></FontAwesomeIcon>
-                        <div className={bv.likeNumber}>{likeNumber}</div>
-                    </div>
-                </div>
-                <div className={bv.reviewBox}>
-                    <div>댓글등록</div>
-                    <input className={bv.writeReview} placeholder="댓글" onChange={(e) => setReview(e.target.value)} />
-                    <button className={bv.reviewBtn} onClick={resister}>등록</button>
-                </div>
+  return (
+    <section className={styles.section}>
+      <div className={styles.mainBox}>
+        <div className={styles.boardInformaionBox}>
+          <div className={styles.informaionTitleBox}>
+            <div className={styles.informationCategory}>[{boards?.category}]</div>
+            <div className={styles.informationTitle}>{boards?.title}</div>
+          </div>
+          <div className={styles.boardInformaionBox2}>
+            <div className={styles.informationDataBox}>
+              <div className={styles.informationNick}>{profile?.nick}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationCreateDate}>{boardUtcToKorTime(new Date(boards?.create_date ?? "2024-03-01"))}</div>
             </div>
-
-            <div className={bv.reviewViewBox}>
-                {/* map으로 쏴줄거임 */}
-                <div className={bv.reviewData}>
-                    <div className={bv.reviewId}>아이디</div>
-                    <div className={bv.reviewContent}>댓글내용</div>
-                </div>
-                <div className={bv.reviewData}>
-                    <div className={bv.reviewId}>asd123</div>
-                    <div className={bv.reviewContent}>엔믹스 진짜 노래 잘하는듯</div>
-                </div>
+            <div className={styles.informationDataBox}>
+              <div className={styles.informationView}>조회 {boards?.view}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationLike}>좋아요 {boards?.like}</div>
+              <div className={styles.informationBar}>|</div>
+              <div className={styles.informationCommentCount}>댓글 {boardsComment?.commentCount}</div>
             </div>
-        </section>
-    )
+          </div>
+        </div>
+        <div className={styles.contentBox}>{boards?.content}</div>
+        <div className={styles.likeBox}>
+          <div className={styles.like}>
+          
+          </div>
+          <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={likes}>
+            <FontAwesomeIcon icon={faThumbsUp} className={styles.like}></FontAwesomeIcon>
+            <div className={styles.likeNumber}>{likeNumber}</div>
+          </div>
+        </div>
+        <div className={styles.reviewBox}>
+          <div>댓글등록</div>
+          <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
+          <button className={styles.reviewBtn} onClick={resister}>등록</button>
+        </div>
+      </div>
+
+      <div className={styles.reviewViewBox}>
+        {/* map으로 쏴줄거임 */}
+        <div className={styles.reviewData}>
+          <div className={styles.reviewId}>아이디</div>
+          <div className={styles.reviewContent}>댓글내용</div>
+        </div>
+        <div className={styles.reviewData}>
+          <div className={styles.reviewId}>asd123</div>
+          <div className={styles.reviewContent}>엔믹스 진짜 노래 잘하는듯</div>
+        </div>
+      </div>
+    </section>
+  )
 }

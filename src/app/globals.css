@@ -55,12 +55,14 @@
 }
 
 * {
+    --board-information-text-gray:#cbcbcb;
     margin: 0;
     box-sizing: border-box;
     --main-color: #f40000;
     /* font-family: 'Pretendard-Regular'; */
     font-family: 'NanumBarunGothic';
 }
+
 
 body{
 }

@@ -1,3 +1,5 @@
+
+
 .section {
     display: flex;
     justify-content: center;
@@ -13,55 +15,95 @@
     width: 1000px;
 }
 
-.header {
+.boardInformaionBox {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    width: 1000px;
-    padding: 20px;
-    border: 1px solid black;
+    border-bottom: 1px solid #000;
+    padding-bottom: 10px;
+    width: 100%;
 }
 
-.headerTitle {
+.informaionTitleBox {
     display: flex;
-    gap: 10px;
+    margin-bottom: 10px;
     font-weight: 600;
 }
 
-.headerInforWrapper {
-    display: flex;
-    gap: 620px;
+.informationCategory{
+    margin-right: 5px;
 }
 
-.headerInfor1, .headerInfor2 {
+.informationTitle{
+
+}
+
+.boardInformaionBox2 {
     display: flex;
-    gap: 10px;
+    justify-content: space-between;
+}
+
+.informationDataBox{
+    display: flex;
+    align-items: center;
+}
+
+.informationNick{
+    font-size: 14px;
+    color: var(--board-information-text-gray);
+}
+
+.informationBar{
+    font-size: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: var(--board-information-text-gray)
+}
+
+.informationCreateDate{
+    font-size: 13px;
+    color: var(--board-information-text-gray)
+}
+
+.informationView{
+    font-size: 13px;
+    color: var(--board-information-text-gray)
+}
+
+.informationLike{
+    font-size: 13px;
+    color: var(--board-information-text-gray)
+}
+
+.informationCommentCount{
+    font-size: 13px;
+    color: var(--board-information-text-gray)
 }
 
 .headerTitle {
     display: flex;
 }
 
-.mainContent {
+.contentBox {
     min-height: 500px;
-}
-
-.mainContent {
-    width: 1000px;
     margin-top: 20px;
-    padding: 20px;
-    border: 1px solid black;
+    width: 100%;
 }
 
 .likeBox {
     display: flex;
     justify-content: center;
+    border-top: 1px solid #000;
+    width: 100%;
+}
+
+.like{
+    display: flex;
+    justify-content: center;
     align-items: center;
     background-color: black;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    margin-top: 50px;
+    width: 70px;
+    height: 70px;
 }
 
 .likeWrapper {
