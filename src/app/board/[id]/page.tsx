@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { boardUtcToKorTime } from "@/app/asset/functions/utc-to-kor-board";
+import { useRecoilValue } from "recoil";
+import { accessTokenState } from "@/app/Atom";
 
 
 interface boardType {
@@ -22,9 +24,9 @@ interface boardType {
 }
 
 interface profileType {
-  cover_img:string,
-  grade:string,
-  nick:string,
+  cover_img: string,
+  grade: string,
+  nick: string,
 }
 
 // interface Datas {
@@ -56,12 +58,15 @@ export default function BoardView(props: Params) {
 
   const [boardsComment, setBoardsComment] = useState<any>([]);
 
+  const access_token = useRecoilValue(accessTokenState);
+
   // 댓글 입력 state
   const [commentInput, setCommentInput] = useState<string>("")
 
   const [like, setLike] = useState<boolean>(false); //좋아요
   const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
 
+  // 데이터 가져오기
   const getData = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/${props.params.id}`);
     const data = await res.json();
@@ -73,9 +78,10 @@ export default function BoardView(props: Params) {
     }
   }
 
-  const updateView = async()=>{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/view`,{
-      method:"PATCH",
+  // 조회수 업데이트
+  const updateView = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/view`, {
+      method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
       },
@@ -88,12 +94,35 @@ export default function BoardView(props: Params) {
     }
   }
 
+  // 좋아요 확인
+  const checkLike = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/like?id=${props.params.id}&access_token=${access_token}`);
+    const data = await res.json();
+    console.log(data)
+    if (data.result) {
+      if (data.liked) {
+        setLike(true);
+      } else {
+        setLike(false);
+      }
+    }
+  }
+
+  useEffect(() => {
+    // 로그인하지 않은 유저
+    if (access_token.length === 0) {
+      return;
+    }
+    checkLike();
+  }, [access_token])
+
   useEffect(() => {
     getData();
     updateView();
   }, [])
 
-  const resister = async () => { //댓글등록
+  // 댓글 등록
+  const handleCommentAdd = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/comment`);
     const data = await res.json();
     if (data.result) {
@@ -108,16 +137,32 @@ export default function BoardView(props: Params) {
     }
   }
 
-  const likes = async () => { //좋아요기능
-    if (like) {
-      alert("이미 좋아요를 누르셨습니다.");
+  // 좋아요
+  const handleLikeClick = async () => {
+
+    if (access_token.length === 0) {
+      alert("로그인 후 이용해 주세요.");
+      return;
     }
+
+    if (like) {
+      alert("좋아요는 한번만 누를 수 있습니다.");
+      return;
+    }
+
     setLike(true);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/like`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: props.params.id, access_token: access_token })
+    });
     const data = await res.json();
     if (data.result) {
       setLikeNumber(data.likeNumber);
-      alert("좋아요를 누르셨습니다.");
+    }else{
+      alert("[오류] " + data.messege);
     }
   }
 
@@ -146,7 +191,7 @@ export default function BoardView(props: Params) {
         </div>
         <div className={styles.contentBox}>{boards?.content}</div>
         <div className={styles.likeBox}>
-          <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={likes}>
+          <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={handleLikeClick}>
             <FontAwesomeIcon icon={faHeart} className={styles.like} />
             <div className={styles.likeNumber}>{likeNumber}</div>
           </div>
@@ -154,7 +199,7 @@ export default function BoardView(props: Params) {
         <div className={styles.reviewBox}>
           <div>댓글등록</div>
           <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
-          <button className={styles.reviewBtn} onClick={resister}>등록</button>
+          <button className={styles.reviewBtn} onClick={handleCommentAdd}>등록</button>
         </div>
       </div>
 

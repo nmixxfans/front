@@ -107,22 +107,22 @@
     height: 70px;
 }
 
-.likeWrapper {
+.likeWrapper, .likeWrapper2{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: rgb(200, 129, 129);
     cursor: pointer;
+    width: 100px;
+    height: 100px;
+}
+
+.likeWrapper {
+    color: rgb(255, 95, 95);
 }
 
 .likeWrapper2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     color: white;
-    cursor: pointer;
 }
 
 .likeNumber {
