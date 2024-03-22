@@ -92,47 +92,53 @@
 .likeBox {
     display: flex;
     justify-content: center;
-    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
     width: 100%;
+    padding-bottom: 20px;
+}
+
+.likeBoxWrapper{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid #dadada;
 }
 
 .like{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
-    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+}
+
+.likeWrapper, .likeWrapper2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
     width: 70px;
     height: 70px;
+    background-color: #fff;
+    border: 1px solid #ededed;
+    border-radius: 50%;
 }
 
 .likeWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: rgb(200, 129, 129);
-    cursor: pointer;
+    background-color: #ededed;
+    color: rgb(255, 95, 95);
 }
 
 .likeWrapper2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    cursor: pointer;
+    color: #ededed;
 }
 
-.like {
-    width: 35px;
-    height: 35px;
-    margin-top: 20px;
-}
-
-.likeNumber {
-    margin-top: 10px;
+.likeCount {
     font-size: 20px;
+    color: #000;
 }
 
 .reviewBox {
