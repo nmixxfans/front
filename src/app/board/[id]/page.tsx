@@ -64,7 +64,7 @@ export default function BoardView(props: Params) {
   const [commentInput, setCommentInput] = useState<string>("")
 
   const [like, setLike] = useState<boolean>(false); //좋아요
-  const [likeNumber, setLikeNumber] = useState<number>(0); //게시물 좋아요 총합
+  const [likeCount, setLikeCount] = useState<number>(0); //게시물 좋아요 총합
 
   // 데이터 가져오기
   const getData = async () => {
@@ -75,6 +75,7 @@ export default function BoardView(props: Params) {
       setBoards(data.board);
       setProfile(data.profile);
       setBoardsComment(data.boardComment);
+      setLikeCount(data.board.like);
     }
   }
 
@@ -150,7 +151,7 @@ export default function BoardView(props: Params) {
       return;
     }
 
-    setLike(true);
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/like`, {
       method: "PATCH",
       headers: {
@@ -160,8 +161,9 @@ export default function BoardView(props: Params) {
     });
     const data = await res.json();
     if (data.result) {
-      setLikeNumber(data.likeNumber);
-    }else{
+      setLike(true);
+      setLikeCount(likeCount + 1);
+    } else {
       alert("[오류] " + data.messege);
     }
   }
@@ -191,9 +193,11 @@ export default function BoardView(props: Params) {
         </div>
         <div className={styles.contentBox}>{boards?.content}</div>
         <div className={styles.likeBox}>
-          <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={handleLikeClick}>
-            <FontAwesomeIcon icon={faHeart} className={styles.like} />
-            <div className={styles.likeNumber}>{likeNumber}</div>
+          <div className={styles.likeBoxWrapper}>
+            <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={handleLikeClick}>
+              <FontAwesomeIcon icon={faHeart} className={styles.like} />
+            </div>
+            <div className={styles.likeCount}>{likeCount}</div>
           </div>
         </div>
         <div className={styles.reviewBox}>
