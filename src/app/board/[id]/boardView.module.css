@@ -94,6 +94,7 @@
     justify-content: center;
     border-top: 1px solid #000;
     width: 100%;
+    position: relative;
 }
 
 .like{
@@ -122,12 +123,6 @@
     align-items: center;
     color: white;
     cursor: pointer;
-}
-
-.like {
-    width: 35px;
-    height: 35px;
-    margin-top: 20px;
 }
 
 .likeNumber {

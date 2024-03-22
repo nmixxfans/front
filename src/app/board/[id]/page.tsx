@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./boardView.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { boardUtcToKorTime } from "@/app/asset/functions/utc-to-kor-board";
 
@@ -73,8 +73,24 @@ export default function BoardView(props: Params) {
     }
   }
 
+  const updateView = async()=>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/view`,{
+      method:"PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: props.params.id })
+    });
+    const data = await res.json();
+
+    if (data.result) {
+      console.log("조회수 업데이트")
+    }
+  }
+
   useEffect(() => {
     getData();
+    updateView();
   }, [])
 
   const resister = async () => { //댓글등록
@@ -130,11 +146,8 @@ export default function BoardView(props: Params) {
         </div>
         <div className={styles.contentBox}>{boards?.content}</div>
         <div className={styles.likeBox}>
-          <div className={styles.like}>
-          
-          </div>
           <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={likes}>
-            <FontAwesomeIcon icon={faThumbsUp} className={styles.like}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faHeart} className={styles.like} />
             <div className={styles.likeNumber}>{likeNumber}</div>
           </div>
         </div>
