@@ -151,7 +151,7 @@ export default function BoardView(props: Params) {
       return;
     }
 
-    
+
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/like`, {
       method: "PATCH",
       headers: {
@@ -200,23 +200,23 @@ export default function BoardView(props: Params) {
             <div className={styles.likeCount}>{likeCount}</div>
           </div>
         </div>
-        <div className={styles.reviewBox}>
-          <div>댓글등록</div>
-          <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
-          <button className={styles.reviewBtn} onClick={handleCommentAdd}>등록</button>
+      </div>
+      <div className={styles.commentListBox}>
+        {/* map으로 쏴줄거임 */}
+        <div className={styles.commentItemBox}>
+          <div className={styles.commentProfileBox}>
+            <div className={styles.commentImgBox}>
+              <img src="https://cdn.gukjenews.com/news/photo/202202/2411105_2404052_4854.jpg" alt="프로필 사진" className={styles.commentProfileImg}></img>
+            </div>
+            <div className={styles.commentNick}>닉네임</div>
+          </div>
+          <div className={styles.commentContent}>댓글내용</div>
         </div>
       </div>
 
-      <div className={styles.reviewViewBox}>
-        {/* map으로 쏴줄거임 */}
-        <div className={styles.reviewData}>
-          <div className={styles.reviewId}>아이디</div>
-          <div className={styles.reviewContent}>댓글내용</div>
-        </div>
-        <div className={styles.reviewData}>
-          <div className={styles.reviewId}>asd123</div>
-          <div className={styles.reviewContent}>엔믹스 진짜 노래 잘하는듯</div>
-        </div>
+      <div className={styles.commentBox}>
+        <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
+        <button className={styles.reviewBtn} onClick={handleCommentAdd}>등록</button>
       </div>
     </section>
   )
