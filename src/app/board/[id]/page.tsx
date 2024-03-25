@@ -56,7 +56,8 @@ export default function BoardView(props: Params) {
   const [boards, setBoards] = useState<boardType>();
   const [profile, setProfile] = useState<profileType>();
 
-  const [boardsComment, setBoardsComment] = useState<any>([]);
+  const [boardCount, setBoardCount] = useState<number>(0);
+  const [boardComment, setBoardComment] = useState<any>([]);
 
   const access_token = useRecoilValue(accessTokenState);
 
@@ -74,7 +75,8 @@ export default function BoardView(props: Params) {
     if (data.result) {
       setBoards(data.board);
       setProfile(data.profile);
-      setBoardsComment(data.boardComment);
+      setBoardCount(data.boardComment.commentCount);
+      setBoardComment(data.boardComment.comments);
       setLikeCount(data.board.like);
     }
   }
@@ -187,7 +189,7 @@ export default function BoardView(props: Params) {
               <div className={styles.informationBar}>|</div>
               <div className={styles.informationLike}>좋아요 {boards?.like}</div>
               <div className={styles.informationBar}>|</div>
-              <div className={styles.informationCommentCount}>댓글 {boardsComment?.commentCount}</div>
+              <div className={styles.informationCommentCount}>댓글 {boardComment?.commentCount}</div>
             </div>
           </div>
         </div>
@@ -202,17 +204,35 @@ export default function BoardView(props: Params) {
         </div>
       </div>
       <div className={styles.commentListBox}>
-        {/* map으로 쏴줄거임 */}
-        <div className={styles.commentItemBox}>
-          <div className={styles.commentProfileBox}>
-            <div className={styles.commentImgBox}>
-              <img src="https://cdn.gukjenews.com/news/photo/202202/2411105_2404052_4854.jpg" alt="프로필 사진" className={styles.commentProfileImg}></img>
-            </div>
-            <div className={styles.commentNick}>닉네임</div>
-          </div>
-          <div className={styles.commentContent}>댓글내용</div>
-        </div>
+        {
+          boardComment.map((item: any) => {
+            return (
+              <div className={styles.commentItemBox}>
+                <div className={styles.commentProfileBox}>
+                  <div className={styles.commentImgBox}>
+                    <img src="https://cdn.gukjenews.com/news/photo/202202/2411105_2404052_4854.jpg" alt="프로필 사진" className={styles.commentProfileImg}></img>
+                  </div>
+                  <div className={styles.commentNick}>{item.user_id.profile.nick}</div>
+                </div>
+                <div className={styles.commentContenBox}>
+                  {item.content}
+                </div>
+                <div className={styles.replyListBox}>
+                  {item.board_id.boardReply.map((reply: any) => {
+                    return (
+                      <div className={styles.replyItemBox}>
+                        ㄴ답글
+                      </div>
+                    )
+                  })}
+
+                </div>
+              </div>
+            )
+          })
+        }
       </div>
+
 
       <div className={styles.commentBox}>
         <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />

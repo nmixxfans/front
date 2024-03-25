@@ -94,7 +94,7 @@
     justify-content: center;
     border-bottom: 1px solid #000;
     width: 100%;
-    padding-bottom: 20px;
+    padding-bottom: 50px;
 }
 
 .likeBoxWrapper{
@@ -141,22 +141,6 @@
     color: #000;
 }
 
-.commentBox {
-    width: 1000px;
-    margin-top: 20px;
-    height: 50px;
-}
-
-.writeReview {
-    width: 90%;
-    height: 50px;
-}
-
-.reviewBtn {
-    width: 10%;
-    height: 50px;
-}
-
 .commentListBox {
     width: 1000px;
     display: flex;
@@ -165,12 +149,13 @@
 
 .commentItemBox {
     width: 100%;
-    border-bottom: 1px solid black;
-    padding: 5px;
+    border-bottom: 1px solid #000;
+    padding: 20px 0px;
 }
 
 .commentProfileBox{
     display: flex;
+    align-items: center;
 }
 
 .commentImgBox{
@@ -186,12 +171,30 @@
 }
 
 .commentNick{
-
+    margin-left: 10px;
+    font-size: 15px;
+    color: #cbcbcb;
 }
 
 
 
-.reviewContent {
-    background-color: bisque;
-    padding: 5px;
+.commentContenBox {
+    
+}
+
+
+.commentBox {
+    width: 1000px;
+    margin-top: 20px;
+    height: 50px;
+}
+
+.writeReview {
+    width: 90%;
+    height: 50px;
+}
+
+.reviewBtn {
+    width: 10%;
+    height: 50px;
 }
