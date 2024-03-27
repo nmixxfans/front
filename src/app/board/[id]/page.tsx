@@ -172,71 +172,73 @@ export default function BoardView(props: Params) {
 
   return (
     <section className={styles.section}>
-      <div className={styles.mainBox}>
-        <div className={styles.boardInformaionBox}>
-          <div className={styles.informaionTitleBox}>
-            <div className={styles.informationCategory}>[{boards?.category}]</div>
-            <div className={styles.informationTitle}>{boards?.title}</div>
-          </div>
-          <div className={styles.boardInformaionBox2}>
-            <div className={styles.informationDataBox}>
-              <div className={styles.informationNick}>{profile?.nick}</div>
-              <div className={styles.informationBar}>|</div>
-              <div className={styles.informationCreateDate}>{boardUtcToKorTime(new Date(boards?.create_date ?? "2024-03-01"))}</div>
+      <div className={styles.container}>
+        <div className={styles.mainBox}>
+          <div className={styles.boardInformaionBox}>
+            <div className={styles.informaionTitleBox}>
+              <div className={styles.informationCategory}>[{boards?.category}]</div>
+              <div className={styles.informationTitle}>{boards?.title}</div>
             </div>
-            <div className={styles.informationDataBox}>
-              <div className={styles.informationView}>조회 {boards?.view}</div>
-              <div className={styles.informationBar}>|</div>
-              <div className={styles.informationLike}>좋아요 {boards?.like}</div>
-              <div className={styles.informationBar}>|</div>
-              <div className={styles.informationCommentCount}>댓글 {boardComment?.commentCount}</div>
-            </div>
-          </div>
-        </div>
-        <div className={styles.contentBox}>{boards?.content}</div>
-        <div className={styles.likeBox}>
-          <div className={styles.likeBoxWrapper}>
-            <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={handleLikeClick}>
-              <FontAwesomeIcon icon={faHeart} className={styles.like} />
-            </div>
-            <div className={styles.likeCount}>{likeCount}</div>
-          </div>
-        </div>
-      </div>
-      <div className={styles.commentListBox}>
-        {
-          boardComment.map((item: any) => {
-            return (
-              <div className={styles.commentItemBox}>
-                <div className={styles.commentProfileBox}>
-                  <div className={styles.commentImgBox}>
-                    <img src="https://cdn.gukjenews.com/news/photo/202202/2411105_2404052_4854.jpg" alt="프로필 사진" className={styles.commentProfileImg}></img>
-                  </div>
-                  <div className={styles.commentNick}>{item.user_id.profile.nick}</div>
-                </div>
-                <div className={styles.commentContenBox}>
-                  {item.content}
-                </div>
-                <div className={styles.replyListBox}>
-                  {item.board_id.boardReply.map((reply: any) => {
-                    return (
-                      <div className={styles.replyItemBox}>
-                        ㄴ답글
-                      </div>
-                    )
-                  })}
-
-                </div>
+            <div className={styles.boardInformaionBox2}>
+              <div className={styles.informationDataBox}>
+                <div className={styles.informationNick}>{profile?.nick}</div>
+                <div className={styles.informationBar}>|</div>
+                <div className={styles.informationCreateDate}>{boardUtcToKorTime(new Date(boards?.create_date ?? "2024-03-01"))}</div>
               </div>
-            )
-          })
-        }
-      </div>
+              <div className={styles.informationDataBox}>
+                <div className={styles.informationView}>조회 {boards?.view}</div>
+                <div className={styles.informationBar}>|</div>
+                <div className={styles.informationLike}>좋아요 {boards?.like}</div>
+                <div className={styles.informationBar}>|</div>
+                <div className={styles.informationCommentCount}>댓글 {boardComment?.commentCount}</div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.contentBox}>{boards?.content}</div>
+          <div className={styles.likeBox}>
+            <div className={styles.likeBoxWrapper}>
+              <div className={like ? styles.likeWrapper : styles.likeWrapper2} onClick={handleLikeClick}>
+                <FontAwesomeIcon icon={faHeart} className={styles.like} />
+              </div>
+              <div className={styles.likeCount}>{likeCount}</div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.commentListBox}>
+          {
+            boardComment.map((item: any) => {
+              return (
+                <div className={styles.commentItemBox}>
+                  <div className={styles.commentProfileBox}>
+                    <div className={styles.commentImgBox}>
+                      <img src="https://cdn.gukjenews.com/news/photo/202202/2411105_2404052_4854.jpg" alt="프로필 사진" className={styles.commentProfileImg}></img>
+                    </div>
+                    <div className={styles.commentNick}>{item.user_id.profile.nick}</div>
+                  </div>
+                  <div className={styles.commentContenBox}>
+                    {item.content}
+                  </div>
+                  <div className={styles.replyListBox}>
+                    {item.board_id.boardReply.map((reply: any) => {
+                      return (
+                        <div className={styles.replyItemBox}>
+                          ㄴ답글
+                        </div>
+                      )
+                    })}
+
+                  </div>
+                </div>
+              )
+            })
+          }
+        </div>
 
 
-      <div className={styles.commentBox}>
-        <input className={styles.writeReview} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
-        <button className={styles.reviewBtn} onClick={handleCommentAdd}>등록</button>
+        <div className={styles.commentBox}>
+          <textarea className={styles.commentInput} placeholder="댓글" onChange={(e) => setCommentInput(e.target.value)} />
+          <button className={styles.commentAddBtn} onClick={handleCommentAdd}>등록</button>
+        </div>
       </div>
     </section>
   )
