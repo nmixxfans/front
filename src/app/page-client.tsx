@@ -1,30 +1,48 @@
+'use client'
+
 import Link from 'next/link';
 import home from './asset/css/home.module.css';
+import { useEffect, useState } from 'react';
 import Script from 'next/script'
+import Loading from './loading';
+import LoadingCircle from './common/LoadingCircle';
 import { korTime } from './asset/functions/utc-to-kor';
-import ToDebut from './home/element/ToDebut';
-import PreBoardBox from './home/element/PreBoardBox';
 
-async function getData(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
-  return res.json();
-}
+export default function Home() {
+  const [board, setBoard] = useState<any[]>([]);
+  const [notice, setNotice] = useState<any[]>([]);
+  const [recent, setRecent] = useState<string>("");
+  const [recentLive, setRecentLive] = useState<string>("");
 
-export const metadata = {
-  title: "WE-NMIXX",
-}
+  const [debut, setDebut] = useState<number>(0);
 
-export default async function Home() {
+  useEffect(() => {
+    document.title = "WE-NMIXX";
 
-  const data = await getData()
+    const getData = async ()=>{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
+      const data = await res.json();
+      if(data.result){
+        setBoard(data.board);
+        setNotice(data.board);
+        setRecent(data.recent);
+        setRecentLive(data.recent_live);
+      }
+    }
 
-  const board:any[] = data.board;
-  const notice:any[] = data.board;
-  const recent:string = data.recent;
-  const recentLive:string = data.recent_live;
+    getData();
+
+    let date = new Date();
+    const diffDate = date.getTime() - new Date(2022, 1, 22, date.getHours(), date.getMinutes()).getTime();
+    setDebut(Math.ceil(diffDate / (1000 * 60 * 60 * 24)))
+  }, [])
 
   return (
     <section className={home.section}>
+      {/* 임시 로딩바 테스트용 */}
+      {/* <Loading></Loading>
+            <LoadingCircle></LoadingCircle> */}
+      {/* 트위터 스타일, 기능 Script 태그 */}
       <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></Script>
       <div className={home.firstBox}>
         <div>
@@ -40,7 +58,27 @@ export default async function Home() {
             <blockquote className="twitter-tweet"><p lang="ko" dir="ltr">[📢] SBS <a href="https://twitter.com/hashtag/%EA%B3%BC%EB%AA%B0%EC%9E%85%EC%9D%B8%EC%83%9D%EC%82%AC?src=hash&amp;ref_src=twsrc%5Etfw">#과몰입인생사</a> 온라인 제작발표회<br /><br />잠시 후 2:00PM<br />NMIXX 해원과 함께하세요!<a href="https://t.co/77wgtEjqE3">https://t.co/77wgtEjqE3</a><a href="https://twitter.com/hashtag/NMIXX?src=hash&amp;ref_src=twsrc%5Etfw">#NMIXX</a> <a href="https://twitter.com/hashtag/%EC%97%94%EB%AF%B9%EC%8A%A4?src=hash&amp;ref_src=twsrc%5Etfw">#엔믹스</a><a href="https://twitter.com/hashtag/%ED%95%B4%EC%9B%90?src=hash&amp;ref_src=twsrc%5Etfw">#해원</a> <a href="https://twitter.com/hashtag/HAEWON?src=hash&amp;ref_src=twsrc%5Etfw">#HAEWON</a><a href="https://twitter.com/hashtag/Fe3O4_BREAK?src=hash&amp;ref_src=twsrc%5Etfw">#Fe3O4_BREAK</a><a href="https://twitter.com/hashtag/So%C3%B1ar?src=hash&amp;ref_src=twsrc%5Etfw">#Soñar</a></p>&mdash; NMIXX (@NMIXX_official) <a href="https://twitter.com/NMIXX_official/status/1740231097500516646?ref_src=twsrc%5Etfw">December 28, 2023</a></blockquote>
           </div>
         </div>
-        <PreBoardBox board={board} />
+        <div className={home.secondBoxItem}>
+          <div className={home.title} title='자유게시판'>자유게시판</div>
+          <div className={[home.secondBoxContent, home.boxScroll].join(" ")}>
+            {
+              board.map((value, index) => {
+                return (
+                  <div className={home.boardItem} key={index}>
+                    <div className={home.boardTitle}>
+                      <Link href={`/board/${value.id}`} className={home.boardTitleLink}>
+                        {value.title}
+                      </Link>
+                    </div>
+                    <div className={home.boardDate}>
+                      {korTime(new Date(value.create_date))}
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </div>
+        </div>
         <div className={home.secondBoxItem}>
           <div className={home.title} title='공지사항'>공지사항</div>
           <div className={[home.secondBoxContent, home.boxScroll].join(" ")}>
@@ -75,7 +113,12 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <ToDebut />
+      <div className={home.fourthBox}>
+        <div>
+          데뷔일로부터 + {debut}
+        </div>
+      </div>
+
     </section>
   )
 }
