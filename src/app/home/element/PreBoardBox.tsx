@@ -18,6 +18,7 @@ export default function PreBoardBox({board}:Props){
           <div className={styles.title} title='자유게시판'>자유게시판</div>
           <div className={[styles.secondBoxContent, styles.boxScroll].join(" ")}>
             {
+              board ?
               board.map((value, index) => {
                 return (
                   <div className={styles.boardItem} key={index}>
@@ -32,6 +33,8 @@ export default function PreBoardBox({board}:Props){
                   </div>
                 )
               })
+              :
+              <></>
             }
           </div>
         </div>

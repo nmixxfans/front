@@ -45,20 +45,24 @@ export default async function Home() {
           <div className={home.title} title='공지사항'>공지사항</div>
           <div className={[home.secondBoxContent, home.boxScroll].join(" ")}>
             {
-              notice.map((value, index) => {
-                return (
-                  <div className={home.boardItem} key={index}>
-                    <div className={home.boardTitle}>
-                      <Link href={`/notice/${value.id}`} className={home.boardTitleLink}>
-                        {value.title}
-                      </Link>
-                    </div>
-                    <div className={home.boardDate}>
-                      {korTime(new Date(value.create_date))}
-                    </div>
+            notice
+            ?
+            notice.map((value, index) => {
+              return (
+                <div className={home.boardItem} key={index}>
+                  <div className={home.boardTitle}>
+                    <Link href={`/notice/${value.id}`} className={home.boardTitleLink}>
+                      {value.title}
+                    </Link>
                   </div>
-                )
-              })
+                  <div className={home.boardDate}>
+                    {korTime(new Date(value.create_date))}
+                  </div>
+                </div>
+              )
+            })
+            :
+            <></>
             }
           </div>
         </div>
