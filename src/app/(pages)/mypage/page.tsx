@@ -7,7 +7,7 @@ import "../asset/css/pagination.css";
 import Link from "next/link";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { useRecoilValue } from "recoil";
-import { accessTokenState, userState } from "../Atom";
+import { accessTokenState, userState } from "../shared/Atom";
 import UserModal from "./element/UserModal";
 import { myUtcToKorTime } from "../asset/functions/utc-to-kor-mypage";
 

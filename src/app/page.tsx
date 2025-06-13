@@ -2,12 +2,17 @@ import Link from 'next/link';
 import home from './asset/css/home.module.css';
 import Script from 'next/script'
 import { korTime } from './asset/functions/utc-to-kor';
-import ToDebut from './home/element/ToDebut';
-import PreBoardBox from './home/element/PreBoardBox';
+import ToDebut from './(pages)/home/widgets/ToDebut';
+import PreBoardBox from './(pages)/home/widgets/PreBoardBox';
 
-async function getData(){
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
-  return res.json();
+async function getData() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/home`);
+    return res.json();
+  } catch {
+    return []
+  }
+
 }
 
 export const metadata = {
@@ -18,14 +23,14 @@ export default async function Home() {
 
   const data = await getData()
 
-  const board:any[] = data.board;
-  const notice:any[] = data.board;
-  const recent:string = data.recent;
-  const recentLive:string = data.recent_live;
+  const board: any[] = data.board;
+  const notice: any[] = data.board;
+  const recent: string = data.recent;
+  const recentLive: string = data.recent_live;
 
   return (
     <section className={home.section}>
-      <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></Script>
+      {/* <Script async src="https://platform.twitter.com/widgets.js" charSet="utf-8"></Script> */}
       <div className={home.firstBox}>
         <div>
           <div className={home.title} title='최신 뮤직비디오'></div>
@@ -45,24 +50,24 @@ export default async function Home() {
           <div className={home.title} title='공지사항'>공지사항</div>
           <div className={[home.secondBoxContent, home.boxScroll].join(" ")}>
             {
-            notice
-            ?
-            notice.map((value, index) => {
-              return (
-                <div className={home.boardItem} key={index}>
-                  <div className={home.boardTitle}>
-                    <Link href={`/notice/${value.id}`} className={home.boardTitleLink}>
-                      {value.title}
-                    </Link>
-                  </div>
-                  <div className={home.boardDate}>
-                    {korTime(new Date(value.create_date))}
-                  </div>
-                </div>
-              )
-            })
-            :
-            <></>
+              notice
+                ?
+                notice.map((value, index) => {
+                  return (
+                    <div className={home.boardItem} key={index}>
+                      <div className={home.boardTitle}>
+                        <Link href={`/notice/${value.id}`} className={home.boardTitleLink}>
+                          {value.title}
+                        </Link>
+                      </div>
+                      <div className={home.boardDate}>
+                        {korTime(new Date(value.create_date))}
+                      </div>
+                    </div>
+                  )
+                })
+                :
+                <></>
             }
           </div>
         </div>

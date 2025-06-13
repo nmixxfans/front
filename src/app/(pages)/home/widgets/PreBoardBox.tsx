@@ -1,6 +1,6 @@
 import styles from '../home-element.module.css';
 import Link from 'next/link';
-import { korTime } from '../../asset/functions/utc-to-kor';
+import { korTime } from '../../../asset/functions/utc-to-kor';
 
 interface BoardItem{
     id:number,

@@ -5,7 +5,7 @@ import signin from "./signin.module.css"
 import { useEffect, useRef, useState } from "react"
 import { KeyboardEvent } from 'react';
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../Atom";
+import { accessTokenState } from "../shared/Atom";
 
 export default function Signin() {
 

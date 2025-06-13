@@ -5,7 +5,7 @@ import fantube from "./fantube.module.css"
 import KorFantube from "./element/KorFantube";
 import ForFantube from "./element/ForFantube";
 import { useSearchParams } from "next/navigation";
-import { fantubeState } from "../Atom";
+import { fantubeState } from "@/app/shared/Atom";
 import { useRecoilState } from "recoil";
 
 export default function Fantube() {

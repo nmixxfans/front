@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import styles from "../mypage.module.css"
 import { Dispatch, KeyboardEvent, SetStateAction, useEffect, useState } from "react";
-import { userState } from "@/app/Atom";
+import { userState } from "@/app/shared/Atom";
 import { slangCheck } from "@/app/asset/functions/slang";
 
 export default function UserModal({ setModalOn, setUserPassword }: { setModalOn: Dispatch<SetStateAction<boolean>>, setUserPassword: Dispatch<SetStateAction<string>> }) {
