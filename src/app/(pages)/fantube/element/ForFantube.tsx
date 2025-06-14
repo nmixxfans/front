@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import fantube from "../fantube.module.css"
-import { fantubeState } from "@/app/shared/Atom";
+import { fantubeState } from "@/shared/Atom";
 
 export default function ForFantube(){
 

@@ -7,8 +7,8 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
-import { userState } from '../shared/Atom';
 import Debut from './Debut';
+import { userState } from '@/shared/Atom';
 
 const Widget = styled.header`
   width: 100%;
@@ -61,7 +61,7 @@ const UserBox = styled.div`
 
 const UserLink = styled(Link)`
   color: rgb(0, 0, 0);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   margin-left: 8px;
   text-decoration: none;

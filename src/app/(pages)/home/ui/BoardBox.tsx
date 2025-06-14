@@ -1,8 +1,8 @@
 'use client'
 
 import { korTime } from "@/app/asset/functions/utc-to-kor";
-import { ItemProps } from "@/app/shared/types/board";
-import { Title } from "@/app/shared/ui/Title";
+import { ItemProps } from "@/shared/types/board";
+import { Title } from "@/shared/ui/Title";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon, FontAwesomeIconProps } from "@fortawesome/react-fontawesome";
 import Link from "next/link";

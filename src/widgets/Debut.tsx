@@ -1,5 +1,7 @@
 'use client'
 
+import { faStarOfLife } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -7,8 +9,8 @@ const Widget = styled.div`
   display: flex;
   gap: 2px;
   font-size: 14px;
-  display: flex;
   align-items: flex-end;
+  position: relative;
 `
 
 const Text = styled.div`
@@ -17,11 +19,23 @@ const Text = styled.div`
   color: #000;
   padding: 1px 2px;
   display: flex;
-  align-items: flex-end;
+  height: 100%;
 `
 
 const Day = styled.div`
-  font-family: 'S-CoreDream-9Black';
+  /* font-family: 'S-CoreDream-9Black'; */
+  font-family: 'S-CoreDream';
+  font-size: 16px;
+  /* padding: 3px 8px; */
+  /* background-color: #f1f1f1; */
+  /* border-radius: 25px; */
+`
+
+const IconBox = styled.div`
+  font-size: 8px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
 `
 
 export default function Debut() {
@@ -36,8 +50,11 @@ export default function Debut() {
 
   return (
     <Widget>
-      <Text>데뷔일로부터</Text>
+      <Text>엔믹스와 함께한 지</Text>
       <Day>{debut}일</Day>
+      <IconBox>
+        <FontAwesomeIcon icon={faStarOfLife} />
+      </IconBox>
     </Widget>
   )
 }

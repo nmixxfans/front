@@ -1,8 +1,8 @@
 'use client'
 
+import { accessTokenState, userState } from "@/shared/Atom";
 import { useEffect } from "react"
 import { useRecoilState } from "recoil"
-import { accessTokenState, userState } from "../shared/Atom"
 
 export default function Token() {
 

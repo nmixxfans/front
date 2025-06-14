@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import Header from './widgets/Header'
-import Footer from './widgets/Footer'
 // import {
 //     useQuery,
 //     useMutation,
@@ -10,9 +8,11 @@ import Footer from './widgets/Footer'
 //     QueryClient,
 //     QueryClientProvider,
 // } from '@tanstack/react-query'
-import Token from './widgets/Token'
 import RecoilRootProvider from './recoilRootProvider'
-import StyledComponentsRegistry from './shared/lib/styleRegistry'
+import StyledComponentsRegistry from '../shared/lib/styleRegistry'
+import Header from '@/widgets/Header'
+import Footer from '@/widgets/Footer'
+import Token from '@/widgets/Token'
 
 const inter = Inter({ subsets: ['latin'] })
 

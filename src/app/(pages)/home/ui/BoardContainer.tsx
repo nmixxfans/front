@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import { BoardBox } from "./BoardBox";
-import { ItemProps } from "@/app/shared/types/board";
+import { ItemProps } from "@/shared/types/board";
 import { faBell, faComments } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`

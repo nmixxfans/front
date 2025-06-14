@@ -1,6 +1,6 @@
 'use client'
 
-import { Title } from "@/app/shared/ui/Title";
+import { Title } from "@/shared/ui/Title";
 import styled from "styled-components";
 
 const Box = styled.div`

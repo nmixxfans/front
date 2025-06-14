@@ -1,6 +1,6 @@
 'use client'
 
-import { Title } from "@/app/shared/ui/Title";
+import { Title } from "@/shared/ui/Title";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";

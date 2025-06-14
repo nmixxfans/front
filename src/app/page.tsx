@@ -1,7 +1,7 @@
 import { RecentMVBox } from './(pages)/home/ui/RecentMVBox';
-import { DefaultContainer } from './shared/ui/DefaultContainer';
+import { DefaultContainer } from '../shared/ui/DefaultContainer';
 import { BoardContainer } from './(pages)/home/ui/BoardContainer';
-import { ItemProps } from './shared/types/board';
+import { ItemProps } from '../shared/types/board';
 import { VideoBox } from './(pages)/home/ui/VideoBox';
 import { EctContainer } from './(pages)/home/ui/EtcContainer';
 

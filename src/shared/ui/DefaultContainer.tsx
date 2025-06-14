@@ -13,11 +13,12 @@ const Container = styled.div`
 
 interface ContainerProps {
   children: ReactNode;
+  style?: React.CSSProperties;
 }
 
-export function DefaultContainer({ children }: ContainerProps) {
+export function DefaultContainer({ children, style }: ContainerProps) {
   return (
-    <Container>
+    <Container style={style}>
       {children}
     </Container>
   )
