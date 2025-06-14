@@ -15,9 +15,14 @@ const Box = styled.div`
   gap: 5px;
 `
 
+const TitleLink = styled(Link)`
+  text-decoration: none;
+  color: #000;
+`
+
 const ItemContent = styled.div`
   width: 100%;
-  height: 250px;
+  min-height: 300px;
   background-color: #fff;
   border: 1px solid var(--bs-border);
   border-radius: 5px;
@@ -66,6 +71,10 @@ const Item = styled(Link)`
 const ItemTitle = styled.div`
   font-size: 14px;
   cursor: pointer;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   ${Item}:hover & {
     text-decoration: underline;
@@ -75,21 +84,27 @@ const ItemTitle = styled.div`
 const ItemDate = styled.div`
   color: #b5b5b5;
   font-size: 12px;
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
 `
 
 interface BoxProps {
   data: ItemProps[];
   title: string;
   icon: IconProp;
+  url: string;
 }
 
-export function BoardBox({ data, title, icon }: BoxProps) {
+export function BoardBox({ data, title, icon, url }: BoxProps) {
   return (
     <Box>
-      <Title>
-        <FontAwesomeIcon icon={icon} />
-        {title}
-      </Title>
+      <TitleLink href={url}>
+        <Title>
+          <FontAwesomeIcon icon={icon} />
+          {title}
+        </Title>
+      </TitleLink>
       <ItemContent>
         {
           data
@@ -98,7 +113,6 @@ export function BoardBox({ data, title, icon }: BoxProps) {
               return (
                 <Item href={`/notice/${value.id}`} key={index}>
                   <ItemTitle>
-                    
                     {value.title}
                   </ItemTitle>
                   <ItemDate>

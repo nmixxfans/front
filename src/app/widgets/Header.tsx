@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { userState } from '../shared/Atom';
+import Debut from './Debut';
 
 const Widget = styled.header`
   width: 100%;
@@ -29,7 +30,10 @@ const IconBox = styled.div`
 
 const LogoBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 10px;
 `
 
 const LogoLink = styled(Link)`
@@ -150,6 +154,7 @@ export default function Header() {
           <LogoLink href={'/'}>
             <LogoImg width={570} height={222} src='/wenmixx_logo.png' alt='logo' />
           </LogoLink>
+          <Debut />
         </LogoBox>
         <UserBox>
           {sign.id === 0 ?

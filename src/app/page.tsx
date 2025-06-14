@@ -1,9 +1,9 @@
-import ToDebut from './(pages)/home/widgets/ToDebut';
 import { RecentMVBox } from './(pages)/home/ui/RecentMVBox';
 import { DefaultContainer } from './shared/ui/DefaultContainer';
 import { BoardContainer } from './(pages)/home/ui/BoardContainer';
 import { ItemProps } from './shared/types/board';
 import { VideoBox } from './(pages)/home/ui/VideoBox';
+import { EctContainer } from './(pages)/home/ui/EtcContainer';
 
 async function getData() {
   try {
@@ -35,7 +35,47 @@ export default async function Home() {
     },
     {
       id: "2",
-      title: "제목2222",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
+      date: "2025-01-01"
+    },
+    {
+      id: "2",
+      title: "제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222제목2222",
       date: "2025-01-01"
     }
   ]
@@ -44,9 +84,9 @@ export default async function Home() {
     <section>
       <DefaultContainer>
         <RecentMVBox />
-        <BoardContainer notice={noticeTestData} free={[]} />
+        <BoardContainer notice={noticeTestData} free={noticeTestData} />
         <VideoBox recent='p1ZR1-tLR44' recentLive='6_uG3XfyMW0' />
-        <ToDebut />
+        <EctContainer />
       </DefaultContainer>
     </section>
   )

@@ -21,8 +21,8 @@ interface ContainerProps {
 export function BoardContainer({ notice, free }: ContainerProps) {
   return (
     <Container>
-      <BoardBox data={free} title="자유게시판" icon={faComments} />
-      <BoardBox data={notice} title="공지사항" icon={faBell} />
+      <BoardBox data={free} title="자유게시판" url="/board" icon={faComments} />
+      <BoardBox data={notice} title="공지사항" url="/notice" icon={faBell} />
     </Container>
   )
 }
