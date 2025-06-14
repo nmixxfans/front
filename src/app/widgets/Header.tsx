@@ -45,6 +45,7 @@ const LogoLink = styled(Link)`
 
 const LogoImg = styled(Image)`
   width: 140px;
+  height: 55px;
 `
 
 const UserBox = styled.div`
@@ -147,7 +148,7 @@ export default function Header() {
       <IconBox>
         <LogoBox>
           <LogoLink href={'/'}>
-            <LogoImg width={140} height={70} src='/wenmixx_logo.png' alt='logo' />
+            <LogoImg width={570} height={222} src='/wenmixx_logo.png' alt='logo' />
           </LogoLink>
         </LogoBox>
         <UserBox>
@@ -162,12 +163,12 @@ export default function Header() {
         </UserBox>
       </IconBox>
       <PageBox>
-        <PageLink href={'/content'}>콘텐츠</PageLink>
+        {/* <PageLink href={'/content'}>콘텐츠</PageLink> */}
         <PageLink href={'/fantube'}>팬채널</PageLink>
         <PageLink href={'/board'}>자유게시판</PageLink>
         <PageLink href={'/notice'}>공지사항</PageLink>
-        <PageLink href={'/mc'}>엔믹스콘</PageLink>
-        <PageLink href={'/apply'}>매니저신청</PageLink>
+        {/* <PageLink href={'/mc'}>엔믹스콘</PageLink> */}
+        {/* <PageLink href={'/apply'}>매니저신청</PageLink> */}
         <PageLink href={'/send'}>건의</PageLink>
       </PageBox>
     </Widget>

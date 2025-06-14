@@ -39,10 +39,6 @@
     margin-right: 5px;
 }
 
-.informationTitle{
-
-}
-
 .boardInformaionBox2 {
     display: flex;
     justify-content: space-between;
@@ -55,34 +51,34 @@
 
 .informationNick{
     font-size: 14px;
-    color: var(--board-information-text-gray);
+    color: var(--board-gray);
 }
 
 .informationBar{
     font-size: 10px;
     margin-left: 5px;
     margin-right: 5px;
-    color: var(--board-information-text-gray)
+    color: var(--board-gray)
 }
 
 .informationCreateDate{
     font-size: 13px;
-    color: var(--board-information-text-gray)
+    color: var(--board-gray)
 }
 
 .informationView{
     font-size: 13px;
-    color: var(--board-information-text-gray)
+    color: var(--board-gray)
 }
 
 .informationLike{
     font-size: 13px;
-    color: var(--board-information-text-gray)
+    color: var(--board-gray)
 }
 
 .informationCommentCount{
     font-size: 13px;
-    color: var(--board-information-text-gray)
+    color: var(--board-gray)
 }
 
 .headerTitle {
