@@ -55,7 +55,7 @@ export default async function Notice({ searchParams }: BoardProps) {
       <DefaultContainer>
         <BoardWrapper>
           <BoardManagement title="공지사항" url="/notice/write" />
-          <BoardTable fixs={fixs} boards={boards} />
+          <BoardTable title="공지사항" fixs={fixs} boards={boards} />
         </BoardWrapper>
         <BoardPaginationBox title="공지사항" totalCount={totalCount} />
         <BoardSearchBox title="공지사항" />

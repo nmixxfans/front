@@ -7,7 +7,7 @@ import { FantubeType } from "../types/fanchannel";
 const Box = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   width: 100%;
   padding: 10px;
 `

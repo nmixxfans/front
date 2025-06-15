@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import Debut from './Debut';
-import { userState } from '@/shared/Atom';
+import { userState } from '@/shared/lib/Atom';
 
 const Widget = styled.header`
   width: 100%;

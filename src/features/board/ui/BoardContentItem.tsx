@@ -38,16 +38,17 @@ const BoardContentLink = styled(Link)`
 `
 
 interface ComponentProps {
-  value: boardType,
-  index: number,
-  fix: boolean,
+  value: boardType;
+  index: number;
+  fix: boolean;
+  title: string;
 }
 
-export function BoardContentItem({ value, index, fix }: ComponentProps) {
+export function BoardContentItem({ value, index, fix, title }: ComponentProps) {
   return (
     <Component key={index}>
       <BoardContent style={{ width: '7%' }}>{value.id}</BoardContent>
-      <BoardContent style={{ width: '7%', color:'#b6b6b6' }}>{value.category}</BoardContent>
+      <BoardContent style={{ width: '7%', color: '#b6b6b6' }}>{value.category}</BoardContent>
       <BoardContent style={{ width: '5%' }}>
         {
           fix ?
@@ -62,10 +63,12 @@ export function BoardContentItem({ value, index, fix }: ComponentProps) {
                 <FontAwesomeIcon icon={faClipboard} />
         }
       </BoardContent>
-      <BoardContent style={{ width: '55%', display:'flex', justifyContent:'flex-start' }}>
-        <BoardContentLink href={`/board/${value.id}`}>
-          {value.title.length > 16 ? value.title.substring(0, 16) + "..." : value.title}
-        </BoardContentLink>
+      <BoardContent style={{ width: '55%', display: 'flex', justifyContent: 'flex-start' }}>
+        {title === '자유게시판' ?
+          <BoardContentLink href={`/board/${value.id}`}>{value.title}</BoardContentLink>
+          :
+          <BoardContentLink href={`/notice/${value.id}`}>{value.title}</BoardContentLink>
+        }
       </BoardContent>
       <BoardContent style={{ width: '13%' }}>{value.user_id.profile.length > 8 ? value.user_id.profile.substring(0, 8) + "..." : value.user_id.profile}</BoardContent>
       <BoardContent style={{ width: '8%' }}>{korTime(new Date(value.date))}</BoardContent>

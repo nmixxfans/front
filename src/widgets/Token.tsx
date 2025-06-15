@@ -1,6 +1,6 @@
 'use client'
 
-import { accessTokenState, userState } from "@/shared/Atom";
+import { accessTokenState, userState } from "@/shared/lib/Atom";
 import { useEffect } from "react"
 import { useRecoilState } from "recoil"
 

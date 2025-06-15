@@ -4,11 +4,35 @@ import { Country, FantubeType, Sort } from "@/features/channel/types/fanchannel"
 
 const tempData: FantubeType[] = [
   {
+    url: 'https://www.youtube.com/@ohhaewon',
+    coverImg: 'https://yt3.googleusercontent.com/p93cL9ZtXzcmiTr_KW-m64b7v5ugAF_a4-EMwPM0m9tXB9zaMqB25-Ygx3JAVjgMyS6dKgLsVA=s160-c-k-c0x00ffffff-no-rj',
+    sub: '60.7만명',
+    name: '또 오해원',
+    view: '1,558,733,646',
+    updateDate: new Date('2025-06-15'),
+  },
+  {
     url: 'https://www.youtube.com/@nmixxfantube',
     coverImg: 'https://yt3.googleusercontent.com/1yz8p477JeFGrOxkJ8XWoO1vOzP30FWLnBmkwSsI7roQoyETVcoaYvhTthbkL6ekUSI1nWZf=s160-c-k-c0x00ffffff-no-rj',
     sub: '8.36만명',
-    name: 'NMIXXFantube',
+    name: 'NMIXXFanTube',
     view: '274,883,806',
+    updateDate: new Date('2025-06-15'),
+  },
+  {
+    url: 'https://www.youtube.com/@yensull',
+    coverImg: 'https://yt3.googleusercontent.com/elMThXAg2ZiCa4EWVByH2zFAuN3knlB12HQ4FSBLSYhKNv6kDkuv2CHD4Nv6cOhnu5F2ckDvtw=s160-c-k-c0x00ffffff-no-rj',
+    sub: '5.88만명',
+    name: '옌설',
+    view: '17,859,584',
+    updateDate: new Date('2025-06-15'),
+  },
+  {
+    url: 'https://www.youtube.com/@jiwoohae',
+    coverImg: 'https://yt3.googleusercontent.com/pOHA0l-hvyjgFfHcvWcaN4fZRVBgYmETTPQgxOFoXIlBtY1qhx_HBhfQVuX-yU26oV3e5Dakdg=s160-c-k-c0x00ffffff-no-rj',
+    sub: '5.71만명',
+    name: '지우해',
+    view: '149,882,073',
     updateDate: new Date('2025-06-15'),
   }
 ]

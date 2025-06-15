@@ -5,7 +5,8 @@ import signin from "./signin.module.css"
 import { useEffect, useRef, useState } from "react"
 import { KeyboardEvent } from 'react';
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../shared/Atom";
+import { accessTokenState } from "@/shared/lib/Atom";
+import { DefaultContainer } from "@/shared/ui/DefaultContainer";
 
 export default function Signin() {
 
@@ -64,7 +65,8 @@ export default function Signin() {
   }
 
   return (
-    <section className={signin.section}>
+    <section>
+      <DefaultContainer>
       <div className={signin.container}>
         <div className={signin.signBox}>
           <input placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} ref={inputRef} className={signin.input} onKeyDown={(e) => handleSigninEnter(e)} />
@@ -78,6 +80,7 @@ export default function Signin() {
           </div>
         </div>
       </div>
+      </DefaultContainer>
     </section>
   )
 }

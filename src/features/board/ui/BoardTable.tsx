@@ -27,9 +27,10 @@ const BoardHead = styled.div`
 interface BoxProps {
   fixs: boardType[];
   boards: boardType[];
+  title: string;
 }
 
-export function BoardTable({ fixs, boards }: BoxProps) {
+export function BoardTable({ fixs, boards, title }: BoxProps) {
   return (
     <Box>
       <BoardHeadBox>
@@ -45,13 +46,13 @@ export function BoardTable({ fixs, boards }: BoxProps) {
       {
         fixs.map((value, index) => {
           return (
-            <BoardContentItem key={index} index={index} value={value} fix={true} />
+            <BoardContentItem key={index} index={index} value={value} fix={true} title={title} />
           )
         })
       }
       {boards.map((value, index) => {
         return (
-          <BoardContentItem key={index} index={index} value={value} fix={false} />
+          <BoardContentItem key={index} index={index} value={value} fix={false} title={title} />
         )
       })}
     </Box>

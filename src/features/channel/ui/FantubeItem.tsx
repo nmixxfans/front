@@ -6,7 +6,7 @@ import { FantubeType } from "../types/fanchannel";
 import Image from "next/image";
 
 const Component = styled.div`
-  width: 250px;
+  width: 240px;
   height: 200px;
   display: flex;
   justify-content: center;
