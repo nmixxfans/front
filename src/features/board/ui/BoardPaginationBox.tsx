@@ -1,3 +1,6 @@
+'use client'
+
+import "@/app/asset/css/pagination.css";
 import { useState } from "react";
 import Pagination from "react-js-pagination"
 import styled from "styled-components"
@@ -16,6 +19,17 @@ export function BoardPaginationBox({ }: BoxProps) {
   // todo : recoil로 변경해야함
   const [page, setPage] = useState<number>(0); //페이지
   const [totalCount, setTotalCount] = useState<number>(0);
+
+  // useEffect(() => {
+  //   if (page === 0) {
+  //     setPage(1);
+  //     return;
+  //   }
+  //   setFixs([]);
+  //   setBoards([]);
+  //   getData();
+  // }, [page])
+
 
   const handlePageChange = (pageNumber: number) => {
     // setPage(pageNumber);

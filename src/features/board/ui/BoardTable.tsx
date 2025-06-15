@@ -1,3 +1,5 @@
+'use client'
+
 import styled from "styled-components"
 import { boardType } from "../types/table"
 import { BoardContentItem } from "./BoardContentItem"
