@@ -6,13 +6,12 @@ import { BoardContentItem } from "./ui/BoardContentItem";
 import { BoardWrapper } from "./ui/BoardWrapper";
 import { BoardPaginationBox } from "./ui/BoardPaginationBox";
 import { BoardSearchBox } from "./ui/BoardSearchBox";
-
-
-
+import { categoryState } from "./model/boardState";
 
 
 export { category } from "./model/consts";
 export {
+    categoryState,
     BoardManagement,
     BoardCategory,
     BoardWriteButton,

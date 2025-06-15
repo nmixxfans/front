@@ -24,9 +24,9 @@ async function getData(page: string, category: string) {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/list?page=${page}&category=${category}`);
     const data = await res.json();
-    return [data.fixBoards, data.boards]
+    return [data.fixBoards, data.boards, data.totalCount]
   } catch {
-    return [tempData, tempData]
+    return [tempData, tempData, 50]
   }
 }
 
@@ -45,13 +45,7 @@ export default async function Board({ searchParams }: BoardProps) {
 
   const category = searchParams.category ?? "all";
   const page = searchParams.page ?? "1";
-
-  const [fixs, boards] = await getData(page, category);
-
-  // useEffect(() => {
-  //   document.title = "자유게시판";
-  // }, []);
-
+  const [fixs, boards, totalCount] = await getData(page, category);
 
   return (
     <section>
@@ -60,7 +54,7 @@ export default async function Board({ searchParams }: BoardProps) {
           <BoardManagement title="자유게시판" url="/board/write" />
           <BoardTable fixs={fixs} boards={boards} />
         </BoardWrapper>
-        <BoardPaginationBox />
+        <BoardPaginationBox totalCount={totalCount} />
         <BoardSearchBox />
       </DefaultContainer>
     </section>

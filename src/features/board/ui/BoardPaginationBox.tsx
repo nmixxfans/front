@@ -1,9 +1,12 @@
 'use client'
 
 import "@/app/asset/css/pagination.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination"
+import { useRecoilState } from "recoil";
 import styled from "styled-components"
+import { categoryState, pageState } from "../model/boardState";
+import { useRouter } from "next/navigation";
 
 const Box = styled.div`
   display: flex;
@@ -11,29 +14,24 @@ const Box = styled.div`
 `
 
 interface BoxProps {
-
+  totalCount: number;
 }
 
-export function BoardPaginationBox({ }: BoxProps) {
+export function BoardPaginationBox({ totalCount }: BoxProps) {
 
-  // todo : recoil로 변경해야함
-  const [page, setPage] = useState<number>(0); //페이지
-  const [totalCount, setTotalCount] = useState<number>(0);
+  const [page, setPage] = useRecoilState(pageState);
+  const [category] = useRecoilState(categoryState);
+  
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (page === 0) {
-  //     setPage(1);
-  //     return;
-  //   }
-  //   setFixs([]);
-  //   setBoards([]);
-  //   getData();
-  // }, [page])
-
+  useEffect(()=>{
+    router.push(`/board?page=${page}&category=${category}`);
+  }, [page])
 
   const handlePageChange = (pageNumber: number) => {
-    // setPage(pageNumber);
+    setPage(pageNumber);
   };
+
   return (
     <Box>
       <Pagination
