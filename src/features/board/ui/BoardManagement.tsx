@@ -2,6 +2,7 @@
 
 import styled from "styled-components"
 import { BoardCategory, BoardWriteButton, category } from '@/features/board';
+import { PageTitle } from "@/shared/ui/PageTitle";
 
 const Box = styled.div`
   display: flex;
@@ -14,16 +15,6 @@ const LeftBox = styled.div`
   align-items: center;
   gap: 10px;
 `
-
-const PageTitle = styled.div`
-  font-size: 18px;
-  color: #fff;
-  background-color: #000;
-  padding: 2px 5px;
-  font-family: 'S-CoreDream-9Black';
-  line-height: 1.5;
-`
-
 const CategoryBox = styled.div`
   display: flex;
   height: 100%;
