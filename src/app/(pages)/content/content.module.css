@@ -32,14 +32,6 @@ input:checked + .categoryBtn{
     background-color: #000;
 }
 
-.contentBox{
-
-}
-
-.contentItemBox{
-
-}
-
 .itemTitle{
     margin-top: 25px;
     margin-bottom: 10px;

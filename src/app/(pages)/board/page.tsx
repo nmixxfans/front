@@ -57,7 +57,7 @@ export default async function Board({ searchParams }: BoardProps) {
       <DefaultContainer>
         <BoardWrapper>
           <BoardManagement title="자유게시판" url="/board/write" />
-          <BoardTable fixs={fixs} boards={boards} />
+          <BoardTable title="자유게시판" fixs={fixs} boards={boards} />
         </BoardWrapper>
         <BoardPaginationBox title="자유게시판" totalCount={totalCount} />
         <BoardSearchBox title="자유게시판" />

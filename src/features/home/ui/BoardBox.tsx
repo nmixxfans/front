@@ -35,21 +35,6 @@ const ItemContent = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-
-  /* 
-  .boxScroll::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  .boxScroll::-webkit-scrollbar-thumb{
-      background: #dbdbdb;
-      border-radius: 10px;
-  }
-
-  .boxScroll::-webkit-scrollbar-track {
-      background: rgba(129, 129, 129, 0.1);
-      border-radius: 10px;
-  } */
 `
 
 const Item = styled(Link)`
@@ -97,6 +82,13 @@ interface BoxProps {
 }
 
 export function BoardBox({ data, title, icon, url }: BoxProps) {
+
+  let pageDivision = 'board';
+
+  if (title === '공지사항') {
+    pageDivision = 'notice';
+  }
+
   return (
     <Box>
       <TitleLink href={url}>
@@ -111,7 +103,7 @@ export function BoardBox({ data, title, icon, url }: BoxProps) {
             ?
             data.map((value, index) => {
               return (
-                <Item href={`/notice/${value.id}`} key={index}>
+                <Item href={`/${pageDivision}/${value.id}`} key={index}>
                   <ItemTitle>
                     {value.title}
                   </ItemTitle>

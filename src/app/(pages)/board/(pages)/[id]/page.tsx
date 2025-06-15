@@ -7,7 +7,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { boardUtcToKorTime } from "@/app/asset/functions/utc-to-kor-board";
 import { useRecoilValue } from "recoil";
-import { accessTokenState, userState } from "@/shared/Atom";
+import { accessTokenState, userState } from "@/shared/lib/Atom";
 
 
 interface boardType {

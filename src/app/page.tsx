@@ -1,9 +1,9 @@
-import { RecentMVBox } from './(pages)/home/ui/RecentMVBox';
 import { DefaultContainer } from '../shared/ui/DefaultContainer';
-import { BoardContainer } from './(pages)/home/ui/BoardContainer';
 import { ItemProps } from '../shared/types/board';
-import { VideoBox } from './(pages)/home/ui/VideoBox';
-import { EctContainer } from './(pages)/home/ui/EtcContainer';
+import { RecentMVBox } from '@/features/home/ui/RecentMVBox';
+import { BoardContainer } from '@/features/home/ui/BoardContainer';
+import { VideoBox } from '@/features/home/ui/VideoBox';
+import { EctContainer } from '@/features/home/ui/EtcContainer';
 
 async function getData() {
   try {
