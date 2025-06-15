@@ -16,14 +16,6 @@ export const category: categoryType[] = [
     name: "공식"
   },
   {
-    id: "sns",
-    name: "SNS"
-  },
-  {
-    id: "infor",
-    name: "정보"
-  },
-  {
     id: "photo",
     name: "사진"
   },
@@ -34,13 +26,5 @@ export const category: categoryType[] = [
   {
     id: "review",
     name: "후기"
-  },
-  {
-    id: "verify",
-    name: "인증"
-  },
-  {
-    id: "analyze",
-    name: "분석"
   }
 ]

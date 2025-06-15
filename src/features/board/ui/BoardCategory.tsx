@@ -1,4 +1,8 @@
+'use client'
+
+import { useRecoilState } from "recoil"
 import styled from "styled-components"
+import { categoryState } from "../model/boardState"
 
 const Component = styled.div`
   
@@ -31,10 +35,12 @@ interface ComponentProps {
 
 export function BoardCategory({ id, name, category, checked }: ComponentProps) {
 
+  const [_, setCategory] = useRecoilState(categoryState);
+
   const handleCategoryClick = (name: string) => {
-    // setCategory(name);
-    // setPage(0);
+    setCategory(name);
   }
+
   return (
     <Component>
       <CategoryInput type="radio" id={id} name={name} hidden defaultChecked={checked} />

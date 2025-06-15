@@ -1,3 +1,5 @@
+'use client'
+
 import styled from "styled-components"
 import { BoardCategory, BoardWriteButton, category } from '@/features/board';
 
@@ -38,7 +40,7 @@ interface BoxProps {
   url: string;
 }
 
-export function BoardManagementBox({ title, url }: BoxProps) {
+export function BoardManagement({ title, url }: BoxProps) {
   return (
     <Box>
       <LeftBox>
