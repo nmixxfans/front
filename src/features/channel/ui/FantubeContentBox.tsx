@@ -1,8 +1,8 @@
 'use client'
 
-import { PageTitle } from "@/shared/ui/PageTitle"
 import styled from "styled-components"
-import { FantubeCategoryBox } from "./FantubeCategoryBox"
+import FantubeItemBox from "./FantubeItemBox"
+import { FantubeType } from "../types/fanchannel";
 
 const Box = styled.div`
   display: flex;
@@ -12,12 +12,15 @@ const Box = styled.div`
   padding-bottom: 10px;
 `
 
-export function FantubeManagementBox() {
+interface BoxProps {
+  data: FantubeType[];
+}
+
+export function FantubeContentBox({ data }: BoxProps) {
 
   return (
     <Box>
-      <PageTitle>NMIXX FAN CHANNEL</PageTitle>
-      <FantubeCategoryBox />
+      <FantubeItemBox data={data} />
     </Box>
   )
 }

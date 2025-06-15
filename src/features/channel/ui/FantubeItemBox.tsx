@@ -1,5 +1,5 @@
-import { useRecoilState } from "recoil";
-// import fantube from "../fantube.module.css"
+'use client'
+
 import styled from "styled-components";
 import FantubeItem from "./FantubeItem";
 import { FantubeType } from "../types/fanchannel";
@@ -8,8 +8,8 @@ const Box = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin-top: 30px;
   width: 100%;
+  padding: 10px;
 `
 
 interface BoxProps {

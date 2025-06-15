@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import styled from "styled-components";
 import { FantubeType } from "../types/fanchannel";
@@ -10,9 +12,10 @@ const Component = styled.div`
   justify-content: center;
   transition: all 0.3s;
   font-family: 'S-CoreDream';
+  border-radius: 5px;
 
   &:hover{
-    background-color: #f3f3f3;
+    background-color: #fafafa;
     scale: 1.1;
     transition: all 0.3s;
   }
@@ -31,6 +34,7 @@ const ChannelLink = styled(Link)`
 const ChannelImage = styled(Image)`
   width: 100px;
   border-radius: 50%;
+  object-fit: cover;
 `
 
 const ChannelTextBox = styled.div`
@@ -47,7 +51,7 @@ const ChannelView = styled.span`
   position: absolute;
   bottom: 15px;
 
-  ${Component}:hover + &{
+  ${ChannelLink}:hover & {
     display: block;
   }
 `
@@ -65,15 +69,15 @@ export default function FantubeItem({ value }: ComponentProps) {
   return (
     <Component>
       <ChannelLink href={value.url} target="_blank">
-        <ChannelImage src={value.coverImg} alt="img" width={100} />
+        <ChannelImage src={value.coverImg} alt="img" width={100} height={100} />
         <ChannelTextBox>
           <ChannelText>{value.name}</ChannelText>
           <ChannelText>&nbsp;·&nbsp;</ChannelText>
           <ChannelText>{value.sub}</ChannelText>
         </ChannelTextBox>
-        <ChannelText>
+        <ChannelTextBox>
           <ChannelView>{value.view}회</ChannelView>
-        </ChannelText>
+        </ChannelTextBox>
       </ChannelLink>
     </Component>
   )

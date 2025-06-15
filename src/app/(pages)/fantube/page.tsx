@@ -1,9 +1,48 @@
-"use client"
-
 import { DefaultContainer } from "@/shared/ui/DefaultContainer";
-import { FantubeManagementBox } from "@/features/channel";
+import { FantubeContentBox, FantubeManagementBox } from "@/features/channel";
+import { Country, FantubeType, Sort } from "@/features/channel/types/fanchannel";
 
-export default function Fantube() {
+const tempData: FantubeType[] = [
+  {
+    url: 'https://www.youtube.com/@nmixxfantube',
+    coverImg: 'https://yt3.googleusercontent.com/1yz8p477JeFGrOxkJ8XWoO1vOzP30FWLnBmkwSsI7roQoyETVcoaYvhTthbkL6ekUSI1nWZf=s160-c-k-c0x00ffffff-no-rj',
+    sub: '8.36만명',
+    name: 'NMIXXFantube',
+    view: '274,883,806',
+    updateDate: new Date('2025-06-15'),
+  }
+]
+
+async function getData(sort: Sort, country: Country, page: number) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/fantube?sort=${sort}&country=${country}&page=${page}`);
+    const data = await res.json();
+    return [data.fantube]
+  } catch {
+    return [tempData]
+  }
+}
+
+export const metadata = {
+  title: "팬채널",
+}
+
+interface FantubeProps {
+  searchParams: {
+    sort?: Sort;
+    page?: number;
+    country?: Country;
+  };
+}
+
+export default async function Fantube({ searchParams }: FantubeProps) {
+
+  // Search Params 가져오기
+  const sort = searchParams.sort ?? "sub";
+  const page = searchParams.page ?? 1;
+  const country = searchParams.country ?? "ko";
+
+  const [fantubeList] = await getData(sort, country, page);
 
   // const params = useSearchParams();
   // const [fantubeData, setFantubeData] = useRecoilState(fantubeState);
@@ -64,7 +103,7 @@ export default function Fantube() {
     <section>
       <DefaultContainer>
         <FantubeManagementBox />
-        {/* <KorFantube /> */}
+        <FantubeContentBox data={fantubeList} />
       </DefaultContainer>
     </section>
   )

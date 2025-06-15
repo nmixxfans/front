@@ -174,7 +174,7 @@ export default function Header() {
         <PageLink href={'/notice'}>공지사항</PageLink>
         {/* <PageLink href={'/mc'}>엔믹스콘</PageLink> */}
         {/* <PageLink href={'/apply'}>매니저신청</PageLink> */}
-        <PageLink href={'/send'}>건의</PageLink>
+        {/* <PageLink href={'/send'}>건의</PageLink> */}
       </PageBox>
     </Widget>
   )

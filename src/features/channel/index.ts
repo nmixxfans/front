@@ -6,6 +6,7 @@ import { categoryState, sortState } from "./model/fanchannelState";
 import FantubeItem from "./ui/FantubeItem";
 import FantubeItemBox from "./ui/FantubeItemBox";
 import { fantubeState } from "./types/fanchannel";
+import { FantubeContentBox } from "./ui/FantubeContentBox";
 
 export {
   fantubeState,
@@ -16,5 +17,6 @@ export {
   FantubeCountryBox,
   FantubeSortBox,
   FantubeItem,
-  FantubeItemBox
+  FantubeItemBox,
+  FantubeContentBox,
 }
