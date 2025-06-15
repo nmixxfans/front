@@ -46,7 +46,11 @@ export function BoardManagement({ title, url }: BoxProps) {
       <LeftBox>
         <PageTitle>{title}</PageTitle>
         <CategoryBox>
-          <BoardCategory id="all" name="category" category="전체" checked={true} />
+          {title === '자유게시판' ?
+            <BoardCategory id="all" name="category" category="전체" checked={true} />
+            :
+            <></>
+          }
           {title === '자유게시판' ?
             category.map((value, index) => {
               return (
