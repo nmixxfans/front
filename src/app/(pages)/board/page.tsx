@@ -20,13 +20,13 @@ const tempData: boardType[] = [
   }
 ]
 
-async function getData(page: string, category: string) {
+async function getData(page: number, category: string, search: string, type: string) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/list?page=${page}&category=${category}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACK_URL}/board/list?page=${page}&category=${category}&search=${search}&type=${type}`);
     const data = await res.json();
     return [data.fixBoards, data.boards, data.totalCount]
   } catch {
-    return [tempData, tempData, 50]
+    return [tempData, tempData, 100]
   }
 }
 
@@ -37,15 +37,20 @@ export const metadata = {
 interface BoardProps {
   searchParams: {
     category?: string;
-    page?: string;
+    page?: number;
+    search?: string;
+    type?: string;
   };
 }
 
 export default async function Board({ searchParams }: BoardProps) {
-
+  // Search Params 가져오기
   const category = searchParams.category ?? "all";
-  const page = searchParams.page ?? "1";
-  const [fixs, boards, totalCount] = await getData(page, category);
+  const page = searchParams.page ?? 1;
+  const search = searchParams.search ?? "";
+  const type = searchParams.type ?? "";
+
+  const [fixs, boards, totalCount] = await getData(page, category, search, type);
 
   return (
     <section>
@@ -54,8 +59,8 @@ export default async function Board({ searchParams }: BoardProps) {
           <BoardManagement title="자유게시판" url="/board/write" />
           <BoardTable fixs={fixs} boards={boards} />
         </BoardWrapper>
-        <BoardPaginationBox totalCount={totalCount} />
-        <BoardSearchBox />
+        <BoardPaginationBox title="자유게시판" totalCount={totalCount} />
+        <BoardSearchBox title="자유게시판" />
       </DefaultContainer>
     </section>
   )

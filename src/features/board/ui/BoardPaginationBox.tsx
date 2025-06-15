@@ -5,8 +5,9 @@ import { useEffect, useState } from "react";
 import Pagination from "react-js-pagination"
 import { useRecoilState } from "recoil";
 import styled from "styled-components"
-import { categoryState, pageState } from "../model/boardState";
+import { categoryState, pageState, searchState, searchTypeState } from "../model/boardState";
 import { useRouter } from "next/navigation";
+import { noticePageState, noticeSearchState, noticeSearchTypeState } from "../model/noticeState";
 
 const Box = styled.div`
   display: flex;
@@ -15,21 +16,38 @@ const Box = styled.div`
 
 interface BoxProps {
   totalCount: number;
+  title: string;
 }
 
-export function BoardPaginationBox({ totalCount }: BoxProps) {
+export function BoardPaginationBox({ totalCount, title }: BoxProps) {
 
+  // 자유게시판
   const [page, setPage] = useRecoilState(pageState);
   const [category] = useRecoilState(categoryState);
-  
+  const [search] = useRecoilState(searchState);
+  const [searchType] = useRecoilState(searchTypeState);
+
+  // 공지사항
+  const [noticePage, setNoticePage] = useRecoilState(noticePageState);
+  const [noticeSearch] = useRecoilState(noticeSearchState);
+  const [noticeSearchType] = useRecoilState(noticeSearchTypeState);
+
   const router = useRouter();
 
-  useEffect(()=>{
-    router.push(`/board?page=${page}&category=${category}`);
+  useEffect(() => {
+    if (title === '자유게시판') {
+      router.push(`/board?page=${page}&category=${category}&search=${search}&type=${searchType}`);
+    } else {
+      router.push(`/notice?page=${noticePage}&search=${noticeSearch}&type=${noticeSearchType}`);
+    }
   }, [page])
 
   const handlePageChange = (pageNumber: number) => {
-    setPage(pageNumber);
+    if (title === '자유게시판') {
+      setPage(pageNumber);
+    } else {
+      setNoticePage(pageNumber);
+    }
   };
 
   return (

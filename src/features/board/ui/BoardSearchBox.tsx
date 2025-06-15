@@ -3,7 +3,11 @@
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
+import { useRecoilState } from "recoil"
 import styled from "styled-components"
+import { categoryState, pageState, searchState, searchTypeState } from "../model/boardState"
+import { noticePageState, noticeSearchState, noticeSearchTypeState } from "../model/noticeState"
+import { useRouter } from "next/navigation"
 
 const Box = styled.div`
   display: flex;
@@ -40,29 +44,62 @@ const BoardSearchButton = styled.div`
 `
 
 interface BoxProps {
-
+  title: string;
 }
 
-export function BoardSearchBox({ }: BoxProps) {
+export function BoardSearchBox({ title }: BoxProps) {
 
-  // type 변수 이름 변경 필요
-  const [searchData, setSearchData] = useState<string>(""); //검색 input value
-  const [type, setType] = useState<string>(""); //검색 select value
+  // 자유게시판
+  const [search, setSearch] = useRecoilState(searchState);
+  const [searchType, setSearchType] = useRecoilState(searchTypeState);
+  const [page, setPage] = useRecoilState(pageState);
+  const [category] = useRecoilState(categoryState);
 
-  const handleSearchEnter = async () => {
+  // 공지사항
+  const [noticeSearch, setNoticeSearch] = useRecoilState(noticeSearchState);
+  const [noticeSearchType, setNoticeSearchType] = useRecoilState(noticeSearchTypeState);
+  const [noticePage, setNoticePage] = useRecoilState(noticePageState);
 
+  const router = useRouter();
+
+  const handleSearch = () => {
+    // 검색 시 page 초기화하므로 recoil은 초기화만 시킴
+    if (title === '자유게시판') {
+      setPage(1);
+      router.push(`/board?page=1&category=${category}&search=${search}&type=${searchType}`)
+    } else {
+      setNoticePage(1);
+      router.push(`/notice?page=1&search=${noticeSearch}&type=${noticeSearchType}`);
+    }
+  }
+
+  const handleInputSearch = (value: string) => {
+    if (title === '자유게시판') {
+      setSearch(value);
+    } else {
+      setNoticeSearch(value);
+    }
+  }
+
+  const handleChangeType = (value: string) => {
+    if (title === '자유게시판') {
+      setSearchType(value);
+    } else {
+      setNoticeSearchType(value);
+    }
   }
 
   return (
     <Box>
-      <BoardSearchSelect onChange={(e) => setType(e.target.value)} >
+      <BoardSearchSelect onChange={(e) => handleChangeType(e.target.value)} >
+        <option value={"title"}>제목</option>
         <option value={"content"}>내용</option>
-        <option value={"titleAndContent"}>제목+내용</option>
+        <option value={"all"}>제목+내용</option>
         <option value={"writer"}>작성자</option>
       </BoardSearchSelect>
       <BoardSearchInput type="text"
-        onChange={(e) => setSearchData(e.target.value)}
-        onKeyDown={(e) => { if (e.key === "Enter") { handleSearchEnter() } }}
+        onChange={(e) => handleInputSearch(e.target.value)}
+        onKeyDown={(e) => { if (e.key === "Enter") { handleSearch() } }}
       />
       <BoardSearchButton>
         <FontAwesomeIcon icon={faMagnifyingGlass} />

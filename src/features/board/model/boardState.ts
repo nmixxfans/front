@@ -11,3 +11,13 @@ export const pageState = atom<number>({
   key: "page",
   default: 1,
 })
+
+export const searchState = atom<string>({
+  key: "search",
+  default: ""
+})
+
+export const searchTypeState = atom<string>({
+  key: "search_type",
+  default: ""
+})
