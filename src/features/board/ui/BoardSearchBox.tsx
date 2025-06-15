@@ -101,7 +101,7 @@ export function BoardSearchBox({ title }: BoxProps) {
         onChange={(e) => handleInputSearch(e.target.value)}
         onKeyDown={(e) => { if (e.key === "Enter") { handleSearch() } }}
       />
-      <BoardSearchButton>
+      <BoardSearchButton onClick={handleSearch}>
         <FontAwesomeIcon icon={faMagnifyingGlass} />
       </BoardSearchButton>
     </Box>

@@ -2,7 +2,8 @@
 
 import { useRecoilState } from "recoil"
 import styled from "styled-components"
-import { categoryState } from "../model/boardState"
+import { categoryState, pageState, searchState, searchTypeState } from "../model/boardState"
+import { useRouter } from "next/navigation"
 
 const Component = styled.div`
   
@@ -36,9 +37,20 @@ interface ComponentProps {
 export function BoardCategory({ id, name, category, checked }: ComponentProps) {
 
   const [_, setCategory] = useRecoilState(categoryState);
+  const [page, setPage] = useRecoilState(pageState);
+  const [search, setSearch] = useRecoilState(searchState);
+  const [searchType, setSearchType] = useRecoilState(searchTypeState);
+  
+  const router = useRouter();
 
   const handleCategoryClick = (name: string) => {
+    // 클릭 시 page는 1로 초기화
+    // 검색어 + 검색 타입 초기화
     setCategory(name);
+    setPage(1);
+    setSearch("");
+    setSearchType("");
+    router.push(`/board?page=1&category=${name}&search=${search}&type=${searchType}`)
   }
 
   return (
