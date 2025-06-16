@@ -10,6 +10,7 @@ const Box = styled.div`
   align-items: center;
   border-bottom: 1px solid #000;
   padding-bottom: 10px;
+  width: 100%;
 `
 
 export function FantubeManagementBox() {

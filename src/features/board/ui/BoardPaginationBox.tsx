@@ -12,6 +12,7 @@ import { noticePageState, noticeSearchState, noticeSearchTypeState } from "../mo
 const Box = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
 `
 
 interface BoxProps {

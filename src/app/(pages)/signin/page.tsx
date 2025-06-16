@@ -67,7 +67,6 @@ export default function Signin() {
   return (
     <section>
       <DefaultContainer>
-      <div className={signin.container}>
         <div className={signin.signBox}>
           <input placeholder="아이디" value={id} onChange={(e) => setId(e.target.value)} ref={inputRef} className={signin.input} onKeyDown={(e) => handleSigninEnter(e)} />
           <input type="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} className={signin.input} onKeyDown={(e) => handleSigninEnter(e)} />
@@ -79,7 +78,6 @@ export default function Signin() {
             <Link href={'/'} className={signin.otherBtn}>ID/PW 찾기</Link>
           </div>
         </div>
-      </div>
       </DefaultContainer>
     </section>
   )

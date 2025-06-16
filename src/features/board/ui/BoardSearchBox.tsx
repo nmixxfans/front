@@ -2,7 +2,6 @@
 
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react"
 import { useRecoilState } from "recoil"
 import styled from "styled-components"
 import { categoryState, pageState, searchState, searchTypeState } from "../model/boardState"
@@ -13,6 +12,7 @@ const Box = styled.div`
   display: flex;
   gap: 5px;
   height: 25px;
+  width: 100%;
 `
 
 const BoardSearchSelect = styled.select`
