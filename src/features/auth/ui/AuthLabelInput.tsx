@@ -16,7 +16,29 @@ const Component = styled.input`
   }
 `
 
+const SignupInput = styled.input`
+  width: 100%;
+  height: 35px;
+  margin-bottom: 15px;
+  border: 1px solid #cfcfcf;
+  padding: 10px;
+  outline: none;
+
+  &:focus{
+    border: 1px solid #000;
+  }
+`
+
+const SignupLabel = styled.label`
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 3px;
+  display: block;
+`
+
 interface ComponentProps {
+  id: string;
+  ref?: React.Ref<HTMLInputElement>;
   placeholder: string;
   value: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -24,17 +46,18 @@ interface ComponentProps {
   type?: "text" | "password"
 }
 
-export const AuthInput = forwardRef<HTMLInputElement, ComponentProps>(
-  ({ placeholder, value, type = "text", onChange, onKeyDown }, ref) => {
-    return (
-      <Component
+export function AuthLabelInput({ placeholder, value, type, ref, id, onChange, onKeyDown,  }: ComponentProps) {
+  return (
+    <Component>
+      <SignupInput
+        id={id}
         ref={ref}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        type={type}
-      />
-    )
-  }
-)
+        type={type} />
+      <SignupLabel htmlFor={id}></SignupLabel>
+    </Component>
+  )
+}
